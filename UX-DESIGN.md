@@ -1,5 +1,6 @@
 # User Experience Design
 
+[Prototype Link](https://www.figma.com/proto/2wByHUzYXxfSSN5929En0H/Wardrobe-Wizard?page-id=0%3A1&type=design&node-id=5-2&viewport=152%2C608%2C0.25&t=P0Lp58PYSqlx8mmN-1&scaling=min-zoom&starting-point-node-id=5%3A2&mode=design)
 
 ![App Map](/ux-design/WardrobeWizardAppMap.png)
 
