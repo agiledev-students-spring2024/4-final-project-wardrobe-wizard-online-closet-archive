@@ -11,11 +11,11 @@
 
 ![Home Page](/ux-design/prototype/Home%20Page.png)
 
-![Add Page](/ux-design/prototype/Add%20Page.png)
+![Add Page](/ux-design/prototype/Adding%20Page.png)
 
 ![Archive Page](/ux-design/prototype/Archive%20Page.png)
 
-![Generate Page](/ux-design/prototype/Generate%20Page.png)
+![Generate Page](/ux-design/prototype/Generator%20Page.png)
 
 ![Outfit Detail](/ux-design/prototype/Outfit%20Detail.png)
 
@@ -37,4 +37,4 @@
 
 ![Clothing Detail Page](/ux-design/prototype/Cloth%20Detail.png)
 
-![Menu](/ux-design/prototype/Menu.png)
+![Menu](/ux-design/prototype/menu.png)
