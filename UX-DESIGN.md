@@ -1,9 +1,9 @@
 # User Experience Design
 
 
-![App Map]("/ux-design/WardrobeWizardAppMap.png")
+![App Map](/ux-design/WardrobeWizardAppMap.png)
 
-![Wireframe]("/ux-design/WardrobeWizardWireframe.png")
+![Wireframe](/ux-design/WardrobeWizardWireframe.png)
 
 ![Login Page]("/ux-design/prototype/Login Page.png")
 
