@@ -1,2 +1,15 @@
 # Guide to Contributing
-Delete the contents of this file and replace with the contents of a proper guide to contributing to this project, as described in the [instructions](./instructions.md)
+
+## Team Norms
+
+* We aim to divide and conquer the work as efficiently as possible while communicating about any problems or setbacks as soon as possible.
+
+* Daily standups occur the day before class.
+
+* Sprints will take aproximately 2 weeks each. 
+
+* Our team will be using VS Code for our code editor.
+
+* We will be following the Agile workflow.
+
+* At this moment instructions for setting up an environment are not available. Will be updated as work on Sprint 1 begins.
