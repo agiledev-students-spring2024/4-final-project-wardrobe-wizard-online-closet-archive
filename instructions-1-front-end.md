@@ -40,3 +40,5 @@ Individuals will be graded, in part, according to...
 - proper adherence to the [Feature Branch git workflow](https://knowledge.kitchen/content/courses/agile-development-and-devops/slides/feature-branch-workflow/)
 - the [proper setup and maintenance of a GitHub repository](./instructions-0c-project-setup.md)
 - the quality of the work as a whole
+
+- testing something -skylar
