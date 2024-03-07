@@ -1,5 +1,5 @@
 import '../styles/Login.css'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login  =()  => {
     const navigate = useNavigate(); 
@@ -17,13 +17,13 @@ const Login  =()  => {
                 <form className='loginForm' onSubmit={handleSubmit}>
                     <input name="username" placeholder='Enter Username' />
                     <br/>
-                    <input name="password" placeholder='Enter Password' />
+                    <input name="password" placeholder='Enter Password' type ='password'/>
                     <br/>
                     <button type="submit">Login</button>
                 </form>
             </div>
             <div className='register'>
-                <p>Create New Account</p>
+                <p><Link to="/register">Create New Account</Link></p>
             </div>
         </div>
     )
