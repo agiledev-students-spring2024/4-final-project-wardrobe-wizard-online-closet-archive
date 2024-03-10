@@ -7,9 +7,9 @@ function Home(){
                 <h3>Home Page</h3>
             </div>
             <div className="homeList"> 
-                <h3>View Closet</h3> 
                 <h3>View Closet</h3>   
                 <h3>Add Item</h3>  
+                <h3>Outfit Archive</h3>  
                 <h3>Generator Outfit</h3>  
             </div>
         </div>
