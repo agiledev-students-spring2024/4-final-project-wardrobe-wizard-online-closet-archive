@@ -11,7 +11,7 @@ const OverlayMenu = () => {
 
     return (
         <>
-            <button onClick={toggleMenu} className="menu-button">☰</button> {/* Menu open button */}
+            <button onClick={toggleMenu} className={`menu-button ${isOpen ? 'open' : ''}`}>☰</button> {/* Menu open button */}
             <div className={`overlay-menu ${isOpen ? 'open' : ''}`}>
                 <button onClick={toggleMenu} className="close-menu">✕</button> {/* Close button */}
                 <h2>Wardrobe Wizard</h2>
