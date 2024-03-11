@@ -1,0 +1,68 @@
+.overlay-menu {
+    position: fixed;
+    left: -100%; /* Start off the screen */
+    top: 0;
+    width: 350px; /* Width of the menu */
+    height: 100%;
+    background: black;
+    transition: left 0.3s; /* Smooth transition for sliding in and out */
+    z-index: 1000; /* High index to ensure it's on top */
+  }
+  
+  .overlay-menu.open {
+    left: 0; /* Slide in */
+  }
+  
+  .menu-button {
+    position: fixed;
+    left: 20px;
+    top: 20px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3em;
+    z-index: 1001; /* Above the overlay menu */
+    transition: transform 0.3s; /* Smooth transition for rotation */
+    color: black; /* Default color is black */
+  }
+
+  .menu-button.open {
+    color: white; /* Change color to white when menu is open */
+    transform: rotate(90deg); /* Rotate icon 90 degrees */
+  }
+  
+  .close-menu {
+    color: white;
+    font-size: 2em;
+    background: none;
+    border: none;
+    position: absolute;
+    right: 20px;
+    top: 30px;
+  }
+  
+  .overlay-menu h2 {
+    color: white;
+    text-align: center;
+    margin-top: 36px; /* Adjust as per your styling needs */
+  }
+  
+  .overlay-menu nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  .overlay-menu nav a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 15px;
+    transition: background 0.3s;
+  }
+  
+  .overlay-menu nav a:hover,
+  .overlay-menu nav a:focus {
+    background: #333; /* A darker shade for hover state */
+  }
+  
