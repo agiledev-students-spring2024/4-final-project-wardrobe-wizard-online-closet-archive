@@ -2,20 +2,21 @@
 
 /* Consistent banner styling */
 .Coats_Jackets-banner {
-    background-color: #f1f1f1;
+    background: linear-gradient(to right, #f1e5ff, #fff0e7);
     padding: 1.5rem;
     text-align: center;
 }
 
 .Coats_Jackets-banner h1 {
     font-family: "IM Fell French Canon SC", serif;
+    font-weight: 400;
     margin: 0;
     margin-left: 2em;
     text-align: left;
     font-size: 27px;
 }
 
-.Coats_Jackets-banner h3,  .Coats_Jackets-banner h1 {
+.Coats_Jackets-banner h3 {
     font-family: 'Cormorant Infant', serif;
     font-weight: 300;
 }
@@ -83,4 +84,8 @@
     .Coats_Jackets-item {
         margin: 1rem auto; /* Centers the items on smaller screens */
     }
+}
+
+.Coats_Jackets{
+    position: relative;
 }
