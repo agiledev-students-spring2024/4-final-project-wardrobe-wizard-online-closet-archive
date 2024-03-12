@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
+import {  Link } from 'react-router-dom';
 import '../styles/Generator.css'; // Ensure you have the corresponding CSS file
+import OverlayMenu from '../components/OverlayMenu';
+import Footer from '../components/Footer'; 
 
 const Generator = () => {
   // Dummy data for clothes items
   const clothes = [
     { id: 1, name: 'Item 1', brand: 'Brand A', type: 'Shirt' },
     { id: 2, name: 'Item 2', brand: 'Brand B', type: 'Pants' },
+    { id: 3, name: 'Item 3', brand: 'Brand C', type: 'Pants' },
+    { id: 4, name: 'Item 4', brand: 'Brand D', type: 'Skirts' },
+    { id: 5, name: 'Item 5', brand: 'Brand B', type: 'Skirts' },
     // ... add more items here
   ];
 
@@ -28,9 +34,9 @@ const Generator = () => {
 
   return (
     <div className="generator-container">
+      <OverlayMenu />
       <header className="generator-header">
-        <button className="menu-button">☰</button>
-        <h1>Wardrobe Wizard</h1>
+        <h1>WARDROBE WIZARD</h1>
         <h2>Generator</h2>
       </header>
       <h3>Choose the clothes you want to match:</h3>
@@ -50,9 +56,15 @@ const Generator = () => {
           </div>
         ))}
       </div>
-      <button className="generate-button" onClick={handleGenerateClick}>
-        Generate
-      </button>
+      <div className="button-container">
+        <button className="generate-button" onClick={handleGenerateClick}>
+          Generate Outfit
+        </button>
+        <div className='random'>
+          <p><Link to="/random">Have no idea? Try <u>RandomOutfitGenerator</u></Link></p>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };

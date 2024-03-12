@@ -24,8 +24,8 @@ const OverlayMenu = () => {
                         <li><a href="/generator">Generator</a></li>
                         <li><a href="/">Logout</a></li> */}
                         <li><Link to="/home">Home</Link></li>
-                        <li><Link to="/view-closet">View Closet</Link></li>
-                        <li><Link to="/add-item">Add Item</Link></li>
+                        <li><Link to="/closet">View Closet</Link></li>
+                        <li><Link to="/additem">Add Item</Link></li>
                         <li><Link to="/outfit-archive">Outfit Archive</Link></li>
                         <li><Link to="/generator">Generator</Link></li>
                         <li><Link to="/">Logout</Link></li>

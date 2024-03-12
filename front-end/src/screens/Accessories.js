@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/Accessories.css'; // Make sure this path is correct
 import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
 
+
 const Accessories = () => {
     // Mock data for Accessories
     const Accessories = [

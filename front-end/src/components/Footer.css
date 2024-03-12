@@ -1,0 +1,17 @@
+.footer {
+    background-color: #f6f2f200; /* light grey background */
+    color: #333; /* dark text color */
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    font-size: 13px;
+    
+  }
+  
+  /* If your footer is overlaying content due to absolute positioning,
+     you might need to add padding to the bottom of your main content container */
+  .content-container {
+    padding-bottom: 50px; /* adjust accordingly */
+  }
+  

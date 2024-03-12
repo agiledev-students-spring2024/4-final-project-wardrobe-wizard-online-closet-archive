@@ -2,13 +2,14 @@
 
 /* Consistent banner styling */
 .Pants-banner {
-    background-color: #f1f1f1;
+    background: linear-gradient(to right, #f1e5ff, #fff0e7);
     padding: 1.5rem;
     text-align: center;
 }
 
 .Pants-banner h1 {
     font-family: "IM Fell French Canon SC", serif;
+    font-weight: 400;
     margin: 0;
     margin-left: 2em;
     text-align: left;
