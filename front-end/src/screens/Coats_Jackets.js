@@ -17,7 +17,7 @@ const Coats_Jackets = () => {
             <OverlayMenu />
             <header className='Coats_Jackets-banner'>
                 <h1>WARDROBE WIZARD</h1>
-                <h1>Coats/Jackets</h1>
+                <h3>Coats/Jackets</h3>
             </header>
             <div className="Coats_Jackets-list">
                 {Coats_Jackets.map((Coat_Jacket, index) => (

@@ -17,7 +17,7 @@ const Shirt = () => {
             <OverlayMenu />
             <header className='Shirt-banner'>
                 <h1>WARDROBE WIZARD</h1>
-                <h1>Shirts</h1>
+                <h3>Shirts</h3>
             </header>
             <div className="Shirt-list">
                 {shirts.map((shirt, index) => (
