@@ -7,7 +7,7 @@
     text-align: center;
 }
 
-.Accessories-banner h1, .Accessories-banner h2 {
+.Accessories-banner h1 {
     font-family: "IM Fell French Canon SC", serif;
     margin: 0;
     margin-left: 2em;
@@ -15,7 +15,7 @@
     font-size: 27px;
 }
 
-.Accessories-banner h2 {
+.Accessories-banner h3, .Accessories-banner h1 {
     font-family: 'Cormorant Infant', serif;
     font-weight: 300;
 }

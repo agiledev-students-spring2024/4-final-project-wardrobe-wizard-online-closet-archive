@@ -7,7 +7,7 @@
     text-align: center;
 }
 
-.Coats_Jackets-banner h1, .Coats_Jackets-banner h2 {
+.Coats_Jackets-banner h1 {
     font-family: "IM Fell French Canon SC", serif;
     margin: 0;
     margin-left: 2em;
@@ -15,7 +15,7 @@
     font-size: 27px;
 }
 
-.Coats_Jackets-banner h2 {
+.Coats_Jackets-banner h3,  .Coats_Jackets-banner h1 {
     font-family: 'Cormorant Infant', serif;
     font-weight: 300;
 }

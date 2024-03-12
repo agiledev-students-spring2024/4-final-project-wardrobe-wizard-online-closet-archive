@@ -7,12 +7,15 @@
     text-align: center;
 }
 
-.Shirt-banner h1, .Shirt-banner h2 {
+.Shirt-banner h1{
     font-family: "IM Fell French Canon SC", serif;
     margin: 0;
+    margin-left: 2em;
+    text-align: left;
+    font-size: 27px;
 }
 
-.Shirt-banner h2 {
+.Shirt-banner h3, .Shirt-banner h1 {
     font-family: 'Cormorant Infant', serif;
     font-weight: 300;
 }
