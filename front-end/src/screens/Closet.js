@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Closet.css'; // Ensure the CSS file is properly linked
+import '../styles/Closet.css'; // Ensure the CSS file is properly linked
 
 const Closet = () => {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Generator.css'; // Ensure you have the corresponding CSS file
+import '../styles/Generator.css'; // Ensure you have the corresponding CSS file
 
 const Generator = () => {
   // Dummy data for clothes items

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './AddItem.css'; // Ensure you have the corresponding CSS file
+import '../styles/AddItem.css'; // Ensure you have the corresponding CSS file
 
 const AddItem = () => {
   const [formData, setFormData] = useState({
