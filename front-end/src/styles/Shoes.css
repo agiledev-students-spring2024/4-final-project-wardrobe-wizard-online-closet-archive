@@ -7,17 +7,17 @@
     text-align: center;
 }
 
-.Shoes-banner h1, .Shoes-banner h2 {
+.Shoes-banner h1 {
     font-family: "IM Fell French Canon SC", serif;
     margin: 0;
-}
-
-.Shoes-banner h2 {
-    font-family: 'Cormorant Infant', serif;
-    font-weight: 300;
     margin-left: 2em;
     text-align: left;
     font-size: 27px;
+}
+
+.Shoes-banner h3, .Shoes-banner h1 {
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 300;
 }
 
 /* Grid layout for the shirt list */

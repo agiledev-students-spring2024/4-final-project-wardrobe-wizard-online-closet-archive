@@ -17,7 +17,7 @@ const Accessories = () => {
             <OverlayMenu />
             <header className='Accessories-banner'>
                 <h1>WARDROBE WIZARD</h1>
-                <h1>Accessories</h1>
+                <h3>Accessories</h3>
             </header>
             <div className="Accessories-list">
                 {Accessories.map((Accessorie, index) => (
