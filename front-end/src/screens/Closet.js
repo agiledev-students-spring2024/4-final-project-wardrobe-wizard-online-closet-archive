@@ -1,8 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Closet.css'; // Ensure the CSS file is properly linked
 
 const Closet = () => {
-  
+  const navigate = useNavigate();
+
+  const handleAddItem = () => {
+    navigate('/add-item'); 
+  };
   const categories = [
     'Shirts',
     'Pants',
@@ -36,7 +41,7 @@ const Closet = () => {
           </button>
         ))}
       </div>
-      <button className="add-item-button">Add Item</button>
+      <button className="add-item-button"onClick={handleAddItem}>Add Item</button>
     </div>
   );
 };

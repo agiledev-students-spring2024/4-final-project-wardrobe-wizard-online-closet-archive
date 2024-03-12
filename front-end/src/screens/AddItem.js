@@ -21,8 +21,7 @@ const AddItem = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Handle the form submission here
-    // You will need to do something with the formData, like sending it to a backend service
+    
 
     console.log(formData);
 
