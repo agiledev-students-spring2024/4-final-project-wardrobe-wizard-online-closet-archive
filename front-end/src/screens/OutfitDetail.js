@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/OutfitDetail.css'
 
 function OutfitDetail() {
     return (

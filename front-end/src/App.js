@@ -14,6 +14,9 @@ import Closet from './screens/Closet';
 import AddItem from './screens/AddItem';
 import Generator from './screens/Generator';
 import RandomOutfitGenerator from './screens/RandomOutfitGenerator';
+import ItemDetail from './screens/ItemDetail';
+import OutfitDetail from './screens/OutfitDetail';
+import Archive from './screens/Archive';
 
 
 function App() {
@@ -31,6 +34,9 @@ function App() {
         <Route path="/pants" element={<Pants/>} />
         <Route path="/shirt" element={<Shirt/>} />
         <Route path="/shoes" element={<Shoes/>} />
+        <Route path="/ItemDetail" element={<ItemDetail/>} />
+        <Route path="/OutfitDetail" element={<OutfitDetail/>} />
+        <Route path="/Archive" element={<Archive/>} />
         <Route path="/skirts-dresses" element={<SkirtsDresses/>} />
         <Route path="/generator" element={<Generator/>} />
         <Route path="/random" element={<RandomOutfitGenerator/>} />
