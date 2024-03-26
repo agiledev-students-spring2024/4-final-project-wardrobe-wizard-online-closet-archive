@@ -39,5 +39,5 @@ function OutfitDetail() {
     );
 }
 
-export default ItemDetail;
+export default OutfitDetail;
 <p> <strong style={{textDecoration: 'underline'}}> Item Detail</strong></p>
