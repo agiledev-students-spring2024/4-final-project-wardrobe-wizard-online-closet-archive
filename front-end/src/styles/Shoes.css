@@ -2,20 +2,21 @@
 
 /* Consistent banner styling */
 .Shoes-banner {
-    background-color: #f1f1f1;
+    background: linear-gradient(to right, #f1e5ff, #fff0e7);
     padding: 1.5rem;
     text-align: center;
 }
 
 .Shoes-banner h1 {
     font-family: "IM Fell French Canon SC", serif;
+    font-weight: 400;
     margin: 0;
     margin-left: 2em;
     text-align: left;
     font-size: 27px;
 }
 
-.Shoes-banner h3, .Shoes-banner h1 {
+.Shoes-banner h3 {
     font-family: 'Cormorant Infant', serif;
     font-weight: 300;
 }

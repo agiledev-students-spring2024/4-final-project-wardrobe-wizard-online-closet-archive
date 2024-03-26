@@ -2,9 +2,10 @@ import React from 'react';
 import '../styles/All_Items.css'; // Make sure this path is correct
 import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
 
-const All_Items = () => {
+
+const AllItems = () => {
     // Mock data for All_Items
-    const All_Items = [
+    const AllItems = [
         { name: 'Casual All_Items', brand: 'Brand A', type: 'Casual' },
         { name: 'Formal All_Items', brand: 'Brand B', type: 'Formal' },
         { name: 'All_Items 3', brand: 'Brand C', type: 'Fashion' },
@@ -20,7 +21,7 @@ const All_Items = () => {
                 <h3>All Items</h3>
             </header>
             <div className="All_Items-list">
-                {All_Items.map((All_Item, index) => (
+                {AllItems.map((All_Item, index) => (
                     <div className="All_Items-item" key={index}>
                         <div className="All_Items-image"></div> {/* Placeholder for the image */}
                         <div className="All_Items-info">
@@ -31,8 +32,9 @@ const All_Items = () => {
                     </div>
                 ))}
             </div>
+            
         </div>
     );
 }
 
-export default All_Items;
+export default AllItems;

@@ -2,9 +2,10 @@ import React from 'react';
 import '../styles/Coats_Jackets.css'; // Make sure this path is correct
 import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
 
-const Coats_Jackets = () => {
+
+const CoatsJackets = () => {
     // Mock data for Coats_Jackets
-    const Coats_Jackets = [
+    const CoatsJackets = [
         { name: 'Casual Coats_Jackets', brand: 'Brand A', type: 'Casual' },
         { name: 'Formal Coats_Jackets', brand: 'Brand B', type: 'Formal' },
         { name: 'Coats_Jackets 3', brand: 'Brand C', type: 'Fashion' },
@@ -20,19 +21,20 @@ const Coats_Jackets = () => {
                 <h3>Coats/Jackets</h3>
             </header>
             <div className="Coats_Jackets-list">
-                {Coats_Jackets.map((Coat_Jacket, index) => (
+                {CoatsJackets.map((CoatJacket, index) => (
                     <div className="Coats_Jackets-item" key={index}>
                         <div className="Coats_Jackets-image"></div> {/* Placeholder for the image */}
                         <div className="Coats_Jackets-info">
-                            <h3>{Coat_Jacket.name}</h3>
-                            <p>{Coat_Jacket.brand}</p>
-                            <p>{Coat_Jacket.type}</p>
+                            <h3>{CoatJacket.name}</h3>
+                            <p>{CoatJacket.brand}</p>
+                            <p>{CoatJacket.type}</p>
                         </div>
                     </div>
                 ))}
             </div>
+            
         </div>
     );
 }
 
-export default Coats_Jackets;
+export default CoatsJackets;

@@ -1,14 +1,15 @@
-.generator-container {
-    font-family: Arial, sans-serif;
+.random-outfit-generator-container { 
+    font-family: Arial, sans-serif
+    
   }
-  
-  .generator-header {
+ 
+.randomgenerator-header {
     background: linear-gradient(to right, #f1e5ff, #fff0e7);
     padding: 1.5rem;
     text-align: center;
   }
   
-.generator-header h1{
+.randomgenerator-header h1{
   font-family: "IM Fell French Canon SC", serif;
   font-weight: 400;
   margin: 0;
@@ -17,31 +18,18 @@
   font-size: 27px;
 }
 
-.generator-header h2 {
+.randomgenerator-header h2 {
   font-family: 'Cormorant Infant', serif;
   font-weight: 300;
 }
 
-.generator-container h3{
-  margin: 20px 30px;
-  font-family: "Inria Serif", serif;
-  font-size: 20px;
+
+.outfit-display {
+    border: 1px solid #9f9797;
+    padding: 20px;
+    /* margin: 20px 0; */
 }
 
-  .items-container {
-    display: flex;
-    flex-flow: row wrap;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 0.5rem;
-    overflow-y: scroll; /* Enables vertical scrolling */
-    background-color: #fffcee; /* Light yellow background */
-    padding: 0.5rem; 
-    justify-content: center;
-    border-radius: 4px;
-    height: 400px;
-    margin: 0.5em;  
-  }
-  
   .item {
     height: 200px; /* Set a fixed height */
     width: 150px;
@@ -66,10 +54,7 @@
   font-size: 15px;
 }
 
-  .item.selected {
-    background-color: #e0e0e0; /* Highlight selected items */
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
+
   
   .thumbnail {
     background-color: #d4c9c9; /* Placeholder for images */
@@ -78,21 +63,41 @@
     margin-bottom: 5px;
   }
 
-  .button-container {
-    padding: 20px;
+  .auto-generate-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  
-  .generate-button {
-    display: block;
-    width: 100%;
+
+.auto-generate-button{
+
     padding: 10px 20px;
-    background-color: #000;
+    background-color: #000000;
     color: #fff;
     border: none;
     cursor: pointer;
     font-size: 15px;
-  }
-  
+    margin: 2rem;
+    
+}
+.save-button-container{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    gap: 10px;
+}
+
+.save-button, .cancel-button{
+    padding: 10px 20px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 1rem;
+}
+
+ 
   /* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .items-container {
@@ -102,17 +107,4 @@
   .item {
       margin: 1rem auto; /* Centers the items on smaller screens */
   }
-}
-
-.random{
-  text-align: center;
-}
-.random a{
-  
-  text-decoration: none;
-  text-decoration: none;
-  font-size: 13px;
-  font-family: "Inter", sans-serif;
-  color: #3f3d3d;
-  
 }

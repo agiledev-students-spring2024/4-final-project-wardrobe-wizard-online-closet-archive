@@ -2,22 +2,24 @@
 
 /* Consistent banner styling */
 .Accessories-banner {
-    background-color: #f1f1f1;
+    background: linear-gradient(to right, #f1e5ff, #fff0e7);
     padding: 1.5rem;
     text-align: center;
 }
 
 .Accessories-banner h1 {
     font-family: "IM Fell French Canon SC", serif;
+    font-weight: 400;
     margin: 0;
     margin-left: 2em;
     text-align: left;
     font-size: 27px;
 }
 
-.Accessories-banner h3, .Accessories-banner h1 {
+.Accessories-banner h3 {
     font-family: 'Cormorant Infant', serif;
     font-weight: 300;
+    
 }
 
 /* Grid layout for the shirt list */

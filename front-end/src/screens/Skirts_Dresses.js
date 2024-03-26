@@ -2,9 +2,9 @@ import React from 'react';
 import '../styles/Skirts_Dresses.css'; // Make sure this path is correct
 import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
 
-const Skirts_Dresses = () => {
+const SkirtsDresses = () => {
     // Mock data for Skirts_Dresses
-    const Skirts_Dresses = [
+    const SkirtsDresses = [
         { name: 'Casual Skirts_Dresses', brand: 'Brand A', type: 'Casual' },
         { name: 'Formal Skirts_Dresses', brand: 'Brand B', type: 'Formal' },
         { name: 'Skirts_Dresses 3', brand: 'Brand C', type: 'Fashion' },
@@ -20,13 +20,13 @@ const Skirts_Dresses = () => {
                 <h3>Skirts/Dresses</h3>
             </header>
             <div className="Skirts_Dresses-list">
-                {Skirts_Dresses.map((Skirt_Dresse, index) => (
+                {SkirtsDresses.map((SkirtDresse, index) => (
                     <div className="Skirts_Dresses-item" key={index}>
                         <div className="Skirts_Dresses-image"></div> {/* Placeholder for the image */}
                         <div className="Skirts_Dresses-info">
-                            <h3>{Skirt_Dresse.name}</h3>
-                            <p>{Skirt_Dresse.brand}</p>
-                            <p>{Skirt_Dresse.type}</p>
+                            <h3>{SkirtDresse.name}</h3>
+                            <p>{SkirtDresse.brand}</p>
+                            <p>{SkirtDresse.type}</p>
                         </div>
                     </div>
                 ))}
@@ -35,4 +35,4 @@ const Skirts_Dresses = () => {
     );
 }
 
-export default Skirts_Dresses;
+export default SkirtsDresses;

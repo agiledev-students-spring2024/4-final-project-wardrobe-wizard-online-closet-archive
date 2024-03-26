@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/AddItem.css'; // Ensure you have the corresponding CSS file
+import OverlayMenu from '../components/OverlayMenu'; 
+import Footer from '../components/Footer'; 
 
 const AddItem = () => {
   const [formData, setFormData] = useState({
@@ -28,7 +30,7 @@ const AddItem = () => {
     // Clear the form
     setFormData({
       name: '',
-      type: '',
+      Category: '',
       brand: '',
       color: '',
       picture: null
@@ -37,10 +39,10 @@ const AddItem = () => {
 
   return (
     <div className="add-item-container">
+      <OverlayMenu />
       <header className="add-item-header">
-        <button className="menu-button">☰</button>
-        <h1>Wardrobe Wizard</h1>
-        <h2>Add Item</h2>
+        <h1>WARDROBE WIZARD</h1>
+        <h3>Add Item</h3>
       </header>
       <form onSubmit={handleSubmit} className="add-item-form">
         <label htmlFor="name">Name:</label>
@@ -53,15 +55,23 @@ const AddItem = () => {
           required
         />
 
-        <label htmlFor="type">Type:</label>
-        <input
-          type="text"
-          id="type"
-          name="type"
-          value={formData.type}
+        <label htmlFor="Category">Category: </label>
+        <select
+          id="Category"
+          name="Category"
+          value={formData.Category}
           onChange={handleChange}
           required
-        />
+        >
+          <option value="">Select category</option>
+          <option value="Shirts">Shirts</option>
+          <option value="Pants">Pants</option>
+          <option value="Skirts/Dresses">Skirts/Dresses</option>
+          <option value="Coats/Jackets">Coats/Jackets</option>
+          <option value="Shoes">Shoes</option>
+          <option value="Accessories">Accessories</option>
+        </select>
+
 
         <label htmlFor="brand">Brand:</label>
         <input
@@ -93,6 +103,7 @@ const AddItem = () => {
 
         <button type="submit" className="submit-button">Add Item</button>
       </form>
+      <Footer />
     </div>
   );
 };

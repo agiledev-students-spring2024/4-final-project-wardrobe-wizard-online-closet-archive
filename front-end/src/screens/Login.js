@@ -1,5 +1,6 @@
 import '../styles/Login.css'
 import { useNavigate, Link } from 'react-router-dom';
+import Footer from '../components/Footer'; 
 
 const Login  =()  => {
     const navigate = useNavigate(); 
@@ -25,6 +26,7 @@ const Login  =()  => {
             <div className='register'>
                 <p><Link to="/register">Create New Account</Link></p>
             </div>
+            <Footer />
         </div>
     )
 }

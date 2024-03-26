@@ -1,5 +1,6 @@
 import '../styles/Login.css'
 import { useNavigate } from 'react-router-dom';
+import Footer from '../components/Footer'; 
 
 function Registration(){
     const navigate = useNavigate(); 
@@ -24,6 +25,7 @@ function Registration(){
                     <button type="submit">Register</button>
                 </form>
             </div>
+            <Footer />
         </div>
     )
 }
