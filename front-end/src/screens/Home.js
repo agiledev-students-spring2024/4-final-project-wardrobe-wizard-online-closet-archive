@@ -14,7 +14,7 @@ function Home(){
             <div className="homeList"> 
                 <h3><Link to="/closet">View Closet</Link></h3>   
                 <h3><Link to="/additem">Add Item</Link></h3>  
-                <h3><Link to="/outfit-archive">Outfit Archive</Link></h3>  
+                <h3><Link to="/Archive">Outfit Archive</Link></h3>  
                 <h3><Link to="/generator">Generator Outfit</Link></h3>  
             </div>
             <Footer />
