@@ -18,13 +18,13 @@ const Outfits = () => {
             <OverlayMenu />
             <header className='Archive-banner'>
                 <h1>WARDROBE WIZARD</h1>
-                <h3>Pants</h3>
+                <h3>Outfit Archive</h3>
             </header>
             <div className="Outfit Archive">
                 {Outfits.map((item, index) => (
-                    <div className="Outfit-item" key={index}>
-                        <div className="Outfit-image"></div> {/* Placeholder for the image */}
-                        <div className="Outfit-info">
+                    <div className="Archive-item" key={index}>
+                        <div className="Archive-image"></div> {/* Placeholder for the image */}
+                        <div className="Archive-info">
                             <h3>{item.name}</h3>
                             <p>{item.brand}</p>
                             <p>{item.type}</p>
