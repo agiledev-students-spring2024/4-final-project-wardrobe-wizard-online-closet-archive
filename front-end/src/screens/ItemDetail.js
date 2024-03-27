@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/ItemDetail.css'
 
 function ItemDetail() {
     return (
@@ -14,7 +15,7 @@ function ItemDetail() {
                 <p>Notes</p>
             </div>
         </div>
-    )
+    );
 }
 
 export default ItemDetail;

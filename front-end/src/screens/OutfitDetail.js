@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/OutfitDetail.css'
 
 function OutfitDetail() {
     return (
@@ -38,5 +39,5 @@ function OutfitDetail() {
     );
 }
 
-export default ItemDetail;
+export default OutfitDetail;
 <p> <strong style={{textDecoration: 'underline'}}> Item Detail</strong></p>
