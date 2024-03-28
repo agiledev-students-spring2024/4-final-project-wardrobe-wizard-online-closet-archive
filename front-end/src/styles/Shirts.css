@@ -32,6 +32,7 @@
 
 /* Individual shirt item styling */
 .Shirt-item {
+    cursor: pointer; /* Indicates the item is clickable */
     height: 350px; /* Set a fixed height */
     width: 200px;
     background-color: #f1f1f1;
@@ -42,6 +43,11 @@
     align-items: center;
     justify-content: space-around; /* Distribute space evenly */
     padding: 1rem; /* Add padding */
+}
+
+.Shirt-item-link {
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Keeps text color consistent with the rest of the item */
 }
 
 /* Hover effect for shirt item */
