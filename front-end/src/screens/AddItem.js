@@ -87,8 +87,8 @@ const AddItem = () => {
           <option value="">Select category</option>
           <option value="Shirts">Shirts</option>
           <option value="Pants">Pants</option>
-          <option value="SkirtsDresses">Skirts/Dresses</option>
-          <option value="CoatsJackets">Coats/Jackets</option>
+          <option value="Skirts">Skirts/Dresses</option>
+          <option value="Jackets">Coats/Jackets</option>
           <option value="Shoes">Shoes</option>
           <option value="Accessories">Accessories</option>
         </select>
