@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Coats_Jackets.css'; // Make sure this path is correct
+import { Link } from 'react-router-dom'; // Add this import
 import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
 import axios from 'axios';
 
@@ -25,6 +26,7 @@ const CoatsJackets = () => {
             </header>
             <div className="Coats_Jackets-list">
                 {jackets.map((CoatJacket, index) => (
+                    <Link to={`/item-detail/${CoatJacket.name}`} key={index} className="Coats_Jackets-item-link">
                     <div className="Coats_Jackets-item" key={index}>
                         <div className="Coats_Jakcets-image"><img src = { `http://localhost:3001${CoatJacket.img}`} width={200} /></div> 
                         <div className="Coats_Jackets-info">
@@ -33,6 +35,7 @@ const CoatsJackets = () => {
                             <p>{CoatJacket.type}</p>
                         </div>
                     </div>
+                    </Link>
                 ))}
             </div>
             

@@ -7,23 +7,21 @@
     text-align: center;
 }
 
-.Skirts_Dresses-banner h1 {
+.Skirts_Dresses-banner h1{
     font-family: "IM Fell French Canon SC", serif;
     font-weight: 400;
     margin: 0;
     margin-left: 2em;
     text-align: left;
     font-size: 27px;
-    
 }
 
 .Skirts_Dresses-banner h3 {
     font-family: 'Cormorant Infant', serif;
     font-weight: 300;
-
 }
 
-/* Grid layout for the shirt list */
+/* Grid layout for the Skirts_Dresses list */
 .Skirts_Dresses-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Creates a responsive number of columns */
@@ -32,8 +30,9 @@
     justify-content: center;
 }
 
-/* Individual shirt item styling */
+/* Individual Skirts_Dresses item styling */
 .Skirts_Dresses-item {
+    cursor: pointer; /* Indicates the item is clickable */
     height: 350px; /* Set a fixed height */
     width: 200px;
     background-color: #f1f1f1;
@@ -46,7 +45,12 @@
     padding: 1rem; /* Add padding */
 }
 
-/* Hover effect for shirt item */
+.Skirts_Dresses-item-link {
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Keeps text color consistent with the rest of the item */
+}
+
+/* Hover effect for Skirts_Dresses item */
 .Skirts_Dresses-item:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }

@@ -1,40 +1,63 @@
-import React from 'react';
-import '../styles/All_Items.css'; // Make sure this path is correct
-import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
+import React, { useState, useEffect } from 'react';
+import '../styles/All_Items.css'; // Update the path to your All_Items.css
+import { Link } from 'react-router-dom';
+import OverlayMenu from '../components/OverlayMenu'; // Assuming you have a similar overlay menu across pages
+import axios from 'axios';
 
+const All_Items = () => {
+  const [allItems, setAllItems] = useState([]);
+  const [error, setError] = useState(null);
 
-const AllItems = () => {
-    // Mock data for All_Items
-    const AllItems = [
-        { name: 'Casual All_Items', brand: 'Brand A', type: 'Casual' },
-        { name: 'Formal All_Items', brand: 'Brand B', type: 'Formal' },
-        { name: 'All_Items 3', brand: 'Brand C', type: 'Fashion' },
-        { name: 'All_Items 4', brand: 'Brand D', type: 'New' },
-        // ... add more All_Items as needed
-    ];
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const responses = await Promise.all([
+          axios.get('http://localhost:3001/shirts'),
+          axios.get('http://localhost:3001/pants'),
+          axios.get('http://localhost:3001/skirts'),
+          axios.get('http://localhost:3001/jackets'),
+          axios.get('http://localhost:3001/shoes'),
+          axios.get('http://localhost:3001/accessories'),
+        ]);
 
-    return(
-        <div className="All_Items">
-            <OverlayMenu />
-            <header className='All_Items-banner'>
-                <h1>WARDROBE WIZARD</h1>
-                <h3>All Items</h3>
-            </header>
-            <div className="All_Items-list">
-                {AllItems.map((All_Item, index) => (
-                    <div className="All_Items-item" key={index}>
-                        <div className="All_Items-image"></div> {/* Placeholder for the image */}
-                        <div className="All_Items-info">
-                            <h3>{All_Item.name}</h3>
-                            <p>{All_Item.brand}</p>
-                            <p>{All_Item.type}</p>
-                        </div>
-                    </div>
-                ))}
+        const combinedItems = responses.flatMap(response => response.data);
+        setAllItems(combinedItems);
+      } catch (e) {
+        console.error('Error fetching all items:', e);
+        setError(e.message);
+      }
+    };
+
+    fetchItems();
+  }, []);
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  return (
+    <div className="All_Items">
+      <OverlayMenu />
+      <header className="All_Items-banner">
+        <h1>WARDROBE WIZARD</h1>
+        <h3>All Items</h3>
+      </header>
+      <div className="All_Items-list">
+        {allItems.map((item, index) => (
+          <Link to={`/item-detail/${encodeURIComponent(item.name)}`} key={index} className="All_Items-link">
+            <div className="All_Items" key={index}>
+              <div className="All_Items-image"><img src={`http://localhost:3001${item.img}`} width={200} alt={item.name} /></div>
+              <div className="All_Items-info">
+                <h3>{item.name}</h3>
+                <p>{item.brand}</p>
+                <p>{item.type}</p>
+              </div>
             </div>
-            
-        </div>
-    );
-}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+};
 
-export default AllItems;
+export default All_Items;

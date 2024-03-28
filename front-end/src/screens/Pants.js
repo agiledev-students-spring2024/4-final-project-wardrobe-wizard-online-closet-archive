@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Pants.css'; // Make sure this path is correct
+import { Link } from 'react-router-dom'; // Add this import
 import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
 import axios from 'axios';
 
@@ -25,6 +26,7 @@ const Pants = () => {
             </header>
             <div className="Pants-list">
                 {pants.map((pant, index) => (
+                    <Link to={`/item-detail/${pant.name}`} key={index} className="Pants-item-link">
                     <div className="Pants-item" key={index}>
                         <div className="Pants-image"><img src = { `http://localhost:3001${pant.img}`} width={200} /></div> 
                         <div className="Pants-info">
@@ -33,6 +35,7 @@ const Pants = () => {
                             <p>{pant.type}</p>
                         </div>
                     </div>
+                    </Link>
                 ))}
             </div>
         </div>

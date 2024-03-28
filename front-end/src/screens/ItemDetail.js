@@ -53,9 +53,7 @@ const ItemDetail = () => {
         <h3>Item Details</h3>
       </header>
       <div className="ItemDetail-container">
-        {imagePath && (
-          <div className="ItemDetail-image" style={{ backgroundImage: `url(${imagePath})` }}></div>
-        )}
+        <div className="ItemDetail-image"><img src = { `http://localhost:3001${item.img}`} width={300} /></div> {/* Placeholder for the image */}
         <div className="ItemDetail-info">
           <h3>{item.name}</h3>
           <p>Brand: {item.brand}</p>
