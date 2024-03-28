@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/Shirts.css'; // Make sure this path is correct
+import { Link } from 'react-router-dom'; // Add this import
 import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
 
 const Shirt = () => {
@@ -21,7 +22,8 @@ const Shirt = () => {
             </header>
             <div className="Shirt-list">
                 {shirts.map((shirt, index) => (
-                    <div className="Shirt-item" key={index}>
+                    <Link to={`/item-detail/${shirt.name}`} key={index} className="Shirt-item-link">
+                    <div className="Shirt-item">
                         <div className="Shirt-image"></div> {/* Placeholder for the image */}
                         <div className="Shirt-info">
                             <h3>{shirt.name}</h3>
@@ -29,6 +31,7 @@ const Shirt = () => {
                             <p>{shirt.type}</p>
                         </div>
                     </div>
+                    </Link>
                 ))}
             </div>
         </div>
