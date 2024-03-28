@@ -4,19 +4,22 @@ const mockdb = {
         { name: 'Casual Shirt', 
           brand: 'Awesome Brand', 
           type: 'Casual', 
-          color:'',
+          color:'blue',
+          notes: 'note 1',
           img: '/public/shirts/casual_shirt.webp'
         },
         { name: 'Formal Shirt', 
           brand: 'Formal Brand', 
           type: 'Formal',
-          color:'', 
+          color:'grey', 
+          notes: 'note 2',
           img: '/public/shirts/formal_shirt.webp'
         },
         { name: 'Favorite Shirt', 
           brand: 'Awesome Brand', 
           type: 'Casual', 
-          color:'',
+          color:'black',
+          notes: 'note 3',
           img: '/public/shirts/favorite_shirt.webp'
         }
       ],
@@ -42,7 +45,7 @@ const mockdb = {
         }
       ],
       
-    skirts : [
+    dress : [ // modify this part to be dress
         { name: 'Best Dress', 
           brand: 'Awesome Brand', 
           type: 'Formal', 
@@ -128,4 +131,18 @@ const mockdb = {
       
 };
 
-module.exports = mockdb;
+const findItemByName = (itemName) => {
+  const categories = Object.values(mockdb); // Get all categories arrays
+  for (const category of categories) {
+    const item = category.find(item => item.name.toLowerCase() === itemName.toLowerCase());
+    if (item) {
+      return item; // Return the found item
+    }
+  }
+  return null; // Return null if the item is not found
+};
+
+module.exports = {
+  mockdb: mockdb,
+  findItemByName: findItemByName
+};
