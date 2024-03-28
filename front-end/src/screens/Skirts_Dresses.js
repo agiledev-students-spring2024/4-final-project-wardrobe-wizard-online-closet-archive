@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Skirts_Dresses.css'; // Make sure this path is correct
 import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
+import axios from 'axios'
 
 const SkirtsDresses = () => {
-    // Mock data for Skirts_Dresses
-    const SkirtsDresses = [
-        { name: 'Casual Skirts_Dresses', brand: 'Brand A', type: 'Casual' },
-        { name: 'Formal Skirts_Dresses', brand: 'Brand B', type: 'Formal' },
-        { name: 'Skirts_Dresses 3', brand: 'Brand C', type: 'Fashion' },
-        { name: 'Skirts_Dresses 4', brand: 'Brand D', type: 'New' },
-        // ... add more Skirts_Dresses as needed
-    ];
+    const [skirts, setSkirts] = useState([]);
+    useEffect(() =>{
+        axios.get('http://localhost:3001/skirts')
+        .then( res => {
+            setSkirts(res.data)
+            
+        })
+        .catch((e) => {
+            console.log(e)
+        })
+    }, []);
 
     return(
         <div className="Skirts_Dresses">
@@ -20,13 +24,13 @@ const SkirtsDresses = () => {
                 <h3>Skirts/Dresses</h3>
             </header>
             <div className="Skirts_Dresses-list">
-                {SkirtsDresses.map((SkirtDresse, index) => (
+                {skirts.map((SkirtDresses, index) => (
                     <div className="Skirts_Dresses-item" key={index}>
-                        <div className="Skirts_Dresses-image"></div> {/* Placeholder for the image */}
+                        <div className="Skirts_Dresses-image"><img src = { `http://localhost:3001${SkirtDresses.img}`} width={200} /></div> 
                         <div className="Skirts_Dresses-info">
-                            <h3>{SkirtDresse.name}</h3>
-                            <p>{SkirtDresse.brand}</p>
-                            <p>{SkirtDresse.type}</p>
+                            <h3>{SkirtDresses.name}</h3>
+                            <p>{SkirtDresses.brand}</p>
+                            <p>{SkirtDresses.type}</p>
                         </div>
                     </div>
                 ))}
