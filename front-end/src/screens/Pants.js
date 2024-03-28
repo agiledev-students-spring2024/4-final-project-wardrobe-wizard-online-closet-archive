@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Pants.css'; // Make sure this path is correct
 import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
+import axios from 'axios';
 
 const Pants = () => {
-    // Mock data for Pants
-    const Pants = [
-        { name: 'Casual Pants', brand: 'Brand A', type: 'Casual' },
-        { name: 'Formal Pants', brand: 'Brand B', type: 'Formal' },
-        { name: 'Pants 3', brand: 'Brand C', type: 'Fashion' },
-        { name: 'Pants 4', brand: 'Brand D', type: 'New' },
-        // ... add more Pants as needed
-    ];
+    const [pants, setPants] = useState([]);
+    useEffect(() =>{
+        axios.get('http://localhost:3001/pants')
+        .then( res => {
+            setPants(res.data)
+            
+        })
+        .catch((e) => {
+            console.log(e)
+        })
+    }, []);
 
     return(
         <div className="Pants">
@@ -20,13 +24,13 @@ const Pants = () => {
                 <h3>Pants</h3>
             </header>
             <div className="Pants-list">
-                {Pants.map((Pant, index) => (
+                {pants.map((pant, index) => (
                     <div className="Pants-item" key={index}>
-                        <div className="Pants-image"></div> {/* Placeholder for the image */}
+                        <div className="Pants-image"><img src = { `http://localhost:3001${pant.img}`} width={200} /></div> 
                         <div className="Pants-info">
-                            <h3>{Pant.name}</h3>
-                            <p>{Pant.brand}</p>
-                            <p>{Pant.type}</p>
+                            <h3>{pant.name}</h3>
+                            <p>{pant.brand}</p>
+                            <p>{pant.type}</p>
                         </div>
                     </div>
                 ))}

@@ -16,131 +16,131 @@ const accounts = [
   }
 ];
 
-// const shirts = [
-//   { name: 'Casual Shirt', 
-//     brand: 'Awesome Brand', 
-//     type: 'Casual', 
-//     color:'',
-//     img: '/public/shirts/casual_shirt.webp'
-//   },
-//   { name: 'Formal Shirt', 
-//     brand: 'Formal Brand', 
-//     type: 'Formal',
-//     color:'', 
-//     img: '/public/shirts/formal_shirt.webp'
-//   },
-//   { name: 'Favorite Shirt', 
-//     brand: 'Awesome Brand', 
-//     type: 'Casual', 
-//     color:'',
-//     img: '/public/shirts/favorite_shirt.webp'
-//   }
-// ]
+const shirts = [
+  { name: 'Casual Shirt', 
+    brand: 'Awesome Brand', 
+    type: 'Casual', 
+    color:'',
+    img: '/public/shirts/casual_shirt.webp'
+  },
+  { name: 'Formal Shirt', 
+    brand: 'Formal Brand', 
+    type: 'Formal',
+    color:'', 
+    img: '/public/shirts/formal_shirt.webp'
+  },
+  { name: 'Favorite Shirt', 
+    brand: 'Awesome Brand', 
+    type: 'Casual', 
+    color:'',
+    img: '/public/shirts/favorite_shirt.webp'
+  }
+]
 
-// const pants = [
-//   { name: 'Casual Pants', 
-//     brand: 'Awesome Brand', 
-//     type: 'Casual', 
-//     color:'',
-//     img: '/public/pants/brown_pants.webp'
-//   },
-//   { name: 'Least Favorite Pants', 
-//     brand: 'Fake Brand 3', 
-//     type: 'Casual', 
-//     color:'',
-//     img: '/public/pants/extra_pants.jpg'
-//   },
-//   { name: 'Favorite Pants', 
-//     brand: 'Cool Brand', 
-//     type: 'Casual', 
-//     color:'',
-//     img: '/public/pants/comfy.webp'
-//   }
-// ]
+const pants = [
+  { name: 'Casual Pants', 
+    brand: 'Awesome Brand', 
+    type: 'Casual', 
+    color:'',
+    img: '/public/pants/brown_pants.webp'
+  },
+  { name: 'Least Favorite Pants', 
+    brand: 'Fake Brand 3', 
+    type: 'Casual', 
+    color:'',
+    img: '/public/pants/extra_pants.jpg'
+  },
+  { name: 'Favorite Pants', 
+    brand: 'Cool Brand', 
+    type: 'Casual', 
+    color:'',
+    img: '/public/pants/comfy.webp'
+  }
+]
 
-// const skirts = [
-//   { name: 'Best Dress', 
-//     brand: 'Awesome Brand', 
-//     type: 'Formal', 
-//     color:'',
-//     img: '/public/skirts/skirt_1.webp'
-//   },
-//   { name: 'Least Favorite Dress', 
-//     brand: 'Fake Brand 170', 
-//     type: 'Formal', 
-//     color:'',
-//     img: '/public/skirts/skirt_2.webp'
-//   },
-//   { name: '2nd Favorite Dress', 
-//     brand: 'Cool Brand', 
-//     type: 'Formal', 
-//     color:'',
-//     img: '/public/skirts/skirt_3.webp'
-//   }
-// ]
+const skirts = [
+  { name: 'Best Dress', 
+    brand: 'Awesome Brand', 
+    type: 'Formal', 
+    color:'',
+    img: '/public/skirts/skirt_1.webp'
+  },
+  { name: 'Least Favorite Dress', 
+    brand: 'Fake Brand 170', 
+    type: 'Formal', 
+    color:'',
+    img: '/public/skirts/skirt_2.webp'
+  },
+  { name: '2nd Favorite Dress', 
+    brand: 'Cool Brand', 
+    type: 'Formal', 
+    color:'',
+    img: '/public/skirts/skirt_3.webp'
+  }
+]
 
-// const jackets = [
-//     { name: 'Ugly Jacket', 
-//       brand: 'Awful Brand', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/jackets/jacket_1.jpg'
-//     },
-//     { name: 'Coolest Jacket', 
-//       brand: 'Fake Brand 170', 
-//       type: 'Formal', 
-//       color:'',
-//       img: '/public/jackets/jacket_2.jpg'
-//     },
-//     { name: 'Okay Jacket', 
-//       brand: 'Cool Brand', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/jackets/jacket_3.webp'
-//     }
-// ]
+const jackets = [
+    { name: 'Ugly Jacket', 
+      brand: 'Awful Brand', 
+      type: 'Casual', 
+      color:'',
+      img: '/public/jackets/jacket_1.jpg'
+    },
+    { name: 'Coolest Jacket', 
+      brand: 'Fake Brand 170', 
+      type: 'Formal', 
+      color:'',
+      img: '/public/jackets/jacket_2.jpg'
+    },
+    { name: 'Okay Jacket', 
+      brand: 'Cool Brand', 
+      type: 'Casual', 
+      color:'',
+      img: '/public/jackets/jacket_3.webp'
+    }
+]
 
-// const shoes = [
-//   { name: 'Nice Shoes', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/shoes/shoes_1.avif'
-//     },
-//     { name: 'Decent Shoes', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/shoes/shoes_2.webp'
-//     },
-//     { name: 'Okay Shoes', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/shoes/shoes_3.webp'
-//     }
-// ]
+const shoes = [
+  { name: 'Nice Shoes', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color:'',
+      img: '/public/shoes/shoes_1.avif'
+    },
+    { name: 'Decent Shoes', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color:'',
+      img: '/public/shoes/shoes_2.webp'
+    },
+    { name: 'Okay Shoes', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color:'',
+      img: '/public/shoes/shoes_3.webp'
+    }
+]
 
-// const accessories = [
-//    { name: 'Most Expensive', 
-//       brand: 'Cheap-O', 
-//       type: 'Formal', 
-//       color:'',
-//       img: '/public/accessories/accessory_1.jpg'
-//     },
-//     { name: 'Best Accessory', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/accessories/accessory_2.jpg'
-//     },
-//     { name: 'Pretty Cool', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/accessories/accessory_3.webp'
-//     }
-// ]
+const accessories = [
+   { name: 'Most Expensive', 
+      brand: 'Cheap-O', 
+      type: 'Formal', 
+      color:'',
+      img: '/public/accessories/accessory_1.jpg'
+    },
+    { name: 'Best Accessory', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color:'',
+      img: '/public/accessories/accessory_2.jpg'
+    },
+    { name: 'Pretty Cool', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color:'',
+      img: '/public/accessories/accessory_3.webp'
+    }
+]
 
 server.post('/login', (req,res) => {
   const loginSuccessful = {
@@ -179,27 +179,27 @@ server.post('/register', (req,res) => {
 })
 
 server.get('/shirts', (req,res) =>{
-  return res.json(mockdb.shirts);
+  return res.json(shirts);
 })
 
 server.get('/pants', (req,res) => {
-  return res.json(mockdb.pants);
+  return res.json(pants);
 })
 
 server.get('/skirts', (req,res) => {
-  return res.json(mockdb.skirts);
+  return res.json(skirts);
 })
 
 server.get('/jackets', (req,res) => {
-  return res.json(mockdb.jackets);
+  return res.json(jackets);
 })
 
 server.get('/shoes', (req,res) => {
-  return res.json(mockdb.shoes);
+  return res.json(shoes);
 })
 
 server.get('/accessories', (req,res) => {
-  return res.json(mockdb.accessories);
+  return res.json(accessories);
 })
 
 
