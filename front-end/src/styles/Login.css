@@ -61,3 +61,11 @@
     font-family: "Inter", sans-serif;
     color: #919191;
 }
+
+.wrongLogin, .takenUsername {
+    text-align: center;
+    font-size: x-small;
+    font-family: "Inter", sans-serif;
+    color: #610606;
+}
+
