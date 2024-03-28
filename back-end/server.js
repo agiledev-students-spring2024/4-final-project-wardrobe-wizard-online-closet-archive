@@ -16,6 +16,23 @@ const accounts = [
   }
 ];
 
+const shirts = [
+  { name: 'Casual Shirt', 
+    brand: 'Awesome Brand', 
+    type: 'Casual', 
+    img: '/public/casual_shirt.webp'
+  },
+  { name: 'Formal Shirt', 
+    brand: 'Formal Brand', 
+    type: 'Formal', 
+    img: '/public/formal_shirt.webp'
+  },
+  { name: 'Favorite Shirt', 
+    brand: 'Awesome Brand', 
+    type: 'Casual', 
+    img: '/public/favorite_shirt.webp'
+  }
+]
 server.post('/login', (req,res) => {
   const loginSuccessful = {
     'loggedIn': true
@@ -50,6 +67,11 @@ server.post('/register', (req,res) => {
       "password": req.body.password
     })
   return res.json({'message':'Account created','created': true})
+})
+
+server.get('/shirts', (req,res) =>{
+  console.log('shirt get reuqest receievd');
+  return res.json(shirts)
 })
 
 const listener = server.listen(port, function () {
