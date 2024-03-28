@@ -1,20 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import OverlayMenu from '../components/OverlayMenu';
 import '../styles/ItemDetail.css';
 
 const ItemDetail = () => {
-  let { id } = useParams(); // Use 'id' or 'itemName' based on your URL configuration
-  // Fetch or import your item data here
-  const item = {
-    id,
-    name: 'Example Item',
-    brand: 'Brand A',
-    type: 'Example Type',
-    color: 'Example Color',
-    notes: 'Some notes about the item',
-    imageUrl: '/path/to/your/image.jpg' // This should be the path to the image file
-  };
+  const { itemName } = useParams(); 
+  const [item, setItem] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const encodedItemName = encodeURIComponent(itemName);
+    // Assuming your backend is running on the same machine and port 3001
+    fetch(`http://localhost:3001/item-detail/${encodedItemName}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP status ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        setItem(data); // Set the item state to the data received from backend
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching item details:', error);
+        setError(error.toString());
+        setLoading(false);
+      });
+  }, [itemName]); // Dependency array to refetch if the itemName changes
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!item) {
+    return <div>No item found</div>;
+  }
+
+  // The image path should not include '/public' because that's where your static server serves files from
+  const imagePath = item.img.replace('/public', '');
 
   return (
     <div className="item-detail">
@@ -23,11 +52,9 @@ const ItemDetail = () => {
         <h1>WARDROBE WIZARD</h1>
         <h3>Item Details</h3>
       </header>
-      <div className="ItemDetail-info">
-        {item.imageUrl && (
-          <div className="ItemDetail-image" style={{ backgroundImage: `url(${item.imageUrl})` }}>
-            {/* If no image is available, this div will show the placeholder */}
-          </div>
+      <div className="ItemDetail-container">
+        {imagePath && (
+          <div className="ItemDetail-image" style={{ backgroundImage: `url(${imagePath})` }}></div>
         )}
         <div className="ItemDetail-info">
           <h3>{item.name}</h3>
