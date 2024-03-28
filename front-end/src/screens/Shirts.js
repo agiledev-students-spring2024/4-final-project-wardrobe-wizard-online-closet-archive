@@ -5,7 +5,6 @@ import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu c
 import axios from 'axios';
 
 const Shirt = () => {
- 
     const [shirts, setShirts] = useState([]);
     useEffect(() =>{
         axios.get('http://localhost:3001/shirts')
@@ -17,7 +16,6 @@ const Shirt = () => {
             console.log(e)
         })
     }, []);
-    console.log(shirts)
     
     return(
         <div className="Shirt">
@@ -28,12 +26,9 @@ const Shirt = () => {
             </header>
             <div className="Shirt-list">
                 {shirts.map((shirt, index) => (
-
                     <Link to={`/item-detail/${shirt.name}`} key={index} className="Shirt-item-link">
-
                     <div className="Shirt-item" key={index}>
                         <div className="Shirt-image"><img src = { `http://localhost:3001${shirt.img}`} width={200} /></div> {/* Placeholder for the image */}
-
                         <div className="Shirt-info">
                             <h3>{shirt.name}</h3>
                             <p>{shirt.brand}</p>

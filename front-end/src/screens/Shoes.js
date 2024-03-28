@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Shoes.css'; // Make sure this path is correct
+import { Link } from 'react-router-dom'; // Add this import
 import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
 import axios from 'axios';
 
@@ -16,7 +17,6 @@ const Shoes = () => {
         })
     }, []);
 
-
     return(
         <div className="Shoes">
             <OverlayMenu />
@@ -26,6 +26,7 @@ const Shoes = () => {
             </header>
             <div className="Shoes-list">
                 {shoes.map((Shoe, index) => (
+                    <Link to={`/item-detail/${Shoe.name}`} key={index} className="Shoes-item-link">
                     <div className="Shoes-item" key={index}>
                         <div className="Shoes-image"><img src = { `http://localhost:3001${Shoe.img}`} width={200} /></div> 
                         <div className="Shoes-info">
@@ -34,6 +35,7 @@ const Shoes = () => {
                             <p>{Shoe.type}</p>
                         </div>
                     </div>
+                    </Link>
                 ))}
             </div>
         </div>

@@ -7,7 +7,7 @@
     text-align: center;
 }
 
-.Shoes-banner h1 {
+.Shoes-banner h1{
     font-family: "IM Fell French Canon SC", serif;
     font-weight: 400;
     margin: 0;
@@ -21,7 +21,7 @@
     font-weight: 300;
 }
 
-/* Grid layout for the shirt list */
+/* Grid layout for the Shoes list */
 .Shoes-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Creates a responsive number of columns */
@@ -30,8 +30,9 @@
     justify-content: center;
 }
 
-/* Individual shirt item styling */
+/* Individual Shoes item styling */
 .Shoes-item {
+    cursor: pointer; /* Indicates the item is clickable */
     height: 350px; /* Set a fixed height */
     width: 200px;
     background-color: #f1f1f1;
@@ -44,7 +45,12 @@
     padding: 1rem; /* Add padding */
 }
 
-/* Hover effect for shirt item */
+.Shoes-item-link {
+    text-decoration: none; /* Removes underline from links */
+    color: inherit; /* Keeps text color consistent with the rest of the item */
+}
+
+/* Hover effect for Shoes item */
 .Shoes-item:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
