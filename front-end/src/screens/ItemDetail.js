@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import OverlayMenu from '../components/OverlayMenu';
 import '../styles/ItemDetail.css';
 
 const ItemDetail = () => {
   const { itemName } = useParams(); 
+  const navigate = useNavigate();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const handleBackClick = () => {
+    navigate(-1); // Goes back to the previous page
+  };
 
   useEffect(() => {
     const encodedItemName = encodeURIComponent(itemName);
@@ -62,6 +67,8 @@ const ItemDetail = () => {
           <p>Notes: {item.notes}</p>
         </div>
       </div>
+      {/* Back button */}
+      <button onClick={handleBackClick} className="ItemDetail-backButton">BACK</button>
     </div>
   );
 };
