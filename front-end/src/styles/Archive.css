@@ -1,1 +1,70 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=IM+Fell+French+Canon+SC&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:wght@100..900&display=swap');
+
+/* Same banner styling as other pages */
+.Archive-banner {
+    background: linear-gradient(to right, #f1e5ff, #fff0e7);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.Archive-banner h1 {
+    font-family: "IM Fell French Canon SC", serif;
+    font-weight: 400;
+    margin: 0;
+    margin-left: 2em;
+    text-align: left;
+    font-size: 27px;
+}
+
+.Archive-banner h3 {
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 300;
+}
+
+/* Layout for the Archive list */
+.Archive-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Styling for each Archive item box */
+.Archive-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd; /* Example border */
+    background-color: #f8f8f8; /* Light grey background */
+}
+
+/* 2x2 image grid */
+.Archive-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+}
+
+.Archive-image-container {
+    width: 100px; /* Adjust based on layout */
+    height: 100px; /* Adjust based on layout */
+    overflow: hidden; /* Ensures images don't exceed their container */
+}
+
+.Archive-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Styling for the Archive info section */
+.Archive-info {
+    padding-left: 1rem;
+}
+
+.Archive-info h3 {
+    margin: 0;
+}
