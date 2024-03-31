@@ -22,13 +22,15 @@ const Archive = () => {
         <h3>Outfit Archive</h3>
       </header>
       <div className="Archive-list">
-        {outfits.map((outfit, index) => (
-          <div key={index} className="Archive-item">
+        {outfits.map((outfit) => ( // Removed index, using outfitName as key
+          <div key={outfit.outfitName} className="Archive-item">
             <div className="Archive-images">
-              {outfit.items.map((item, itemIndex) => (
-                <div key={itemIndex} className="Archive-image-container">
-                  <img src={`http://localhost:3001${item.img}`} alt={item.name} className="Archive-image"/>
-                </div>
+              {outfit.items.map((item) => ( // Removed itemIndex, key will be provided by the Link component
+                <Link to={`/outfit-detail/${encodeURIComponent(outfit.outfitName)}`} key={item.name} className="Archive-item-link">
+                  <div className="Archive-image-container">
+                    <img src={`http://localhost:3001${item.img}`} alt={item.name} className="Archive-image"/>
+                  </div>
+                </Link>
               ))}
             </div>
             <div className="Archive-info">

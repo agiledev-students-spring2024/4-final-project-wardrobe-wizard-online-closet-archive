@@ -43,9 +43,9 @@ const All_Items = () => {
         <h3>All Items</h3>
       </header>
       <div className="All_Items-list">
-        {allItems.map((item, index) => (
-          <Link to={`/item-detail/${encodeURIComponent(item.name)}`} key={index} className="All_Items-item-link">
-            <div className="All_Items-item" key={index}>
+        {allItems.map((item) => (
+          <Link to={`/item-detail/${encodeURIComponent(item.name)}`} key={item.name} className="All_Items-item-link">
+            <div className="All_Items-item" key={item.name}>
               <div className="All_Items-image"><img src={`http://localhost:3001${item.img}`} width={200} alt={item.name} /></div>
               <div className="All_Items-info">
                 <h3>{item.name}</h3>
