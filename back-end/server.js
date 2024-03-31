@@ -326,7 +326,7 @@ server.get('/accessories', (req,res) => {
 })
 
 server.get('/outfits', (req, res) => {
-  res.json(outfits);
+  return res.json(outfits);
 })
 
 const listener = server.listen(port, function () {
