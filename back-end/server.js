@@ -159,6 +159,112 @@ const accessories = [
     }
 ]
 
+const outfits = [
+  {
+    outfitName: 'Business Casual Look',
+    notes: 'A comfortable yet professional look for everyday business.',
+    items: [
+      {
+        name: 'Formal Shirt',
+        brand: 'Formal Brand',
+        type: 'Formal',
+        color: 'White',
+        img: '/public/shirts/formal_shirt.webp',
+      },
+      {
+        name: 'Favorite Pants',
+        brand: 'Cool Brand',
+        type: 'Casual',
+        color: 'Grey',
+        img: '/public/pants/comfy.webp',
+      },
+      {
+        name: 'Decent Shoes',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Black',
+        img: '/public/shoes/shoes_2.webp',
+      },
+      {
+        name: 'Best Accessory',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Black',
+        img: '/public/accessories/accessory_2.jpg',
+      }
+    ],
+  },
+  {
+    outfitName: 'Summer Vibes',
+    notes: 'Perfect for the beach or a sunny day in the park.',
+    items: [
+      {
+        name: 'Casual Shirt',
+        brand: 'Awesome Brand',
+        type: 'Casual',
+        color: 'Blue',
+        img: '/public/shirts/casual_shirt.webp',
+      },
+      {
+        name: 'Casual Pants',
+        brand: 'Awesome Brand',
+        type: 'Casual',
+        color: 'Orange',
+        img: '/public/pants/brown_pants.webp',
+      },
+      {
+        name: 'Nice Shoes',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Black',
+        img: '/public/shoes/shoes_1.avif',
+      },
+      {
+        name: 'Pretty Cool',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Silver',
+        img: '/public/accessories/accessory_3.webp',
+      }
+    ],
+  },
+  {
+    outfitName: 'Evening Elegance',
+    notes: 'Elegant attire for dinner parties or a night out.',
+    items: [
+      {
+        name: '2nd Favorite Dress',
+        brand: 'Cool Brand',
+        type: 'Formal',
+        color: 'Pink',
+        img: '/public/skirts/skirt_3.webp',
+      },
+      {
+        name: 'Coolest Jacket',
+        brand: 'Fake Brand 170',
+        type: 'Formal',
+        color: 'White',
+        img: '/public/jackets/jacket_2.jpg',
+      },
+      {
+        name: 'Okay Shoes',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Grey',
+        img: '/public/shoes/shoes_3.webp',
+      },
+      {
+        name: 'Most Expensive',
+        brand: 'Cheap-O',
+        type: 'Formal',
+        color: 'Gold',
+        img: '/public/accessories/accessory_1.jpg',
+      }
+    ],
+  },
+];
+
+
 server.post('/login', (req,res) => {
   const loginSuccessful = {
     'loggedIn': true
@@ -219,6 +325,9 @@ server.get('/accessories', (req,res) => {
   return res.json(accessories);
 })
 
+server.get('/outfits', (req, res) => {
+  res.json(outfits);
+})
 
 const listener = server.listen(port, function () {
   console.log(`Server running on port: ${port}`)
