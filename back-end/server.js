@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const server = require("./app") // load up the web server
+import server from './app.js' // load up the web server
 const port = 3001 // the port to listen to for incoming requests
 
 // call express's listen function to start listening to the port
@@ -387,7 +387,4 @@ server.get('/outfit-detail/:outfitName', (req, res) => {
 const close = () => {
   listener.close()
 }
-
-module.exports = {
-  close: close,
-}
+export {close}
