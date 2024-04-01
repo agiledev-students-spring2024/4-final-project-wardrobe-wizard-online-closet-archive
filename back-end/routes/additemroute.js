@@ -5,25 +5,25 @@ const path = require('path');
 const router = express.Router();
 const mockdb = require('./mockdb');
 
-// Multer configuration
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    let category = req.body.category.toLowerCase();
-    category = category.replace(/\//g, ''); // Remove any slashes to prevent directory traversal attacks
-    const validCategories = ['shirts', 'pants', 'skirts', 'jackets', 'shoes', 'accessories'];
-    if (validCategories.includes(category)) {
-      const uploadDir = path.join(__dirname, '../public', category); // Modify to match your directory structure
-      cb(null, uploadDir);
-    } else {
-      cb(new Error('Invalid category'), false); // Handle invalid category
-    }
-  },
-  filename: function(req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname)); // Use timestamp + original file extension
-  }
-});
+// // Multer configuration
+// const storage = multer.diskStorage({
+//   destination: function(req, file, cb) {
+//     let category = req.body.category.toLowerCase();
+//     category = category.replace(/\//g, ''); // Remove any slashes to prevent directory traversal attacks
+//     const validCategories = ['shirts', 'pants', 'skirts', 'jackets', 'shoes', 'accessories'];
+//     if (validCategories.includes(category)) {
+//       const uploadDir = path.join(__dirname, '../public', category); // Modify to match your directory structure
+//       cb(null, uploadDir);
+//     } else {
+//       cb(new Error('Invalid category'), false); // Handle invalid category
+//     }
+//   },
+//   filename: function(req, file, cb) {
+//     cb(null, Date.now() + path.extname(file.originalname)); // Use timestamp + original file extension
+//   }
+// });
 
-const upload = multer({ storage: storage });
+// const upload = multer({ storage: storage });
 
 
   
