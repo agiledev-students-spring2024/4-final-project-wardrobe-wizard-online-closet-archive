@@ -2,6 +2,12 @@
 
 import server from './app.js' // load up the web server
 const port = 3001 // the port to listen to for incoming requests
+import multer from 'multer';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 
 // call express's listen function to start listening to the port
 const accounts = [
@@ -381,6 +387,71 @@ server.get('/outfit-detail/:outfitName', (req, res) => {
     console.error('Server error when fetching outfit details:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
+});
+
+// Set up the storage configuration for multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // Get the type from the request body and form the path
+    const category = req.body.category.toLowerCase();
+    const dir = path.join(__dirname, 'public', category);
+
+    // Ensure the directory exists
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir, { recursive: true });
+    }
+
+    cb(null, dir);
+  },
+  filename: (req, file, cb) => {
+    // generate a unique filename to prevent overwriting existing files
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const ext = path.extname(file.originalname);
+    cb(null, file.fieldname + '-' + uniqueSuffix + ext);
+  }
+});
+
+const upload = multer({ storage: storage });
+
+server.post('/additem', upload.single('picture'), (req, res) => {
+  // construct the new item object with the file path
+  const { name, brand, color, type, category } = req.body;
+  const newItem = {
+    name,
+    brand,
+    type,
+    category,
+    color,
+    img: req.file ? `/public/${category.toLowerCase()}/${req.file.filename}` : null // Relative path from public
+  };
+  if (!name || !brand || !color || !type || !category) {
+    return res.status(400).json({ message: 'Missing required fields' });
+  }
+  // add to the correct in-memory array based on type
+  switch (category.toLowerCase()) {
+    case 'accessories':
+      accessories.push(newItem);
+      break;
+    case 'jackets':
+      jackets.push(newItem);
+      break;
+    case 'pants':
+      pants.push(newItem);
+      break;
+    case 'shirts':
+      shirts.push(newItem);
+      break;
+    case 'shoes':
+      shoes.push(newItem);
+      break;
+    case 'skirts':
+      skirts.push(newItem);
+      break;
+    default:
+      return res.status(400).json({ message: 'Invalid item type' });
+  }
+
+  res.json({ message: 'Item added successfully', item: newItem });
 });
 
 // a function to stop listening to the port
