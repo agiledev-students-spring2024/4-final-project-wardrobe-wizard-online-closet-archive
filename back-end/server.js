@@ -326,7 +326,7 @@ server.get('/accessories', (req,res) => {
 })
 
 server.get('/outfits', (req, res) => {
-  res.json(outfits);
+  return res.json(outfits);
 })
 
 const listener = server.listen(port, function () {
@@ -360,6 +360,28 @@ server.get('/item-detail/:itemName', (req, res) => {
   }
 });
 
+const findOutfitByName = (outfitName) => {
+  // Assuming you have an array of outfits
+  const outfit = outfits.find(outfit => outfit.outfitName.toLowerCase() === outfitName.toLowerCase());
+  return outfit;
+};
+
+server.get('/outfit-detail/:outfitName', (req, res) => {
+  try {
+    const { outfitName } = req.params;
+    const decodedName = decodeURIComponent(outfitName);
+    const outfit = findOutfitByName(decodedName);
+
+    if (outfit) {
+      res.json(outfit);
+    } else {
+      res.status(404).json({ message: 'Outfit not found' });
+    }
+  } catch (error) {
+    console.error('Server error when fetching outfit details:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 
 // a function to stop listening to the port
 const close = () => {

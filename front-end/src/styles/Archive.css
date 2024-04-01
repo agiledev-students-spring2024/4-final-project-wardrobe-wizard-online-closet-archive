@@ -41,6 +41,16 @@
     background-color: #f8f8f8; /* Light grey background */
 }
 
+.Archive-item {
+    /* Existing styles */
+    cursor: pointer; /* Add this to indicate the items are clickable */
+}
+
+.Archive-item-link {
+/* Existing styles */
+text-decoration: none; /* Ensure this is here to remove underlines */
+}  
+
 /* 2x2 image grid */
 .Archive-images {
     display: grid;

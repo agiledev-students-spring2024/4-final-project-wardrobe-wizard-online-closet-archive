@@ -25,9 +25,9 @@ const Shirt = () => {
                 <h3>Shirts</h3>
             </header>
             <div className="Shirt-list">
-                {shirts.map((shirt, index) => (
-                    <Link to={`/item-detail/${shirt.name}`} key={index} className="Shirt-item-link">
-                    <div className="Shirt-item" key={index}>
+                {shirts.map((shirt) => (
+                    <Link to={`/item-detail/${shirt.name}`} key={shirt.name} className="Shirt-item-link">
+                    <div className="Shirt-item" key={shirt.name}>
                         <div className="Shirt-image"><img src = { `http://localhost:3001${shirt.img}`} width={200} /></div> {/* Placeholder for the image */}
                         <div className="Shirt-info">
                             <h3>{shirt.name}</h3>

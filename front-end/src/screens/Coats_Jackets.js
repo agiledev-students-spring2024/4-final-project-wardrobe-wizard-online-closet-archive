@@ -25,9 +25,9 @@ const CoatsJackets = () => {
                 <h3>Coats/Jackets</h3>
             </header>
             <div className="Coats_Jackets-list">
-                {jackets.map((CoatJacket, index) => (
-                    <Link to={`/item-detail/${CoatJacket.name}`} key={index} className="Coats_Jackets-item-link">
-                    <div className="Coats_Jackets-item" key={index}>
+                {jackets.map((CoatJacket) => (
+                    <Link to={`/item-detail/${CoatJacket.name}`} key={CoatJacket.name} className="Coats_Jackets-item-link">
+                    <div className="Coats_Jackets-item" key={CoatJacket.name}>
                         <div className="Coats_Jakcets-image"><img src = { `http://localhost:3001${CoatJacket.img}`} width={200} /></div> 
                         <div className="Coats_Jackets-info">
                             <h3>{CoatJacket.name}</h3>

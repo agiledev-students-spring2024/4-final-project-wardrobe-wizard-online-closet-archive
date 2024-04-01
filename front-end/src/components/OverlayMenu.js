@@ -26,7 +26,7 @@ const OverlayMenu = () => {
                         <li><Link to="/home">Home</Link></li>
                         <li><Link to="/closet">View Closet</Link></li>
                         <li><Link to="/additem">Add Item</Link></li>
-                        <li><Link to="/outfit-archive">Outfit Archive</Link></li>
+                        <li><Link to="/Archive">Outfit Archive</Link></li>
                         <li><Link to="/generator">Generator</Link></li>
                         <li><Link to="/">Logout</Link></li>
                     </ul>

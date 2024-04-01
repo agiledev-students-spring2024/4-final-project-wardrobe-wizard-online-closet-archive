@@ -25,9 +25,9 @@ const SkirtsDresses = () => {
                 <h3>Skirts/Dresses</h3>
             </header>
             <div className="Skirts_Dresses-list">
-                {skirts.map((SkirtDresses, index) => (
-                    <Link to={`/item-detail/${SkirtDresses.name}`} key={index} className="Skirts_Dresses-item-link">
-                    <div className="Skirts_Dresses-item" key={index}>
+                {skirts.map((SkirtDresses) => (
+                    <Link to={`/item-detail/${SkirtDresses.name}`} key={SkirtDresses.name} className="Skirts_Dresses-item-link">
+                    <div className="Skirts_Dresses-item" key={SkirtDresses.name}>
                         <div className="Skirts_Dresses-image"><img src = { `http://localhost:3001${SkirtDresses.img}`} width={200} /></div> 
                         <div className="Skirts_Dresses-info">
                             <h3>{SkirtDresses.name}</h3>
