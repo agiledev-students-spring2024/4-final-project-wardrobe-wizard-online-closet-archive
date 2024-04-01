@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
-const server = require("./app") // load up the web server
-const mockdb = require('./mockdb'); // load mock database
+import server from './app.js' // load up the web server
 const port = 3001 // the port to listen to for incoming requests
 
 // call express's listen function to start listening to the port
@@ -16,131 +15,255 @@ const accounts = [
   }
 ];
 
-// const shirts = [
-//   { name: 'Casual Shirt', 
-//     brand: 'Awesome Brand', 
-//     type: 'Casual', 
-//     color:'',
-//     img: '/public/shirts/casual_shirt.webp'
-//   },
-//   { name: 'Formal Shirt', 
-//     brand: 'Formal Brand', 
-//     type: 'Formal',
-//     color:'', 
-//     img: '/public/shirts/formal_shirt.webp'
-//   },
-//   { name: 'Favorite Shirt', 
-//     brand: 'Awesome Brand', 
-//     type: 'Casual', 
-//     color:'',
-//     img: '/public/shirts/favorite_shirt.webp'
-//   }
-// ]
+const shirts = [
+  { name: 'Casual Shirt', 
+    brand: 'Awesome Brand', 
+    type: 'Casual', 
+    color: 'Blue',
+    notes: 'Note 1',
+    img: '/public/shirts/casual_shirt.webp'
+  },
+  { name: 'Formal Shirt', 
+    brand: 'Formal Brand', 
+    type: 'Formal',
+    color: 'White', 
+    notes: 'Note 2',
+    img: '/public/shirts/formal_shirt.webp'
+  },
+  { name: 'Favorite Shirt', 
+    brand: 'Awesome Brand', 
+    type: 'Casual', 
+    color: 'Grey',
+    notes: 'Note 3',
+    img: '/public/shirts/favorite_shirt.webp'
+  }
+]
 
-// const pants = [
-//   { name: 'Casual Pants', 
-//     brand: 'Awesome Brand', 
-//     type: 'Casual', 
-//     color:'',
-//     img: '/public/pants/brown_pants.webp'
-//   },
-//   { name: 'Least Favorite Pants', 
-//     brand: 'Fake Brand 3', 
-//     type: 'Casual', 
-//     color:'',
-//     img: '/public/pants/extra_pants.jpg'
-//   },
-//   { name: 'Favorite Pants', 
-//     brand: 'Cool Brand', 
-//     type: 'Casual', 
-//     color:'',
-//     img: '/public/pants/comfy.webp'
-//   }
-// ]
+const pants = [
+  { name: 'Casual Pants', 
+    brand: 'Awesome Brand', 
+    type: 'Casual', 
+    color:'Orange',
+    notes: 'Note 1',
+    img: '/public/pants/brown_pants.webp'
+  },
+  { name: 'Least Favorite Pants', 
+    brand: 'Fake Brand 3', 
+    type: 'Casual', 
+    color: 'Brown',
+    notes: 'Note 2',
+    img: '/public/pants/extra_pants.jpg'
+  },
+  { name: 'Favorite Pants', 
+    brand: 'Cool Brand', 
+    type: 'Casual', 
+    color: 'Grey',
+    notes: 'Note 3',
+    img: '/public/pants/comfy.webp'
+  }
+]
 
-// const skirts = [
-//   { name: 'Best Dress', 
-//     brand: 'Awesome Brand', 
-//     type: 'Formal', 
-//     color:'',
-//     img: '/public/skirts/skirt_1.webp'
-//   },
-//   { name: 'Least Favorite Dress', 
-//     brand: 'Fake Brand 170', 
-//     type: 'Formal', 
-//     color:'',
-//     img: '/public/skirts/skirt_2.webp'
-//   },
-//   { name: '2nd Favorite Dress', 
-//     brand: 'Cool Brand', 
-//     type: 'Formal', 
-//     color:'',
-//     img: '/public/skirts/skirt_3.webp'
-//   }
-// ]
+const skirts = [
+  { name: 'Best Dress', 
+    brand: 'Awesome Brand', 
+    type: 'Formal', 
+    color: 'Emerald Green',
+    notes: 'Note 1',
+    img: '/public/skirts/skirt_1.webp'
+  },
+  { name: 'Least Favorite Dress', 
+    brand: 'Fake Brand 170', 
+    type: 'Formal', 
+    color: 'Blue',
+    notes: 'Note 2',
+    img: '/public/skirts/skirt_2.webp'
+  },
+  { name: '2nd Favorite Dress', 
+    brand: 'Cool Brand', 
+    type: 'Formal', 
+    color: 'Pink',
+    notes: 'Note 3',
+    img: '/public/skirts/skirt_3.webp'
+  }
+]
 
-// const jackets = [
-//     { name: 'Ugly Jacket', 
-//       brand: 'Awful Brand', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/jackets/jacket_1.jpg'
-//     },
-//     { name: 'Coolest Jacket', 
-//       brand: 'Fake Brand 170', 
-//       type: 'Formal', 
-//       color:'',
-//       img: '/public/jackets/jacket_2.jpg'
-//     },
-//     { name: 'Okay Jacket', 
-//       brand: 'Cool Brand', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/jackets/jacket_3.webp'
-//     }
-// ]
+const jackets = [
+    { name: 'Ugly Jacket', 
+      brand: 'Awful Brand', 
+      type: 'Casual', 
+      color: 'Green',
+      notes: 'Note 1',
+      img: '/public/jackets/jacket_1.jpg'
+    },
+    { name: 'Coolest Jacket', 
+      brand: 'Fake Brand 170', 
+      type: 'Formal', 
+      color: 'White',
+      notes: 'Note 2',
+      img: '/public/jackets/jacket_2.jpg'
+    },
+    { name: 'Okay Jacket', 
+      brand: 'Cool Brand', 
+      type: 'Casual', 
+      color: 'Blue',
+      notes: 'Note 3',
+      img: '/public/jackets/jacket_3.webp'
+    }
+]
 
-// const shoes = [
-//   { name: 'Nice Shoes', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/shoes/shoes_1.avif'
-//     },
-//     { name: 'Decent Shoes', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/shoes/shoes_2.webp'
-//     },
-//     { name: 'Okay Shoes', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/shoes/shoes_3.webp'
-//     }
-// ]
+const shoes = [
+  { name: 'Nice Shoes', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color: 'Black',
+      notes: 'Note 1',
+      img: '/public/shoes/shoes_1.avif'
+    },
+    { name: 'Decent Shoes', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color: 'Black',
+      notes: 'Note 2',
+      img: '/public/shoes/shoes_2.webp'
+    },
+    { name: 'Okay Shoes', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color: 'Grey',
+      notes: 'Note 3',
+      img: '/public/shoes/shoes_3.webp'
+    }
+]
 
-// const accessories = [
-//    { name: 'Most Expensive', 
-//       brand: 'Cheap-O', 
-//       type: 'Formal', 
-//       color:'',
-//       img: '/public/accessories/accessory_1.jpg'
-//     },
-//     { name: 'Best Accessory', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/accessories/accessory_2.jpg'
-//     },
-//     { name: 'Pretty Cool', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color:'',
-//       img: '/public/accessories/accessory_3.webp'
-//     }
-// ]
+const accessories = [
+   { name: 'Most Expensive', 
+      brand: 'Cheap-O', 
+      type: 'Formal', 
+      color: 'Gold',
+      notes: 'Note 1',
+      img: '/public/accessories/accessory_1.jpg'
+    },
+    { name: 'Best Accessory', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color: 'Black',
+      notes: 'Note 2',
+      img: '/public/accessories/accessory_2.jpg'
+    },
+    { name: 'Pretty Cool', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color: 'Silver',
+      notes: 'Note 3',
+      img: '/public/accessories/accessory_3.webp'
+    }
+]
+
+const outfits = [
+  {
+    outfitName: 'Business Casual Look',
+    notes: 'A comfortable yet professional look for everyday business.',
+    items: [
+      {
+        name: 'Formal Shirt',
+        brand: 'Formal Brand',
+        type: 'Formal',
+        color: 'White',
+        img: '/public/shirts/formal_shirt.webp',
+      },
+      {
+        name: 'Favorite Pants',
+        brand: 'Cool Brand',
+        type: 'Casual',
+        color: 'Grey',
+        img: '/public/pants/comfy.webp',
+      },
+      {
+        name: 'Decent Shoes',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Black',
+        img: '/public/shoes/shoes_2.webp',
+      },
+      {
+        name: 'Best Accessory',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Black',
+        img: '/public/accessories/accessory_2.jpg',
+      }
+    ],
+  },
+  {
+    outfitName: 'Summer Vibes',
+    notes: 'Perfect for the beach or a sunny day in the park.',
+    items: [
+      {
+        name: 'Casual Shirt',
+        brand: 'Awesome Brand',
+        type: 'Casual',
+        color: 'Blue',
+        img: '/public/shirts/casual_shirt.webp',
+      },
+      {
+        name: 'Casual Pants',
+        brand: 'Awesome Brand',
+        type: 'Casual',
+        color: 'Orange',
+        img: '/public/pants/brown_pants.webp',
+      },
+      {
+        name: 'Nice Shoes',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Black',
+        img: '/public/shoes/shoes_1.avif',
+      },
+      {
+        name: 'Pretty Cool',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Silver',
+        img: '/public/accessories/accessory_3.webp',
+      }
+    ],
+  },
+  {
+    outfitName: 'Evening Elegance',
+    notes: 'Elegant attire for dinner parties or a night out.',
+    items: [
+      {
+        name: '2nd Favorite Dress',
+        brand: 'Cool Brand',
+        type: 'Formal',
+        color: 'Pink',
+        img: '/public/skirts/skirt_3.webp',
+      },
+      {
+        name: 'Coolest Jacket',
+        brand: 'Fake Brand 170',
+        type: 'Formal',
+        color: 'White',
+        img: '/public/jackets/jacket_2.jpg',
+      },
+      {
+        name: 'Okay Shoes',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Grey',
+        img: '/public/shoes/shoes_3.webp',
+      },
+      {
+        name: 'Most Expensive',
+        brand: 'Cheap-O',
+        type: 'Formal',
+        color: 'Gold',
+        img: '/public/accessories/accessory_1.jpg',
+      }
+    ],
+  },
+];
+
 
 server.post('/login', (req,res) => {
   const loginSuccessful = {
@@ -179,39 +302,89 @@ server.post('/register', (req,res) => {
 })
 
 server.get('/shirts', (req,res) =>{
-  return res.json(mockdb.shirts);
+  return res.json(shirts);
 })
 
 server.get('/pants', (req,res) => {
-  return res.json(mockdb.pants);
+  return res.json(pants);
 })
 
 server.get('/skirts', (req,res) => {
-  return res.json(mockdb.skirts);
+  return res.json(skirts);
 })
 
 server.get('/jackets', (req,res) => {
-  return res.json(mockdb.jackets);
+  return res.json(jackets);
 })
 
 server.get('/shoes', (req,res) => {
-  return res.json(mockdb.shoes);
+  return res.json(shoes);
 })
 
 server.get('/accessories', (req,res) => {
-  return res.json(mockdb.accessories);
+  return res.json(accessories);
 })
 
+server.get('/outfits', (req, res) => {
+  return res.json(outfits);
+})
 
 const listener = server.listen(port, function () {
   console.log(`Server running on port: ${port}`)
 })
 
+const findItemByName = (itemName) => {
+  // Combine all items into a single array
+  const allItems = [...shirts, ...pants, ...skirts, ...jackets, ...shoes, ...accessories];
+
+  // Find the item by name (case-insensitive comparison)
+  const item = allItems.find(item => item.name.toLowerCase() === itemName.toLowerCase());
+
+  return item; // This will be the item if found, or undefined if not found
+};
+
+server.get('/item-detail/:itemName', (req, res) => {
+  try {
+    const { itemName } = req.params;
+    const decodedName = decodeURIComponent(itemName); // Make sure to decode the URI component
+    const item = findItemByName(decodedName);
+
+    if (item) {
+      res.json(item);
+    } else {
+      res.status(404).json({ message: 'Item not found' });
+    }
+  } catch (error) {
+    console.error('Server error when fetching item details:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+const findOutfitByName = (outfitName) => {
+  // Assuming you have an array of outfits
+  const outfit = outfits.find(outfit => outfit.outfitName.toLowerCase() === outfitName.toLowerCase());
+  return outfit;
+};
+
+server.get('/outfit-detail/:outfitName', (req, res) => {
+  try {
+    const { outfitName } = req.params;
+    const decodedName = decodeURIComponent(outfitName);
+    const outfit = findOutfitByName(decodedName);
+
+    if (outfit) {
+      res.json(outfit);
+    } else {
+      res.status(404).json({ message: 'Outfit not found' });
+    }
+  } catch (error) {
+    console.error('Server error when fetching outfit details:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
 // a function to stop listening to the port
 const close = () => {
   listener.close()
 }
-
-module.exports = {
-  close: close,
-}
+export {close}

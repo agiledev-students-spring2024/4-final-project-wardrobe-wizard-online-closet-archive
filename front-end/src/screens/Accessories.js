@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Accessories.css'; // Make sure this path is correct
+import { Link } from 'react-router-dom'; // Add this import
 import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
-
+import axios from 'axios';
 
 const Accessories = () => {
-    // Mock data for Accessories
-    const Accessories = [
-        { name: 'Casual Accessories', brand: 'Brand A', type: 'Casual' },
-        { name: 'Formal Accessories', brand: 'Brand B', type: 'Formal' },
-        { name: 'Accessories 3', brand: 'Brand C', type: 'Fashion' },
-        { name: 'Accessories 4', brand: 'Brand D', type: 'New' },
-        // ... add more Accessories as needed
-    ];
+    const [accessories, setAccessories] = useState([]);
+    useEffect(() =>{
+        axios.get('http://localhost:3001/accessories')
+        .then( res => {
+            setAccessories(res.data)
+            
+        })
+        .catch((e) => {
+            console.log(e)
+        })
+    }, []);
 
     return(
         <div className="Accessories">
@@ -21,15 +25,17 @@ const Accessories = () => {
                 <h3>Accessories</h3>
             </header>
             <div className="Accessories-list">
-                {Accessories.map((Accessorie, index) => (
-                    <div className="Accessories-item" key={index}>
-                        <div className="Accessories-image"></div> {/* Placeholder for the image */}
+                {accessories.map((Accessory) => (
+                    <Link to={`/item-detail/${Accessory.name}`} key={Accessory.name} className="Accessories-item-link">
+                    <div className="Accessories-item" key={Accessory.name}>
+                        <div className="Accessories-image"><img src = { `http://localhost:3001${Accessory.img}`} width={200} /></div> 
                         <div className="Accessories-info">
-                            <h3>{Accessorie.name}</h3>
-                            <p>{Accessorie.brand}</p>
-                            <p>{Accessorie.type}</p>
+                            <h3>{Accessory.name}</h3>
+                            <p>{Accessory.brand}</p>
+                            <p>{Accessory.type}</p>
                         </div>
                     </div>
+                    </Link>
                 ))}
             </div>
         </div>

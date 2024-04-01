@@ -1,11 +1,35 @@
 import '../styles/Login.css'
 import { useNavigate, Link } from 'react-router-dom';
+import { useState } from "react";
 import Footer from '../components/Footer'; 
+import axios from 'axios';
 
-const Login  =()  => {
+const Login = () => {
     const navigate = useNavigate(); 
-    const handleSubmit  = () => {
-        navigate('/home')
+    const [wrongLogin, setWrongLogin] = useState(false);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const form = event.target;
+        const username = form.username.value;
+        const password = form.password.value;
+        console.log(username,password);
+        axios.post('http://localhost:3001/login', {
+            username: username,
+            password: password
+        }).then( res => {
+            console.log(res.data.loggedIn);
+                if(res.data.loggedIn){
+                    navigate('/home')
+                }
+                else{
+                    setWrongLogin(true);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
     }
     return(
         <div className="Login">
@@ -26,6 +50,11 @@ const Login  =()  => {
             <div className='register'>
                 <p><Link to="/register">Create New Account</Link></p>
             </div>
+            {wrongLogin && (
+                <div className='wrongLogin'>
+                    <p>Wrong Username or Password. Please try again.</p>
+                </div>
+            )}
             <Footer />
         </div>
     )
@@ -33,3 +62,4 @@ const Login  =()  => {
 
 export default Login;
 //source:https://react.dev/reference/react-dom/components/form#noun-labs-1201738-(2)
+//source: https://axios-http.com/docs/api_intro

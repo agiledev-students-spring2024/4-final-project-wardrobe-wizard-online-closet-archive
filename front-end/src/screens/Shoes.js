@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/Shoes.css'; // Make sure this path is correct
+import { Link } from 'react-router-dom'; // Add this import
 import OverlayMenu from '../components/OverlayMenu'; // Import the OverlayMenu component
+import axios from 'axios';
 
 const Shoes = () => {
-    // Mock data for Shoes
-    const Shoes = [
-        { name: 'Casual Shoes', brand: 'Brand A', type: 'Casual' },
-        { name: 'Formal Shoes', brand: 'Brand B', type: 'Formal' },
-        { name: 'Shoes 3', brand: 'Brand C', type: 'Fashion' },
-        { name: 'Shoes 4', brand: 'Brand D', type: 'New' },
-        // ... add more Shoes as needed
-    ];
+    const [shoes, setShoes] = useState([]);
+    useEffect(() =>{
+        axios.get('http://localhost:3001/shoes')
+        .then( res => {
+            setShoes(res.data)
+            
+        })
+        .catch((e) => {
+            console.log(e)
+        })
+    }, []);
 
     return(
         <div className="Shoes">
@@ -20,15 +25,17 @@ const Shoes = () => {
                 <h3>Shoes</h3>
             </header>
             <div className="Shoes-list">
-                {Shoes.map((Shoe, index) => (
-                    <div className="Shoes-item" key={index}>
-                        <div className="Shoes-image"></div> {/* Placeholder for the image */}
+                {shoes.map((Shoe) => (
+                    <Link to={`/item-detail/${Shoe.name}`} key={Shoe.name} className="Shoes-item-link">
+                    <div className="Shoes-item" key={Shoe.name}>
+                        <div className="Shoes-image"><img src = { `http://localhost:3001${Shoe.img}`} width={200} /></div> 
                         <div className="Shoes-info">
                             <h3>{Shoe.name}</h3>
                             <p>{Shoe.brand}</p>
                             <p>{Shoe.type}</p>
                         </div>
                     </div>
+                    </Link>
                 ))}
             </div>
         </div>
