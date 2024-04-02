@@ -8,6 +8,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const clothcount=18;
 
 // call express's listen function to start listening to the port
 const accounts = [
@@ -22,14 +23,16 @@ const accounts = [
 ];
 
 const shirts = [
-  { name: 'Casual Shirt', 
+  { id: 1,
+    name: 'Casual Shirt', 
     brand: 'Awesome Brand', 
     type: 'Casual', 
     color: 'Blue',
     notes: 'Note 1',
     img: '/public/shirts/casual_shirt.webp'
   },
-  { name: 'Formal Shirt', 
+  { id: 2,
+    name: 'Formal Shirt', 
     brand: 'Formal Brand', 
     type: 'Formal',
     color: 'White', 
@@ -46,21 +49,24 @@ const shirts = [
 ]
 
 const pants = [
-  { name: 'Casual Pants', 
+  { id: 3,
+    name: 'Casual Pants', 
     brand: 'Awesome Brand', 
     type: 'Casual', 
     color:'Orange',
     notes: 'Note 1',
     img: '/public/pants/brown_pants.webp'
   },
-  { name: 'Least Favorite Pants', 
+  { id: 4,
+    name: 'Least Favorite Pants', 
     brand: 'Fake Brand 3', 
     type: 'Casual', 
     color: 'Brown',
     notes: 'Note 2',
     img: '/public/pants/extra_pants.jpg'
   },
-  { name: 'Favorite Pants', 
+  { id: 5,
+    name: 'Favorite Pants', 
     brand: 'Cool Brand', 
     type: 'Casual', 
     color: 'Grey',
@@ -70,21 +76,24 @@ const pants = [
 ]
 
 const skirts = [
-  { name: 'Best Dress', 
+  { id: 6,
+    name: 'Best Dress', 
     brand: 'Awesome Brand', 
     type: 'Formal', 
     color: 'Emerald Green',
     notes: 'Note 1',
     img: '/public/skirts/skirt_1.webp'
   },
-  { name: 'Least Favorite Dress', 
+  { id: 7,
+    name: 'Least Favorite Dress', 
     brand: 'Fake Brand 170', 
     type: 'Formal', 
     color: 'Blue',
     notes: 'Note 2',
     img: '/public/skirts/skirt_2.webp'
   },
-  { name: '2nd Favorite Dress', 
+  { id: 8,
+    name: '2nd Favorite Dress', 
     brand: 'Cool Brand', 
     type: 'Formal', 
     color: 'Pink',
@@ -94,21 +103,25 @@ const skirts = [
 ]
 
 const jackets = [
-    { name: 'Ugly Jacket', 
+    { id: 9,
+      name: 'Ugly Jacket', 
       brand: 'Awful Brand', 
       type: 'Casual', 
       color: 'Green',
       notes: 'Note 1',
       img: '/public/jackets/jacket_1.jpg'
     },
-    { name: 'Coolest Jacket', 
+    { 
+      id: 10,
+      name: 'Coolest Jacket', 
       brand: 'Fake Brand 170', 
       type: 'Formal', 
       color: 'White',
       notes: 'Note 2',
       img: '/public/jackets/jacket_2.jpg'
     },
-    { name: 'Okay Jacket', 
+    { id: 11,
+      name: 'Okay Jacket', 
       brand: 'Cool Brand', 
       type: 'Casual', 
       color: 'Blue',
@@ -118,21 +131,24 @@ const jackets = [
 ]
 
 const shoes = [
-  { name: 'Nice Shoes', 
+  { id: 12,
+    name: 'Nice Shoes', 
       brand: 'Definitely Awesome', 
       type: 'Casual', 
       color: 'Black',
       notes: 'Note 1',
       img: '/public/shoes/shoes_1.avif'
     },
-    { name: 'Decent Shoes', 
+    { id: 13,
+      name: 'Decent Shoes', 
       brand: 'Definitely Awesome', 
       type: 'Casual', 
       color: 'Black',
       notes: 'Note 2',
       img: '/public/shoes/shoes_2.webp'
     },
-    { name: 'Okay Shoes', 
+    { id: 14,
+      name: 'Okay Shoes', 
       brand: 'Definitely Awesome', 
       type: 'Casual', 
       color: 'Grey',
@@ -142,21 +158,24 @@ const shoes = [
 ]
 
 const accessories = [
-   { name: 'Most Expensive', 
+   { id: 15,
+    name: 'Most Expensive', 
       brand: 'Cheap-O', 
       type: 'Formal', 
       color: 'Gold',
       notes: 'Note 1',
       img: '/public/accessories/accessory_1.jpg'
     },
-    { name: 'Best Accessory', 
+    { id: 16,
+      name: 'Best Accessory', 
       brand: 'Definitely Awesome', 
       type: 'Casual', 
       color: 'Black',
       notes: 'Note 2',
       img: '/public/accessories/accessory_2.jpg'
     },
-    { name: 'Pretty Cool', 
+    { id: 17,
+      name: 'Pretty Cool', 
       brand: 'Definitely Awesome', 
       type: 'Casual', 
       color: 'Silver',
@@ -417,6 +436,7 @@ server.post('/additem', upload.single('picture'), (req, res) => {
   // construct the new item object with the file path
   const { name, brand, color, type, category } = req.body;
   const newItem = {
+    id: clothcount++,
     name,
     brand,
     type,
@@ -453,6 +473,21 @@ server.post('/additem', upload.single('picture'), (req, res) => {
 
   res.json({ message: 'Item added successfully', item: newItem });
 });
+
+// POST route to save a new outfit
+server.post('/generator', (req, res) => {
+  const { outfitName, items } = req.body;
+  if (!outfitName || !items || items.length === 0) {
+    return res.status(400).json({ message: 'Outfit name and items are required.' });
+  }
+  outfits.push({
+    outfitName,
+    notes:'',
+    items
+  });
+  res.status(201).json({ message: 'Outfit saved successfully' });
+});
+
 
 // a function to stop listening to the port
 const close = () => {

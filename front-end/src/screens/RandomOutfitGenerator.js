@@ -68,6 +68,15 @@ const RandomOutfitGenerator = () => {
             </div>
           ))}
           </div>
+          <div className="outfitname-input">
+              <form className='outfitname-save' onSubmit={saveOutfit}>
+                    <input name="outfitname" 
+                      type="text"
+                      placeholder='Enter Outfit Name'
+                      required
+                       />
+              </form>
+          </div>
           <div className="save-button-container">
             <button className="save-button" onClick={saveOutfit}>Save Outfit</button>
             <button className="cancel-button" onClick={cancelOutfit}>Cancel</button>
