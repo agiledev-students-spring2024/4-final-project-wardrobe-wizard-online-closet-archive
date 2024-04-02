@@ -14,3 +14,61 @@ This product is a mobile web app that aims to help people to better organize the
 This project came to life through different ideas from our team on how we may better organize and sort clothing, for people who may not have time, knowledge of clothing, or simply too many clothes.
 
 [Contributing](CONTRIBUTING.md)
+
+## Instructions to Run
+
+Clone directory
+```
+git clone https://github.com/agiledev-students-spring2024/4-final-project-wardrobe-wizard-online-closet-archive.git
+```
+After entering directory, open two command line windows(both of which should currently be inside the root directory of the newly cloned repository):
+
+In the first window:
+```
+cd back-end
+```
+
+then,
+```
+npm install
+```
+
+and lastly:
+```
+npm start
+```
+
+In the second window:
+```
+cd front-end
+```
+
+then,
+```
+npm install
+```
+
+and lastly:
+```
+npm start
+```
+
+Visit http://localhost:3000/ to view the app.
+
+A sample login is:
+```
+Username: tester
+Password: tester 
+```
+
+To test the endpoints, ensure the back-end is still running on the first window, then in a new window inside the back-end directory, run:
+
+```
+npm test
+```
+
+To close the app, run the following in the two original command line windows:
+```
+Ctrl+C
+```
+and select 'Y' should it ask you to confirm you want to close the app.
