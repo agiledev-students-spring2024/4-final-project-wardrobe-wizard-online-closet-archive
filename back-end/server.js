@@ -488,9 +488,30 @@ server.post('/generator', (req, res) => {
   res.status(201).json({ message: 'Outfit saved successfully' });
 });
 
+server.post('/random', (req, res) => {
+  const { outfitName, items } = req.body;
+  // Validate input
+  if (!outfitName || items.length === 0) {
+    return res.status(400).json({ message: 'Outfit name and items are required.' });
+  }
+
+  // Construct the new outfit object
+  const newOutfit = {
+    outfitName,
+    notes:'',
+    items,
+  };
+
+  outfits.push(newOutfit);
+  
+  // Send a success response
+  res.status(201).json({ message: 'New outfit generated and saved successfully.' });
+});
+
 
 // a function to stop listening to the port
 const close = () => {
   listener.close()
 }
 export {close}
+

@@ -25,8 +25,9 @@
 
 
 .outfit-display {
-    border: 1px solid #9f9797;
-    padding: 20px;
+    border: 1px solid #79b6df;
+    padding: 10px;
+    border-radius: 5px;
     /* margin: 20px 0; */
 }
 
@@ -77,6 +78,25 @@
     flex-direction: column;
     margin: 10px auto;
     width: 60%; 
+}
+
+.item-container-random{
+    display: grid;
+    height: 350px;
+    background-color:rgb(240, 249, 255);
+    padding: 15px;
+}
+
+.item-image-random {
+    width:250px;
+    height:250px;
+    justify-self: center;
+}
+
+.item-info-random{
+    font-size: 17px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    justify-self: center;
 }
  
   /* Responsive design for smaller screens */

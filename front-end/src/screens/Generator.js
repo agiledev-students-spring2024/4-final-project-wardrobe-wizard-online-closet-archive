@@ -88,7 +88,7 @@ const Generator = () => {
                <img src={`http://localhost:3001${item.img}`} alt={item.name} className="item-image" />   
             </div>
             <div className="item-info">
-              <p>{item.name}</p>
+              <p><u>{item.name}</u></p>
               <p>{item.brand}</p>
               <p>{item.type}</p>
             </div>
