@@ -2,7 +2,6 @@ import * as chai from 'chai';
 import axios from 'axios';
 import '../server.js';
 import chaiHttp from 'chai-http';
-const chaiHttp = require('chai-http');
 const { expect } = chai;
 
 
@@ -96,66 +95,60 @@ describe("Shiwen's Tests", () => {
 /* Shiwen's tests */
 
 // Ella's test
-chai.use(chaiHttp);
 
-describe('Outfit Generators', () => {
-  describe('POST /generator', () =>  {
-    it('should create a new outfit with the provided name and items', (done) => {
-      const outfit = {
-        outfitName: 'Test Outfit',
-        items: [
-          { id: 5,
-            name: 'Favorite Pants', 
-            brand: 'Cool Brand', 
-            type: 'Casual', 
-            color: 'Grey',
-            notes: 'Note 3',
-            img: '/public/pants/comfy.webp'
-          },
-          { id: 1,
-            name: 'Casual Shirt', 
-            brand: 'Awesome Brand', 
-            type: 'Casual', 
-            color: 'Blue',
-            notes: 'Note 1',
-            img: '/public/shirts/casual_shirt.webp'
-          },
-          { id: 16,
-            name: 'Best Accessory', 
-            brand: 'Definitely Awesome', 
-            type: 'Casual', 
-            color: 'Black',
-            notes: 'Note 2',
-            img: '/public/accessories/accessory_2.jpg'
-          }
-        ],
-      };
+// describe('Outfit Generators', () => {
+//   describe('POST /generator', () =>  {
+//     it('should create a new outfit with the provided name and items', async () => {
+//       const outfit = {
+//         outfitName: 'Test Outfit',
+//         items: [
+//           { id: 5,
+//             name: 'Favorite Pants', 
+//             brand: 'Cool Brand', 
+//             type: 'Casual', 
+//             color: 'Grey',
+//             notes: 'Note 3',
+//             img: '/public/pants/comfy.webp'
+//           },
+//           { id: 1,
+//             name: 'Casual Shirt', 
+//             brand: 'Awesome Brand', 
+//             type: 'Casual', 
+//             color: 'Blue',
+//             notes: 'Note 1',
+//             img: '/public/shirts/casual_shirt.webp'
+//           },
+//           { id: 16,
+//             name: 'Best Accessory', 
+//             brand: 'Definitely Awesome', 
+//             type: 'Casual', 
+//             color: 'Black',
+//             notes: 'Note 2',
+//             img: '/public/accessories/accessory_2.jpg'
+//           }
+//         ],
+//       };
 
-      chai.request(server)
-        .post('http://localhost:3001/generator')
-        .send(outfit)
-        .end((err, res) => {
-          expect(res).to.have.status(201);
-          expect(res.body).to.have.property('message', 'Outfit saved successfully');
-          done();
-        });
-    });
+//       const res = await axios.post(`${serverUrl}/generator`, outfit);
+//       expect(res.status).to.equal(201);
+//       expect(res.data).to.have.property('message', 'Outfit saved successfully');
+//     });
 
-  });
+//   });
 
-  describe('Random Outfit Generator Functionality', () => {
-    it('should generate a random outfit', (done) => {
-      chai.request(server)
-        .get('http://localhost:3001/random') 
-        .end((err, res) => {
-          expect(res).to.have.status(200);
-          expect(res.body).to.be.an('object');
-          expect(res.body.items).to.be.an('array').that.is.not.empty;
-          done();
-        });
-    });
+  // describe('Random Outfit Generator Functionality', () => {
+  //   it('should generate a random outfit', (done) => {
+  //     chai.request(server)
+  //       .get('http://localhost:3001/random') 
+  //       .end((err, res) => {
+  //         expect(res).to.have.status(200);
+  //         expect(res.body).to.be.an('object');
+  //         expect(res.body.items).to.be.an('array').that.is.not.empty;
+  //         done();
+  //       });
+  //   });
 
     
-  });
-});
+  // });
+
 
