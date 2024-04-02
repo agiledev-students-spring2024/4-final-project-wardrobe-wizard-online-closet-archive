@@ -8,7 +8,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const clothcount=19;
+const clothcount=18;
 
 // call express's listen function to start listening to the port
 const accounts = [
