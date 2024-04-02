@@ -8,7 +8,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const clothcount=18;
+const clothcount=19;
 
 // call express's listen function to start listening to the port
 const accounts = [
@@ -39,7 +39,8 @@ const shirts = [
     notes: 'Note 2',
     img: '/public/shirts/formal_shirt.webp'
   },
-  { name: 'Favorite Shirt', 
+  { id: 18,
+    name: 'Favorite Shirt', 
     brand: 'Awesome Brand', 
     type: 'Casual', 
     color: 'Grey',
@@ -189,28 +190,28 @@ const outfits = [
     outfitName: 'Business Casual Look',
     notes: 'A comfortable yet professional look for everyday business.',
     items: [
-      {
+      { id:2,
         name: 'Formal Shirt',
         brand: 'Formal Brand',
         type: 'Formal',
         color: 'White',
         img: '/public/shirts/formal_shirt.webp',
       },
-      {
+      { id:5,
         name: 'Favorite Pants',
         brand: 'Cool Brand',
         type: 'Casual',
         color: 'Grey',
         img: '/public/pants/comfy.webp',
       },
-      {
+      { id: 13,
         name: 'Decent Shoes',
         brand: 'Definitely Awesome',
         type: 'Casual',
         color: 'Black',
         img: '/public/shoes/shoes_2.webp',
       },
-      {
+      { id: 16,
         name: 'Best Accessory',
         brand: 'Definitely Awesome',
         type: 'Casual',
@@ -223,28 +224,28 @@ const outfits = [
     outfitName: 'Summer Vibes',
     notes: 'Perfect for the beach or a sunny day in the park.',
     items: [
-      {
+      { id: 1,
         name: 'Casual Shirt',
         brand: 'Awesome Brand',
         type: 'Casual',
         color: 'Blue',
         img: '/public/shirts/casual_shirt.webp',
       },
-      {
+      { id: 3,
         name: 'Casual Pants',
         brand: 'Awesome Brand',
         type: 'Casual',
         color: 'Orange',
         img: '/public/pants/brown_pants.webp',
       },
-      {
+      { id:12,
         name: 'Nice Shoes',
         brand: 'Definitely Awesome',
         type: 'Casual',
         color: 'Black',
         img: '/public/shoes/shoes_1.avif',
       },
-      {
+      { id: 17,
         name: 'Pretty Cool',
         brand: 'Definitely Awesome',
         type: 'Casual',
@@ -257,28 +258,28 @@ const outfits = [
     outfitName: 'Evening Elegance',
     notes: 'Elegant attire for dinner parties or a night out.',
     items: [
-      {
+      { id: 8,
         name: '2nd Favorite Dress',
         brand: 'Cool Brand',
         type: 'Formal',
         color: 'Pink',
         img: '/public/skirts/skirt_3.webp',
       },
-      {
+      { id:10,
         name: 'Coolest Jacket',
         brand: 'Fake Brand 170',
         type: 'Formal',
         color: 'White',
         img: '/public/jackets/jacket_2.jpg',
       },
-      {
+      { id:14,
         name: 'Okay Shoes',
         brand: 'Definitely Awesome',
         type: 'Casual',
         color: 'Grey',
         img: '/public/shoes/shoes_3.webp',
       },
-      {
+      { id:15,
         name: 'Most Expensive',
         brand: 'Cheap-O',
         type: 'Formal',
@@ -503,7 +504,7 @@ server.post('/random', (req, res) => {
   };
 
   outfits.push(newOutfit);
-  
+
   // Send a success response
   res.status(201).json({ message: 'New outfit generated and saved successfully.' });
 });
