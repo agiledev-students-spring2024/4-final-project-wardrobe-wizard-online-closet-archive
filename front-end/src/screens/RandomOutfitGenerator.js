@@ -1,45 +1,70 @@
-import React, { useState } from 'react';
-import '../styles/RandomOutfitGenerator.css'; // Your CSS file for styling
+import '../styles/RandomOutfitGenerator.css'; 
 import OverlayMenu from '../components/OverlayMenu';
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const RandomOutfitGenerator = () => {
-  const [outfit, setOutfit] = useState(null);
+  const [allItems, setAllItems] = useState({ shirts: [], pants: [], skirts: [], shoes: [], accessories: [], jackets: [] });
+  const [generatedOutfit, setGeneratedOutfit] = useState([]);
+  const [outfitName, setOutfitName] = useState('');
 
-  const clothes = [
-    { id: 1, name: 'Item 1', brand: 'Brand A', type: 'Shirt' },
-    { id: 2, name: 'Item 2', brand: 'Brand B', type: 'Pants' },
-    { id: 3, name: 'Item 3', brand: 'Brand C', type: 'Pants' },
-    { id: 4, name: 'Item 4', brand: 'Brand D', type: 'Skirts' },
-    { id: 5, name: 'Item 5', brand: 'Brand B', type: 'Skirts' },
-    // ... add more items here
-  ];
+  useEffect(() => {
+    const fetchItems = async () => {
+      try {
+        const categories = ['shirts', 'pants', 'skirts', 'shoes', 'accessories', 'jackets'];
+        const responses = await Promise.all(categories.map(category =>
+          axios.get(`http://localhost:3001/${category}`)
+        ));
+        const itemsByCategory = {};
+        responses.forEach((response, index) => {
+          itemsByCategory[categories[index]] = response.data;
+        });
+        setAllItems(itemsByCategory);
+      } catch (error) {
+        console.error('Error fetching items:', error);
+      }
+    };
+
+    fetchItems();
+  }, []);
 
   const generateRandomOutfit = () => {
-    // Assuming you want to randomly select one item of each type
-    const types = ['Shirt', 'Pants', 'Skirts'];
-    let randomOutfit = {};
-  
-    types.forEach(type => {
-      // Filter items by type
-      let itemsOfType = clothes.filter(item => item.type === type);
-      // Pick a random item of this type
-      let randomItem = itemsOfType[Math.floor(Math.random() * itemsOfType.length)];
-      // Add to the outfit
-      randomOutfit[type] = randomItem;
-    });
-  
-    setOutfit(randomOutfit);
-  };
-  
+    const outfit = {};
+    const { shirts, pants, skirts, shoes, accessories, jackets } = allItems;
 
-  const saveOutfit = () => {
-    // Implement save logic
-    console.log('Outfit saved:', outfit);
+    outfit.shirts = shirts[Math.floor(Math.random() * shirts.length)];
+    outfit.bottoms = Math.random() < 0.5
+      ? pants[Math.floor(Math.random() * pants.length)]
+      : skirts[Math.floor(Math.random() * skirts.length)];
+    outfit.shoes = shoes[Math.floor(Math.random() * shoes.length)];
+    outfit.accessories = accessories[Math.floor(Math.random() * accessories.length)];
+    if (jackets.length && Math.random() < 0.5) {
+      outfit.jackets = jackets[Math.floor(Math.random() * jackets.length)];
+    }
+
+    setGeneratedOutfit(Object.values(outfit));
+  };
+
+  const handleOutfitNameChange = (e) => {
+    setOutfitName(e.target.value);
+  };
+
+  const saveOutfit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post('http://localhost:3001/random', {
+        outfitName,
+        items: generatedOutfit,
+      });
+      // Optionally, reset state or redirect the user
+    } catch (error) {
+      console.error('Error saving the outfit:', error);
+    }
   };
 
   const cancelOutfit = () => {
-    setOutfit(null);
+    setGeneratedOutfit([]);
+    setOutfitName('');
   };
 
   return (
@@ -54,19 +79,34 @@ const RandomOutfitGenerator = () => {
        <button className="auto-generate-button" onClick={generateRandomOutfit}>Auto Generate Outfit</button>
       </div>
 
-      {outfit && (
+      {generatedOutfit.length > 0 && (
         <>
           <div className="outfit-display">
-          {outfit && Object.entries(outfit).map(([key, value]) => (
-            <div key={key} className="item-container">
-              <div className="thumbnail">{/* Optional: Insert an image if available */}</div>
-              <div className="item-info">
-                <p>{key}: {value.name}</p>
-                <p>Brand: {value.brand}</p>
-                <p>Type: {value.type}</p>
+            {generatedOutfit.map((item, index) => (
+              <div key={index} className="item-container-random">
+  
+                <img src={`http://localhost:3001${item.img}`} alt={item.name}className="item-image-random" />
+                
+                <div className="item-info-random">
+                  <p><u>{item.name}</u></p>
+                  <p>{item.brand}</p>
+                  <p>{item.type}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+
+          </div>
+          <div className="outfitname-input">
+              <form className='outfitname-save' onSubmit={saveOutfit}>
+                    <input 
+                    name="outfitname" 
+                    type="text"
+                    placeholder='Enter Outfit Name'
+                    value={outfitName}
+                    onChange={handleOutfitNameChange}
+                    required
+                       />
+              </form>
           </div>
           <div className="save-button-container">
             <button className="save-button" onClick={saveOutfit}>Save Outfit</button>
