@@ -34,7 +34,7 @@ function App() {
         <Route path="/pants" element={<Pants/>} />
         <Route path="/shirt" element={<Shirt/>} />
         <Route path="/shoes" element={<Shoes/>} />
-        <Route path="/ItemDetail" element={<ItemDetail/>} />
+        <Route path="/item-detail/:itemName" element={<ItemDetail/>} />
         <Route path="/OutfitDetail" element={<OutfitDetail/>} />
         <Route path="/Archive" element={<Archive/>} />
         <Route path="/skirts-dresses" element={<SkirtsDresses/>} />
