@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 const AddItem = () => {
   const [formData, setFormData] = useState({
     name: '',
-    type: '',
+    category: '',
     brand: '',
     type:'',
     color: '',
@@ -26,14 +26,14 @@ const AddItem = () => {
   
     const data = new FormData();
     data.append('name', formData.name);
-    data.append('category', formData.category); // Ensure consistency in naming
+    data.append('category', formData.category);
     data.append('brand', formData.brand);
     data.append('color', formData.color);
     data.append('type', formData.type);
     data.append('picture', formData.picture);
   
     // Example: POST request to your backend endpoint
-    fetch('/api/additem', {
+    fetch('http://localhost:3001/additem', {
       method: 'POST',
       body: data, // FormData object
     })
@@ -76,10 +76,10 @@ const AddItem = () => {
           required
         />
 
-        <label htmlFor="Category">Category: </label>
+        <label htmlFor="category">Category: </label>
         <select
-          id="Category"
-          name="Category"
+          id="category"
+          name="category"
           value={formData.Category}
           onChange={handleChange}
           required
