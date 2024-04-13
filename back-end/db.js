@@ -24,7 +24,7 @@ const username_password = new mongoose.Schema({
 }, {collection: 'user'});
 
 // const clothing_item = new mongoose.Schema({
-//     //id, name, brand, type, color, notes, imgLink
+//     //id, articleType, name, brand, type, color, notes, imgLink
 // }, {collection: 'clothing'});
 
 
