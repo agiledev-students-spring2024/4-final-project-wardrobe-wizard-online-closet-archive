@@ -329,7 +329,7 @@ server.post('/register', async (req,res) => {
   //   })
   // return res.json({'message':'Account created','created': true})
   const newUser = new User({
-    username: "tester2",
+    username: "tester3",
     password: "tester"
   })
 
