@@ -7,6 +7,9 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import models from './db.js';
+const {User, Clothes } = models;
+
 
 const clothcount=18;
 
@@ -312,20 +315,32 @@ server.post('/login', (req,res) => {
 
 })
 
-server.post('/register', (req,res) => {  
-  console.log("register:", req.body)
-  for(let i = 0; i < accounts.length; i++){
-    // console.log(req.body.username, req.body.password);
-    if(req.body.username == accounts[i].username){
-      return res.json({'message':'Username taken. Please choose a different one','created': false})
-    }
+server.post('/register', async (req,res) => {  
+  // console.log("register:", req.body)
+  // for(let i = 0; i < accounts.length; i++){
+  //   // console.log(req.body.username, req.body.password);
+  //   if(req.body.username == accounts[i].username){
+  //     return res.json({'message':'Username taken. Please choose a different one','created': false})
+  //   }
+  // }
+  // accounts.push(
+  //   { "username": req.body.username,
+  //     "password": req.body.password
+  //   })
+  // return res.json({'message':'Account created','created': true})
+  const newUser = new User({
+    username: "tester2",
+    password: "tester"
+  })
+
+  try{
+    const savedUser = await newUser.save();
+    res.status(201).json(savedUser);
+  } catch(e){
+    res.status(400).json({ message: error.message });
   }
-  accounts.push(
-    { "username": req.body.username,
-      "password": req.body.password
-    })
-  return res.json({'message':'Account created','created': true})
 })
+
 
 server.get('/shirts', (req,res) =>{
   return res.json(shirts);
