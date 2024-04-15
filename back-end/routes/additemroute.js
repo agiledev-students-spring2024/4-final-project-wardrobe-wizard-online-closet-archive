@@ -4,9 +4,12 @@ const multer = require('multer');
 const path = require('path');
 const router = express.Router();
 const mockdb = require('./mockdb');
-import models from '../db.js';
-const {User, Clothes } = models;
 
+// import models from '../db.js';
+// const {User, Clothes } = models;
+/*
+  const { User, Clothes } = require('../db.js');
+*/
 // // Multer configuration
 // const storage = multer.diskStorage({
 //   destination: function(req, file, cb) {
