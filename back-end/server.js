@@ -10,6 +10,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 import models from './db.js';
 const {User, Clothes } = models;
 
+import auth from './routes/protected-content-routes.js'; // Import your protected routes
+
 
 const clothcount=18;
 
@@ -351,7 +353,7 @@ server.post('/register', async (req,res) => {
 })
 
 
-server.get('/shirts', (req,res) =>{
+server.get('/shirts', auth, (req,res) =>{
   return res.json(shirts);
 })
 

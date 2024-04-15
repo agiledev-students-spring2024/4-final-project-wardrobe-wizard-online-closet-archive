@@ -7,10 +7,15 @@ import axios from 'axios';
 const Shirt = () => {
     const [shirts, setShirts] = useState([]);
     useEffect(() =>{
-        axios.get('http://localhost:3001/shirts')
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+        };
+        axios.get('http://localhost:3001/shirts', config)
         .then( res => {
             setShirts(res.data)
-            
         })
         .catch((e) => {
             console.log(e)

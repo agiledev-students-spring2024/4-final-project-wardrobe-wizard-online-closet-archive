@@ -7,12 +7,11 @@ import mongoose from 'mongoose';
 import jwtStrategy from './config/jwt-config.js';
 passport.use(jwtStrategy);
 import dotenv from 'dotenv';
+// import protectedRoutes from './routes/protected-content-routes.js'; // Import your protected routes
 dotenv.config()
 const app = express() // instantiate an Express object
 // we will put some server logic here later...
 app.use(passport.initialize());
-import User from './db.js';
-
 const uri = process.env.uri
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
@@ -21,6 +20,8 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     .catch((err) => {
         console.error('Error connecting to MongoDB', err);
     });
+    
+
 app.use(express.json());
 app.use(cors())
 app.use('/public', express.static('public'));
