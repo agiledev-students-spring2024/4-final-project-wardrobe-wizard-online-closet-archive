@@ -9,6 +9,9 @@ const OverlayMenu = () => {
         setIsOpen(!isOpen);
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+    }
     return (
         <>
             <button onClick={toggleMenu} className={`menu-button ${isOpen ? 'open' : ''}`}>☰</button> {/* Menu open button */}
@@ -28,7 +31,7 @@ const OverlayMenu = () => {
                         <li><Link to="/additem">Add Item</Link></li>
                         <li><Link to="/Archive">Outfit Archive</Link></li>
                         <li><Link to="/generator">Generator</Link></li>
-                        <li><Link to="/">Logout</Link></li>
+                        <li><Link to="/" onClick={handleLogout}>Logout</Link></li>
                     </ul>
                 </nav>
             </div>

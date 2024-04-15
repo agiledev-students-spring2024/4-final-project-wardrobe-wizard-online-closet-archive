@@ -7,6 +7,11 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import models from './db.js';
+const {User, Clothes } = models;
+
+import auth from './routes/protected-content-routes.js'; // Import your protected routes
+
 
 const clothcount=18;
 
@@ -291,68 +296,93 @@ const outfits = [
 ];
 
 
-server.post('/login', (req,res) => {
-  const loginSuccessful = {
-    'loggedIn': true
-  };
-  const loginUnsuccessful = {
-    'loggedIn': false
-  };
-  
-  console.log("login: ", req.body)
-  for(let i = 0; i < accounts.length; i++){
-    // console.log(req.body.username, req.body.password);
-    if(req.body.username == accounts[i].username){
-      if(req.body.password == accounts[i].password){
-        return res.json(loginSuccessful);
+server.post('/login', async (req,res) => {
+  const u = req.body.username;
+  const p = req.body.password;
+  try{
+    const user = await User.findOne({ username: u });
+    if(user) {
+      if(user.validPassword(p)){
+        const token = user.generateJWT(); // generate a signed token
+        res.json({
+          success: true,
+          message: "User logged in successfully.",
+          token: token,
+          username: user.username,
+          loggedIn: true
+        }); 
+      }
+      else{
+        return res.json({ 'loggedIn': false});
       }
     }
+    else{
+      return res.json({ 'loggedIn': false});
+    }
+  } catch(e) {
+      console.log(e)
   }
-  return res.json(loginUnsuccessful);
-
 })
 
-server.post('/register', (req,res) => {  
-  console.log("register:", req.body)
-  for(let i = 0; i < accounts.length; i++){
-    // console.log(req.body.username, req.body.password);
-    if(req.body.username == accounts[i].username){
-      return res.json({'message':'Username taken. Please choose a different one','created': false})
+server.post('/register', async (req,res) => {    
+  const exists = await User.findOne({username: req.body.username});
+  if(!exists){
+    const newUser = new User({
+      username: req.body.username,
+      password: req.body.password
+   })
+   try{
+      const savedUser = await newUser.save();
+      const token = savedUser.generateJWT();
+      // res.status(201).json(savedUser);
+      res.json({
+        success: true,
+        message: "User logged in successfully.",
+        token: token,
+        username: savedUser.username,
+        created: true
+      }); 
+    } 
+    catch(e){
+      res.status(400).json({ message: e.message });
     }
   }
-  accounts.push(
-    { "username": req.body.username,
-      "password": req.body.password
-    })
-  return res.json({'message':'Account created','created': true})
+  else{
+    return res.json({'message':'Username taken. Please choose a different one','created': false})
+  }
 })
 
-server.get('/shirts', (req,res) =>{
+
+server.get('/shirts', auth, (req,res) =>{
   return res.json(shirts);
 })
 
-server.get('/pants', (req,res) => {
+server.get('/pants', auth,  (req,res) => {
   return res.json(pants);
 })
 
-server.get('/skirts', (req,res) => {
+server.get('/skirts', auth, (req,res) => {
   return res.json(skirts);
 })
 
-server.get('/jackets', (req,res) => {
+server.get('/jackets', auth, (req,res) => {
   return res.json(jackets);
 })
 
-server.get('/shoes', (req,res) => {
+server.get('/shoes', auth, (req,res) => {
   return res.json(shoes);
 })
 
-server.get('/accessories', (req,res) => {
+server.get('/accessories', auth,  (req,res) => {
   return res.json(accessories);
 })
 
-server.get('/outfits', (req, res) => {
+server.get('/outfits', auth, (req, res) => {
   return res.json(outfits);
+})
+
+server.get('/verify_login', auth, (req,res) => {
+  return res.json({'loggedIn': true})
 })
 
 const listener = server.listen(port, function () {

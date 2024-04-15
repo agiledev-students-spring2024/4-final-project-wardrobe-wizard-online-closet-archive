@@ -7,17 +7,25 @@ import axios from 'axios';
 const All_Items = () => {
   const [allItems, setAllItems] = useState([]);
   const [error, setError] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+        };
         const responses = await Promise.all([
-          axios.get('http://localhost:3001/shirts'),
-          axios.get('http://localhost:3001/pants'),
-          axios.get('http://localhost:3001/skirts'),
-          axios.get('http://localhost:3001/jackets'),
-          axios.get('http://localhost:3001/shoes'),
-          axios.get('http://localhost:3001/accessories'),
+          axios.get('http://localhost:3001/shirts', config),
+          axios.get('http://localhost:3001/pants', config),
+          axios.get('http://localhost:3001/skirts', config),
+          axios.get('http://localhost:3001/jackets', config),
+          axios.get('http://localhost:3001/shoes', config),
+          axios.get('http://localhost:3001/accessories', config),
         ]);
 
         const combinedItems = responses.flatMap(response => response.data);
@@ -31,9 +39,26 @@ const All_Items = () => {
     fetchItems();
   }, []);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+  useEffect(() =>{
+    const token = localStorage.getItem('token');
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+    };
+    axios.get('http://localhost:3001/verify_login', config)
+    .then( res => {
+       setShowForm(res.data.loggedIn)
+    })
+    .catch((e) => {
+        console.log(e)
+    })
+  }, []);
+
+
+  // if (error) {
+  //   return <div>Error: {error}</div>;
+  // }
 
   return (
     <div className="All_Items">
@@ -42,6 +67,8 @@ const All_Items = () => {
         <h1>WARDROBE WIZARD</h1>
         <h3>All Items</h3>
       </header>
+
+      {showForm && (
       <div className="All_Items-list">
         {allItems.map((item) => (
           <Link to={`/item-detail/${encodeURIComponent(item.name)}`} key={item.name} className="All_Items-item-link">
@@ -56,6 +83,15 @@ const All_Items = () => {
           </Link>
         ))}
       </div>
+    )}
+
+      {!showForm && (
+                <div>
+                    <h3 id='loginWarning'>Please login <Link to="/">here</Link> to use this page</h3>
+                </div>
+
+            )}  
+
     </div>
   );
 };

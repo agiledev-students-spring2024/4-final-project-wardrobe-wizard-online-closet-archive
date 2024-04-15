@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import '../styles/AddItem.css'; // Ensure you have the corresponding CSS file
 import OverlayMenu from '../components/OverlayMenu'; 
 import Footer from '../components/Footer'; 
+import axios from 'axios';
+import { Link } from 'react-router-dom'; // Add this import
 
 const AddItem = () => {
+  const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     category: '',
@@ -57,7 +60,21 @@ const AddItem = () => {
     });
   };
   
-
+  useEffect(() =>{
+    const token = localStorage.getItem('token');
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+    };
+    axios.get('http://localhost:3001/verify_login', config)
+    .then( res => {
+       setShowForm(res.data.loggedIn)
+    })
+    .catch((e) => {
+        console.log(e)
+    })
+}, []);
   return (
     <div className="add-item-container">
       <OverlayMenu />
@@ -65,7 +82,8 @@ const AddItem = () => {
         <h1>WARDROBE WIZARD</h1>
         <h3>Add Item</h3>
       </header>
-      <form onSubmit={handleSubmit} className="add-item-form">
+      { showForm && (
+        <form onSubmit={handleSubmit} className="add-item-form">
         <label htmlFor="name">Name:</label>
         <input
           type="text"
@@ -135,6 +153,13 @@ const AddItem = () => {
 
         <button type="submit" className="submit-button">Add Item</button>
       </form>
+      )}
+      {!showForm && (
+                <div>
+                    <h3 id='loginWarning'>Please login <Link to="/">here</Link> to use this page</h3>
+                </div>
+
+            )}  
       <Footer />
     </div>
   );

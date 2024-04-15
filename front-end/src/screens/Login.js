@@ -21,6 +21,7 @@ const Login = () => {
             console.log(res.data.loggedIn);
                 if(res.data.loggedIn){
                     navigate('/home')
+                    localStorage.setItem('token', res.data.token)
                 }
                 else{
                     setWrongLogin(true);
