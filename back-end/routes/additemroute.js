@@ -4,6 +4,8 @@ const multer = require('multer');
 const path = require('path');
 const router = express.Router();
 const mockdb = require('./mockdb');
+import models from '../db.js';
+const {User, Clothes } = models;
 
 // // Multer configuration
 // const storage = multer.diskStorage({
@@ -48,3 +50,20 @@ const mockdb = require('./mockdb');
   
   module.exports = router;
   
+/*
+  const newItem = {
+    id: 321657329,
+    articleType: 'shirt',
+    nameItem: "brown shirt",
+    brand: "cool brand",
+    type: "formal",
+    color: "brown",
+    notes: "kinda pretty",
+    imgLink: "/public/shirts/formal_shirt.webp"
+  }
+
+  const newClothes = newItem.save()
+  //save the link to the picture in the public directory on mongo and save the picture 
+  //itself with a unique name inside it's folder on the public directory
+
+*/

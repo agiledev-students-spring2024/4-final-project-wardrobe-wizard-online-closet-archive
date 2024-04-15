@@ -68,7 +68,7 @@ const clothing_item = new mongoose.Schema({
         type: String,
         required: true
     },
-    name: {
+    nameItem: {
         type: String,
         required: true
     },
