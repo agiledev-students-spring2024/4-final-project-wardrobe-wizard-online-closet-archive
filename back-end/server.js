@@ -294,50 +294,59 @@ const outfits = [
 ];
 
 
-server.post('/login', (req,res) => {
-  const loginSuccessful = {
-    'loggedIn': true
-  };
-  const loginUnsuccessful = {
-    'loggedIn': false
-  };
-  
-  console.log("login: ", req.body)
-  for(let i = 0; i < accounts.length; i++){
-    // console.log(req.body.username, req.body.password);
-    if(req.body.username == accounts[i].username){
-      if(req.body.password == accounts[i].password){
-        return res.json(loginSuccessful);
+server.post('/login', async (req,res) => {
+  const u = req.body.username;
+  const p = req.body.password;
+  try{
+    const user = await User.findOne({ username: u });
+    if(user) {
+      if(user.validPassword(p)){
+        const token = user.generateJWT(); // generate a signed token
+        res.json({
+          success: true,
+          message: "User logged in successfully.",
+          token: token,
+          username: user.username,
+          loggedIn: true
+        }); 
+      }
+      else{
+        return res.json({ 'loggedIn': false});
       }
     }
+    else{
+      return res.json({ 'loggedIn': false});
+    }
+  } catch(e) {
+      console.log(e)
   }
-  return res.json(loginUnsuccessful);
-
 })
 
-server.post('/register', async (req,res) => {  
-  // console.log("register:", req.body)
-  // for(let i = 0; i < accounts.length; i++){
-  //   // console.log(req.body.username, req.body.password);
-  //   if(req.body.username == accounts[i].username){
-  //     return res.json({'message':'Username taken. Please choose a different one','created': false})
-  //   }
-  // }
-  // accounts.push(
-  //   { "username": req.body.username,
-  //     "password": req.body.password
-  //   })
-  // return res.json({'message':'Account created','created': true})
-  const newUser = new User({
-    username: "tester3",
-    password: "tester"
-  })
-
-  try{
-    const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
-  } catch(e){
-    res.status(400).json({ message: error.message });
+server.post('/register', async (req,res) => {    
+  const exists = await User.findOne({username: req.body.username});
+  if(!exists){
+    const newUser = new User({
+      username: req.body.username,
+      password: req.body.password
+   })
+   try{
+      const savedUser = await newUser.save();
+      const token = savedUser.generateJWT();
+      // res.status(201).json(savedUser);
+      res.json({
+        success: true,
+        message: "User logged in successfully.",
+        token: token,
+        username: savedUser.username,
+        created: true
+      }); 
+    } 
+    catch(e){
+      res.status(400).json({ message: e.message });
+    }
+  }
+  else{
+    return res.json({'message':'Username taken. Please choose a different one','created': false})
   }
 })
 
