@@ -10,6 +10,8 @@ const Generator = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [outfitName, setOutfitName] = useState('');
   const [error, setError] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -34,7 +36,22 @@ const Generator = () => {
 
     fetchItems();
   }, []);
-  
+
+  useEffect(() =>{
+    const token = localStorage.getItem('token');
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+    };
+    axios.get('http://localhost:3001/verify_login', config)
+    .then( res => {
+       setShowForm(res.data.loggedIn)
+    })
+    .catch((e) => {
+        console.log(e)
+    })
+}, []);
 
   // Toggle selection of an item
   const toggleItemSelection = (itemId) => {
@@ -74,7 +91,9 @@ const Generator = () => {
         <h1>WARDROBE WIZARD</h1>
         <h2>Generator</h2>
       </header>
-      {error && <p className="error-message">{error}</p>}
+      {/* {error && <p className="error-message">{error}</p>} */}
+      { showForm && (
+      <div>
       <h3>Choose the clothes you want to match:</h3>
       <div className="items-container">
       {allItems.map((item) => (
@@ -82,8 +101,7 @@ const Generator = () => {
           key={item.id}
           className={`item ${selectedItems.includes(item.id) ? 'selected' : ''}`}
           onClick={() => toggleItemSelection(item.id)}
-          >
-            
+          > 
             <div className="thumbnail">
                <img src={`http://localhost:3001${item.img}`} alt={item.name} className="item-image" />   
             </div>
@@ -95,26 +113,35 @@ const Generator = () => {
           </div>
         ))}
       </div>
-      <div className="outfitname-input">
-              <form className='outfitname-save' onSubmit={handleSaveOutfit}>
-                    <input 
-                      name="outfitname" 
-                      type="text"
-                      value={outfitName}
-                      onChange={handleOutfitNameChange}
-                      placeholder='Enter Outfit Name'
-                      required />
-              </form>
-      </div>
-      <div className="button-container">
-        <button className="generate-button" onClick={handleSaveOutfit}>
-          Generate Outfit
-        </button>
-        <div className='random'>
-          <p><Link to="/random">Have no idea? Try <u>RandomOutfitGenerator</u></Link></p>
+        <div className="outfitname-input">
+                <form className='outfitname-save' onSubmit={handleSaveOutfit}>
+                      <input 
+                        name="outfitname" 
+                        type="text"
+                        value={outfitName}
+                        onChange={handleOutfitNameChange}
+                        placeholder='Enter Outfit Name'
+                        required />
+                </form>
+        </div>
+        <div className="button-container">
+          <button className="generate-button" onClick={handleSaveOutfit}>
+            Generate Outfit
+          </button>
+          <div className='random'>
+            <p><Link to="/random">Have no idea? Try <u>RandomOutfitGenerator</u></Link></p>
+          </div>
         </div>
       </div>
-      
+       )}
+
+      {!showForm && (
+                <div>
+                    <h3 id='loginWarning'>Please login <Link to="/">here</Link> to use this page</h3>
+                </div>
+
+            )}  
+          
       <Footer />
     </div>
   );

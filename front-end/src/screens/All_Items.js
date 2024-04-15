@@ -11,13 +11,19 @@ const All_Items = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+        };
         const responses = await Promise.all([
-          axios.get('http://localhost:3001/shirts'),
-          axios.get('http://localhost:3001/pants'),
-          axios.get('http://localhost:3001/skirts'),
-          axios.get('http://localhost:3001/jackets'),
-          axios.get('http://localhost:3001/shoes'),
-          axios.get('http://localhost:3001/accessories'),
+          axios.get('http://localhost:3001/shirts', config),
+          axios.get('http://localhost:3001/pants', config),
+          axios.get('http://localhost:3001/skirts', config),
+          axios.get('http://localhost:3001/jackets', config),
+          axios.get('http://localhost:3001/shoes', config),
+          axios.get('http://localhost:3001/accessories', config),
         ]);
 
         const combinedItems = responses.flatMap(response => response.data);

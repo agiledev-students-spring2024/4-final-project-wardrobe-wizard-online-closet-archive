@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Closet.css'; // Ensure the CSS file is properly linked
 import OverlayMenu from '../components/OverlayMenu'; 
 import Footer from '../components/Footer'; 
+import axios from 'axios';
+import { Link } from 'react-router-dom'; // Add this import
 
 const Closet = () => {
   const navigate = useNavigate();
+  const [showForm, setShowForm] = useState(false);
+  useEffect(() =>{
+      const token = localStorage.getItem('token');
+      const config = {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+      };
+      axios.get('http://localhost:3001/verify_login', config)
+      .then( res => {
+         setShowForm(res.data.loggedIn)
+      })
+      .catch((e) => {
+          console.log(e)
+      })
+  }, []);
 
   // const handleAddItem = () => {
   //   navigate('/additem'); 
@@ -50,8 +68,8 @@ const Closet = () => {
         <h1>WARDROBE WIZARD</h1>
         <h3>My Closet</h3>
       </header>
-      
-      <div className="category-buttons">
+      {showForm && (
+        <div className="category-buttons">
         {categories.map((category) => (
           <button 
             key={category} 
@@ -62,6 +80,14 @@ const Closet = () => {
           </button>
         ))}
       </div>
+      )}
+       {!showForm && (
+                <div>
+                    <h3 id='loginWarning'>Please login <Link to="/">here</Link> to use this page</h3>
+                </div>
+
+            )}   
+      
       <Footer />
      {/* // <button className="add-item-button"onClick={handleAddItem}>Add Item</button> */}
     </div>

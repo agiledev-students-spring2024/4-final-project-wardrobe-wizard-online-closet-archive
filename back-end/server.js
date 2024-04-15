@@ -357,28 +357,32 @@ server.get('/shirts', auth, (req,res) =>{
   return res.json(shirts);
 })
 
-server.get('/pants', (req,res) => {
+server.get('/pants', auth,  (req,res) => {
   return res.json(pants);
 })
 
-server.get('/skirts', (req,res) => {
+server.get('/skirts', auth, (req,res) => {
   return res.json(skirts);
 })
 
-server.get('/jackets', (req,res) => {
+server.get('/jackets', auth, (req,res) => {
   return res.json(jackets);
 })
 
-server.get('/shoes', (req,res) => {
+server.get('/shoes', auth, (req,res) => {
   return res.json(shoes);
 })
 
-server.get('/accessories', (req,res) => {
+server.get('/accessories', auth,  (req,res) => {
   return res.json(accessories);
 })
 
-server.get('/outfits', (req, res) => {
+server.get('/outfits', auth, (req, res) => {
   return res.json(outfits);
+})
+
+server.get('/verify_login', auth, (req,res) => {
+  return res.json({'loggedIn': true})
 })
 
 const listener = server.listen(port, function () {

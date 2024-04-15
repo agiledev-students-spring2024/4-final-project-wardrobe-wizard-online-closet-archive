@@ -2,16 +2,36 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import OverlayMenu from '../components/OverlayMenu';
 import '../styles/Archive.css'; // Path to your CSS file
+import axios from 'axios';
 
 const Archive = () => {
   const [outfits, setOutfits] = useState([]);
+  const [loginWarning, setLoginWarning] = useState(false);
 
   useEffect(() => {
     // Fetch the outfits from your server
-    fetch('http://localhost:3001/outfits')
-      .then(response => response.json())
-      .then(data => setOutfits(data))
-      .catch(error => console.log(error));
+    const token = localStorage.getItem('token');
+      const config = {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+      };
+    // fetch('http://localhost:3001/outfits', config)
+    //   .then(response => response.json())
+    //   .then(data => setOutfits(data))
+    //   .catch(error => {
+    //     console.log(error);
+    //     setLoginWarning(true);
+    //   }        
+    //     );
+    axios.get('http://localhost:3001/outfits', config)
+        .then( res => {
+            setOutfits(res.data)
+        })
+        .catch((e) => {
+            console.log(e)
+            setLoginWarning(true);
+        })
   }, []);
 
   return (
@@ -39,6 +59,13 @@ const Archive = () => {
           </div>
         ))}
       </div>
+      {loginWarning && (
+                <div>
+                    <h3 id='loginWarning'>Please login <Link to="/">here</Link> to use this page</h3>
+                </div>
+
+            )}   
+
     </div>
   );
 };

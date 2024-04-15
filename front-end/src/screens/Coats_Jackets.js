@@ -6,14 +6,22 @@ import axios from 'axios';
 
 const CoatsJackets = () => {
     const [jackets, setJackets] = useState([]);
+    const [loginWarning, setLoginWarning] = useState(false);
     useEffect(() =>{
-        axios.get('http://localhost:3001/jackets')
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+        };
+        axios.get('http://localhost:3001/jackets', config)
         .then( res => {
             setJackets(res.data)
             
         })
         .catch((e) => {
             console.log(e)
+            setLoginWarning(true);
         })
     }, []);
 
@@ -38,7 +46,12 @@ const CoatsJackets = () => {
                     </Link>
                 ))}
             </div>
-            
+            {loginWarning && (
+                <div>
+                    <h3 id='loginWarning'>Please login <Link to="/">here</Link> to use this page</h3>
+                </div>
+
+            )}   
         </div>
     );
 }
