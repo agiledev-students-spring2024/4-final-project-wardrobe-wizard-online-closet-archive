@@ -34,11 +34,11 @@ const Pants = () => {
             </header>
             <div className="Pants-list">
                 {pants.map((pant) => (
-                    <Link to={`/item-detail/${pant.name}`} key={pant.name} className="Pants-item-link">
-                    <div className="Pants-item" key={pant.name}>
-                        <div className="Pants-image"><img src = { `http://localhost:3001${pant.img}`} width={200} /></div> 
+                    <Link to={`/item-detail/${pant.nameItem}`} key={pant.nameItem} className="Pants-item-link">
+                    <div className="Pants-item" key={pant.nameItem}>
+                        <div className="Pants-image"><img src = { `http://localhost:3001${pant.imgLink}`} width={200} /></div> 
                         <div className="Pants-info">
-                            <h3>{pant.name}</h3>
+                            <h3>{pant.nameItem}</h3>
                             <p>{pant.brand}</p>
                             <p>{pant.type}</p>
                         </div>

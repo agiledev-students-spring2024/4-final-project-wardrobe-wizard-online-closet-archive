@@ -353,29 +353,102 @@ server.post('/register', async (req,res) => {
 })
 
 
-server.get('/shirts', auth, (req,res) =>{
-  return res.json(shirts);
-})
+server.get('/shirts', auth, async (req, res) => {
+  try {
+    const userId = req.user.id.toString();
+    const shirts = await Clothes.find({ 
+      user: userId, 
+      articleType: 'Shirts' 
+    });
 
-server.get('/pants', auth,  (req,res) => {
-  return res.json(pants);
-})
+    // Check if shirts array is not empty
+    if (shirts.length > 0) {
+      res.json(shirts);
+    } else {
+      // If the array is empty, it may mean no shirts were found for the user
+      res.status(404).json({ message: 'No shirts found for this user.' });
+    }
 
-server.get('/skirts', auth, (req,res) => {
-  return res.json(skirts);
-})
+  } catch (error) {
+    console.error('Server error when fetching shirts:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 
-server.get('/jackets', auth, (req,res) => {
-  return res.json(jackets);
-})
+server.get('/pants', auth, async (req, res) => {
+  try {
+    const userId = req.user.id.toString();
+    const pants = await Clothes.find({ 
+      user: userId, 
+      articleType: 'Pants' 
+    });
+    res.json(pants);
 
-server.get('/shoes', auth, (req,res) => {
-  return res.json(shoes);
-})
+  } catch (error) {
+    console.error('Server error when fetching pants:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 
-server.get('/accessories', auth,  (req,res) => {
-  return res.json(accessories);
-})
+server.get('/skirts', auth, async (req, res) => {
+  try {
+    const userId = req.user.id.toString();
+    const skirts = await Clothes.find({ 
+      user: userId, 
+      articleType: 'Skirts' 
+    });
+    res.json(skirts);
+
+  } catch (error) {
+    console.error('Server error when fetching skirts:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+server.get('/jackets', auth, async (req, res) => {
+  try {
+    const userId = req.user.id.toString();
+    const jackets = await Clothes.find({ 
+      user: userId, 
+      articleType: 'Jackets' 
+    });
+    res.json(jackets);
+
+  } catch (error) {
+    console.error('Server error when fetching jackets:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+server.get('/shoes', auth, async (req, res) => {
+  try {
+    const userId = req.user.id.toString();
+    const shoes = await Clothes.find({ 
+      user: userId, 
+      articleType: 'Shoes' 
+    });
+    res.json(shoes);
+
+  } catch (error) {
+    console.error('Server error when fetching shoes:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+server.get('/accessories', auth, async (req, res) => {
+  try {
+    const userId = req.user.id.toString();
+    const accessories = await Clothes.find({ 
+      user: userId, 
+      articleType: 'Accessories' 
+    });
+    res.json(accessories);
+
+  } catch (error) {
+    console.error('Server error when fetching accessories:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 
 server.get('/outfits', auth, (req, res) => {
   return res.json(outfits);
@@ -399,11 +472,34 @@ const findItemByName = (itemName) => {
   return item; // This will be the item if found, or undefined if not found
 };
 
-server.get('/item-detail/:itemName', (req, res) => {
+// server.get('/item-detail/:itemName', (req, res) => {
+//   try {
+//     const { itemName } = req.params;
+//     const decodedName = decodeURIComponent(itemName); // Make sure to decode the URI component
+//     const item = findItemByName(decodedName);
+
+//     if (item) {
+//       res.json(item);
+//     } else {
+//       res.status(404).json({ message: 'Item not found' });
+//     }
+//   } catch (error) {
+//     console.error('Server error when fetching item details:', error);
+//     res.status(500).json({ message: 'Internal Server Error' });
+//   }
+// });
+
+// Update to use the Mongoose model
+server.get('/item-detail/:itemName', auth, async (req, res) => {
   try {
     const { itemName } = req.params;
+    const userId = req.user.id.toString();
     const decodedName = decodeURIComponent(itemName); // Make sure to decode the URI component
-    const item = findItemByName(decodedName);
+
+    const item = await Clothes.findOne({
+      user: userId,
+      nameItem: new RegExp(decodedName, 'i'), // Case-insensitive search
+    });
 
     if (item) {
       res.json(item);
@@ -412,6 +508,26 @@ server.get('/item-detail/:itemName', (req, res) => {
     }
   } catch (error) {
     console.error('Server error when fetching item details:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+server.delete('/delete-item/:itemName', auth, async (req, res) => {
+  try {
+    const { itemName } = req.params;
+    const userId = req.user.id.toString();
+    const itemToDelete = await Clothes.findOneAndDelete({ 
+      nameItem: itemName, 
+      user: userId 
+    });
+
+    if (!itemToDelete) {
+      return res.status(404).json({ message: 'Item not found' });
+    }
+
+    res.json({ message: 'Item successfully deleted' });
+  } catch (error) {
+    console.error('Server error when deleting item:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });

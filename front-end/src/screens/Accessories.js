@@ -34,11 +34,11 @@ const Accessories = () => {
             </header>
             <div className="Accessories-list">
                 {accessories.map((Accessory) => (
-                    <Link to={`/item-detail/${Accessory.name}`} key={Accessory.name} className="Accessories-item-link">
-                    <div className="Accessories-item" key={Accessory.name}>
-                        <div className="Accessories-image"><img src = { `http://localhost:3001${Accessory.img}`} width={200} /></div> 
+                    <Link to={`/item-detail/${Accessory.nameItem}`} key={Accessory.nameItem} className="Accessories-item-link">
+                    <div className="Accessories-item" key={Accessory.nameItem}>
+                        <div className="Accessories-image"><img src = { `http://localhost:3001${Accessory.imgLink}`} width={200} /></div> 
                         <div className="Accessories-info">
-                            <h3>{Accessory.name}</h3>
+                            <h3>{Accessory.nameItem}</h3>
                             <p>{Accessory.brand}</p>
                             <p>{Accessory.type}</p>
                         </div>

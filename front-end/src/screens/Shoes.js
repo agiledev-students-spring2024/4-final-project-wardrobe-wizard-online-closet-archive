@@ -35,11 +35,11 @@ const Shoes = () => {
             </header>
             <div className="Shoes-list">
                 {shoes.map((Shoe) => (
-                    <Link to={`/item-detail/${Shoe.name}`} key={Shoe.name} className="Shoes-item-link">
-                    <div className="Shoes-item" key={Shoe.name}>
-                        <div className="Shoes-image"><img src = { `http://localhost:3001${Shoe.img}`} width={200} /></div> 
+                    <Link to={`/item-detail/${Shoe.nameItem}`} key={Shoe.nameItem} className="Shoes-item-link">
+                    <div className="Shoes-item" key={Shoe.nameItem}>
+                        <div className="Shoes-image"><img src = { `http://localhost:3001${Shoe.imgLink}`} width={200} /></div> 
                         <div className="Shoes-info">
-                            <h3>{Shoe.name}</h3>
+                            <h3>{Shoe.nameItem}</h3>
                             <p>{Shoe.brand}</p>
                             <p>{Shoe.type}</p>
                         </div>
