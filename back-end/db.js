@@ -59,11 +59,11 @@ const User = mongoose.model("User", username_password);
 
 
 const clothing_item = new mongoose.Schema({
-    id: {
-        type: Number,
-        required: true,
-        unique: true
-    },
+    // id: {
+    //     type: Number,
+    //     required: true,
+    //     unique: true
+    // },
     articleType: {
         type: String,
         required: true

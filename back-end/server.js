@@ -13,7 +13,7 @@ const {User, Clothes } = models;
 import auth from './routes/protected-content-routes.js'; // Import your protected routes
 
 
-const clothcount=18;
+let clothcount=18;
 
 // call express's listen function to start listening to the port
 const accounts = [
@@ -443,7 +443,7 @@ server.get('/outfit-detail/:outfitName', (req, res) => {
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     // Get the type from the request body and form the path
-    const category = req.body.category.toLowerCase();
+    const category = req.body.articleType.toLowerCase();
     const dir = path.join(__dirname, 'public', category);
 
     // Ensure the directory exists
@@ -463,47 +463,37 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-server.post('/additem', upload.single('picture'), (req, res) => {
-  // construct the new item object with the file path
-  const { name, brand, color, type, category } = req.body;
-  const newItem = {
-    id: clothcount++,
-    name,
-    brand,
-    type,
-    category,
-    color,
-    img: req.file ? `/public/${category.toLowerCase()}/${req.file.filename}` : null // Relative path from public
-  };
-  if (!name || !brand || !color || !type || !category) {
-    return res.status(400).json({ message: 'Missing required fields' });
-  }
-  // add to the correct in-memory array based on type
-  switch (category.toLowerCase()) {
-    case 'accessories':
-      accessories.push(newItem);
-      break;
-    case 'jackets':
-      jackets.push(newItem);
-      break;
-    case 'pants':
-      pants.push(newItem);
-      break;
-    case 'shirts':
-      shirts.push(newItem);
-      break;
-    case 'shoes':
-      shoes.push(newItem);
-      break;
-    case 'skirts':
-      skirts.push(newItem);
-      break;
-    default:
-      return res.status(400).json({ message: 'Invalid item type' });
+server.post('/additem', upload.single('picture'), async(req, res) => {
+  
+  try {
+    const token = req.headers.authorization.split(' ')[1]; // Get the token from the header
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify and decode the token
+    
+    const newItem = new Clothes({
+      nameItem: req.body.nameItem,
+      brand: req.body.brand,
+      type: req.body.type,
+      articleType: req.body.articleType,
+      color: req.body.color,
+      notes: req.body.notes,
+      imgLink: req.file ? `/public/${req.body.articleType.toLowerCase()}/${req.file.filename}` : null ,// Relative path from public
+      user: decoded.id
+    });
+    
+    if (!req.body.nameItem || !req.body.brand || !req.body.color || !req.body.type || !req.body.articleType) {
+      return res.status(400).json({ message: 'Missing required fields' });
+    }
+
+    await newItem.save();
+    res.json({ message: 'Item added successfully', item: newItem });
+  } catch ( error ) {
+    res.status(500).json({ message: 'Failed to add item', error: error });
   }
 
-  res.json({ message: 'Item added successfully', item: newItem });
-});
+ 
+}
+  
+);
 
 // POST route to save a new outfit
 server.post('/generator', (req, res) => {

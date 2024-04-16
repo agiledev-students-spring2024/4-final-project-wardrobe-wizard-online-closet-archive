@@ -8,11 +8,12 @@ import { Link } from 'react-router-dom'; // Add this import
 const AddItem = () => {
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    category: '',
+    nameItem: '',
+    articleType:'',
     brand: '',
     type:'',
     color: '',
+    notes:'',
     picture: null
   });
 
@@ -26,18 +27,22 @@ const AddItem = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     const data = new FormData();
-    data.append('name', formData.name);
-    data.append('category', formData.category);
+    data.append('nameItem', formData.nameItem);
+    data.append('articleType', formData.articleType);
     data.append('brand', formData.brand);
     data.append('color', formData.color);
     data.append('type', formData.type);
+    data.append('notes', formData.notes);
     data.append('picture', formData.picture);
   
     // Example: POST request to your backend endpoint
     fetch('http://localhost:3001/additem', {
       method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
       body: data, // FormData object
     })
     .then(response => response.json())
@@ -51,11 +56,12 @@ const AddItem = () => {
   
     // Adjusted form reset to match the state fields
     setFormData({
-      name: '',
-      category: '', // Ensure consistency in naming
+      nameItem: '',
+      articleType: '', 
       brand: '',
       color: '',
       type:'',
+      notes:'',
       picture: null
     });
   };
@@ -75,6 +81,7 @@ const AddItem = () => {
         console.log(e)
     })
 }, []);
+
   return (
     <div className="add-item-container">
       <OverlayMenu />
@@ -84,21 +91,21 @@ const AddItem = () => {
       </header>
       { showForm && (
         <form onSubmit={handleSubmit} className="add-item-form">
-        <label htmlFor="name">Name:</label>
+        <label htmlFor="nameItem">Name:</label>
         <input
           type="text"
-          id="name"
-          name="name"
-          value={formData.name}
+          id="nameItem"
+          name="nameItem"
+          value={formData.nameItem}
           onChange={handleChange}
           required
         />
 
-        <label htmlFor="category">Category: </label>
+        <label htmlFor="articleType">Category: </label>
         <select
-          id="category"
-          name="category"
-          value={formData.Category}
+          id="articleType"
+          name="articleType"
+          value={formData.articleType}
           onChange={handleChange}
           required
         >
@@ -142,6 +149,15 @@ const AddItem = () => {
           required
         />
 
+        <label htmlFor="notes">Notes:</label>
+          <input
+            type="text"
+            id="notes"
+            name="notes"
+            value={formData.notes}
+            onChange={handleChange}
+            required
+        />
 
         <label htmlFor="picture">Picture:</label>
         <input
