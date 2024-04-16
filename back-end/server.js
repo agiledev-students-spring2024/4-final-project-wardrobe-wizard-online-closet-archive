@@ -492,6 +492,18 @@ server.post('/additem', auth, upload.single('picture'), async(req, res) => {
 }
   
 );
+// Clothes.collection.getIndexes({ full: true }).then(indexes => {
+//   console.log('Indexes:', indexes);
+// }).catch(console.error);
+
+// Clothes.collection.dropIndex('id_1', function(err, result) {
+//   if (err) {
+//     console.log('Error in dropping index!', err);
+//   } else {
+//     console.log('Index dropped:', result);
+//   }
+// });
+
 
 // POST route to save a new outfit
 server.post('/generator', (req, res) => {
