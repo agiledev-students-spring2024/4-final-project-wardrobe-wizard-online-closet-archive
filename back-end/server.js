@@ -463,12 +463,10 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-server.post('/additem', upload.single('picture'), async(req, res) => {
+server.post('/additem', auth, upload.single('picture'), async(req, res) => {
   
   try {
-    const token = req.headers.authorization.split(' ')[1]; // Get the token from the header
-    const decoded = jwt.verify(token, process.env.JWT_SECRET); // Verify and decode the token
-    
+   
     const newItem = new Clothes({
       nameItem: req.body.nameItem,
       brand: req.body.brand,
@@ -477,7 +475,7 @@ server.post('/additem', upload.single('picture'), async(req, res) => {
       color: req.body.color,
       notes: req.body.notes,
       imgLink: req.file ? `/public/${req.body.articleType.toLowerCase()}/${req.file.filename}` : null ,// Relative path from public
-      user: decoded.id
+      user: req.user.id
     });
     
     if (!req.body.nameItem || !req.body.brand || !req.body.color || !req.body.type || !req.body.articleType) {
