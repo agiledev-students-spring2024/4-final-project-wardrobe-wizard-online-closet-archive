@@ -16,8 +16,14 @@ const ItemDetail = () => {
 
   useEffect(() => {
     const encodedItemName = encodeURIComponent(itemName);
+    const token = localStorage.getItem('token');
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
     // Assuming your backend is running on the same machine and port 3001
-    fetch(`http://localhost:3001/item-detail/${encodedItemName}`)
+    fetch(`http://localhost:3001/item-detail/${encodedItemName}`,config)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP status ${response.status}`);
@@ -48,7 +54,7 @@ const ItemDetail = () => {
   }
 
   // The image path should not include '/public' because that's where your static server serves files from
-  const imagePath = item.img.replace('/public', '');
+  const imagePath = item.imgLink.replace('/public', '');
 
   return (
     <div className="item-detail">
@@ -58,9 +64,9 @@ const ItemDetail = () => {
         <h3>Item Details</h3>
       </header>
       <div className="ItemDetail-container">
-        <div className="ItemDetail-image"><img src = { `http://localhost:3001${item.img}`} width={300} /></div> {/* Placeholder for the image */}
+        <div className="ItemDetail-image"><img src = { `http://localhost:3001${item.imgLink}`} width={300} /></div> {/* Placeholder for the image */}
         <div className="ItemDetail-info">
-          <h3>{item.name}</h3>
+          <h3>{item.nameItem}</h3>
           <p>Brand: {item.brand}</p>
           <p>Type: {item.type}</p>
           <p>Color: {item.color}</p>

@@ -34,11 +34,11 @@ const SkirtsDresses = () => {
             </header>
             <div className="Skirts_Dresses-list">
                 {skirts.map((SkirtDresses) => (
-                    <Link to={`/item-detail/${SkirtDresses.name}`} key={SkirtDresses.name} className="Skirts_Dresses-item-link">
-                    <div className="Skirts_Dresses-item" key={SkirtDresses.name}>
-                        <div className="Skirts_Dresses-image"><img src = { `http://localhost:3001${SkirtDresses.img}`} width={200} /></div> 
+                    <Link to={`/item-detail/${SkirtDresses.nameItem}`} key={SkirtDresses.nameItem} className="Skirts_Dresses-item-link">
+                    <div className="Skirts_Dresses-item" key={SkirtDresses.nameItem}>
+                        <div className="Skirts_Dresses-image"><img src = { `http://localhost:3001${SkirtDresses.imgLink}`} width={200} /></div> 
                         <div className="Skirts_Dresses-info">
-                            <h3>{SkirtDresses.name}</h3>
+                            <h3>{SkirtDresses.nameItem}</h3>
                             <p>{SkirtDresses.brand}</p>
                             <p>{SkirtDresses.type}</p>
                         </div>

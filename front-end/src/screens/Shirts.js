@@ -33,11 +33,11 @@ const Shirt = () => {
             </header>
             <div className="Shirt-list">
                 {shirts.map((shirt) => (
-                    <Link to={`/item-detail/${shirt.name}`} key={shirt.name} className="Shirt-item-link">
-                    <div className="Shirt-item" key={shirt.name}>
-                        <div className="Shirt-image"><img src = { `http://localhost:3001${shirt.img}`} width={200} /></div> {/* Placeholder for the image */}
+                    <Link to={`/item-detail/${shirt.nameItem}`} key={shirt.nameItem} className="Shirt-item-link">
+                    <div className="Shirt-item" key={shirt.nameItem}>
+                        <div className="Shirt-image"><img src = { `http://localhost:3001${shirt.imgLink}`} width={200} /></div> {/* Placeholder for the image */}
                         <div className="Shirt-info">
-                            <h3>{shirt.name}</h3>
+                            <h3>{shirt.nameItem}</h3>
                             <p>{shirt.brand}</p>
                             <p>{shirt.type}</p>
                         </div>
