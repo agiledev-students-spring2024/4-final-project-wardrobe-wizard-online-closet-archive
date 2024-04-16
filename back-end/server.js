@@ -537,6 +537,25 @@ server.get('/item-detail/:itemName', auth, async (req, res) => {
   }
 });
 
+server.delete('/delete-item/:itemName', auth, async (req, res) => {
+  try {
+    const { itemName } = req.params;
+    const userId = req.user.id.toString();
+    const itemToDelete = await Clothes.findOneAndDelete({ 
+      nameItem: itemName, 
+      user: userId 
+    });
+
+    if (!itemToDelete) {
+      return res.status(404).json({ message: 'Item not found' });
+    }
+
+    res.json({ message: 'Item successfully deleted' });
+  } catch (error) {
+    console.error('Server error when deleting item:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 
 const findOutfitByName = (outfitName) => {
   // Assuming you have an array of outfits

@@ -53,6 +53,34 @@ const ItemDetail = () => {
     return <div>No item found</div>;
   }
 
+  const handleDelete = () => {
+    if (window.confirm("Are you sure you want to delete this item?")) {
+      const token = localStorage.getItem('token');
+      const encodedItemName = encodeURIComponent(item.nameItem); // Ensure you use the correct item property for the name
+
+      fetch(`http://localhost:3001/delete-item/${encodedItemName}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP status ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(() => {
+        alert('Item successfully deleted');
+        navigate('/'); // Redirect to home or any other page
+      })
+      .catch(error => {
+        console.error('Error deleting item:', error);
+        alert('Failed to delete the item');
+      });
+    }
+  };
+
   // The image path should not include '/public' because that's where your static server serves files from
   const imagePath = item.imgLink.replace('/public', '');
 
@@ -74,6 +102,7 @@ const ItemDetail = () => {
         </div>
       </div>
       {/* Back button */}
+      <button onClick={handleDelete} className="ItemDetail-deleteButton">DELETE</button>
       <button onClick={handleBackClick} className="ItemDetail-backButton">BACK</button>
     </div>
   );

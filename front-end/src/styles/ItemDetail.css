@@ -90,3 +90,22 @@ margin-left: 20px;
   .ItemDetail-container {
     padding-bottom: 70px; /* Bottom padding should be greater than the button's height plus its bottom distance */
   }
+
+  .ItemDetail-deleteButton {
+    position: fixed; /* Fixed position */
+    bottom: 25px; /* Distance from the bottom */
+    left: 25px; /* Distance from the right */
+    padding: 10px 20px;
+    font-family: 'Cormorant Infant', serif;
+    font-size: 20px;
+    color: #000; /* Black text */
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border */
+    text-decoration: underline; /* Underline text */
+    cursor: pointer;
+  }
+
+  .ItemDetail-deleteButton:hover {
+    text-decoration: none; /* Remove underline on hover for effect */
+  }
+  
