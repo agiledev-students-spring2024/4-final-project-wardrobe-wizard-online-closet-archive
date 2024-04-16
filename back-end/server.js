@@ -13,287 +13,287 @@ const {User, Clothes } = models;
 import auth from './routes/protected-content-routes.js'; // Import your protected routes
 
 
-// let clothcount=18;
+let clothcount=18;
 
-// // call express's listen function to start listening to the port
-// const accounts = [
-//   {
-//     "username": "tester",
-//     "password": "tester"
-//   },
-//   {
-//     "username": "example",
-//     "password": "login"
-//   }
-// ];
+// call express's listen function to start listening to the port
+const accounts = [
+  {
+    "username": "tester",
+    "password": "tester"
+  },
+  {
+    "username": "example",
+    "password": "login"
+  }
+];
 
-// const shirts = [
-//   { id: 1,
-//     name: 'Casual Shirt', 
-//     brand: 'Awesome Brand', 
-//     type: 'Casual', 
-//     color: 'Blue',
-//     notes: 'Note 1',
-//     img: '/public/shirts/casual_shirt.webp'
-//   },
-//   { id: 2,
-//     name: 'Formal Shirt', 
-//     brand: 'Formal Brand', 
-//     type: 'Formal',
-//     color: 'White', 
-//     notes: 'Note 2',
-//     img: '/public/shirts/formal_shirt.webp'
-//   },
-//   { id: 18,
-//     name: 'Favorite Shirt', 
-//     brand: 'Awesome Brand', 
-//     type: 'Casual', 
-//     color: 'Grey',
-//     notes: 'Note 3',
-//     img: '/public/shirts/favorite_shirt.webp'
-//   }
-// ]
+const shirts = [
+  { id: 1,
+    name: 'Casual Shirt', 
+    brand: 'Awesome Brand', 
+    type: 'Casual', 
+    color: 'Blue',
+    notes: 'Note 1',
+    img: '/public/shirts/casual_shirt.webp'
+  },
+  { id: 2,
+    name: 'Formal Shirt', 
+    brand: 'Formal Brand', 
+    type: 'Formal',
+    color: 'White', 
+    notes: 'Note 2',
+    img: '/public/shirts/formal_shirt.webp'
+  },
+  { id: 18,
+    name: 'Favorite Shirt', 
+    brand: 'Awesome Brand', 
+    type: 'Casual', 
+    color: 'Grey',
+    notes: 'Note 3',
+    img: '/public/shirts/favorite_shirt.webp'
+  }
+]
 
-// const pants = [
-//   { id: 3,
-//     name: 'Casual Pants', 
-//     brand: 'Awesome Brand', 
-//     type: 'Casual', 
-//     color:'Orange',
-//     notes: 'Note 1',
-//     img: '/public/pants/brown_pants.webp'
-//   },
-//   { id: 4,
-//     name: 'Least Favorite Pants', 
-//     brand: 'Fake Brand 3', 
-//     type: 'Casual', 
-//     color: 'Brown',
-//     notes: 'Note 2',
-//     img: '/public/pants/extra_pants.jpg'
-//   },
-//   { id: 5,
-//     name: 'Favorite Pants', 
-//     brand: 'Cool Brand', 
-//     type: 'Casual', 
-//     color: 'Grey',
-//     notes: 'Note 3',
-//     img: '/public/pants/comfy.webp'
-//   }
-// ]
+const pants = [
+  { id: 3,
+    name: 'Casual Pants', 
+    brand: 'Awesome Brand', 
+    type: 'Casual', 
+    color:'Orange',
+    notes: 'Note 1',
+    img: '/public/pants/brown_pants.webp'
+  },
+  { id: 4,
+    name: 'Least Favorite Pants', 
+    brand: 'Fake Brand 3', 
+    type: 'Casual', 
+    color: 'Brown',
+    notes: 'Note 2',
+    img: '/public/pants/extra_pants.jpg'
+  },
+  { id: 5,
+    name: 'Favorite Pants', 
+    brand: 'Cool Brand', 
+    type: 'Casual', 
+    color: 'Grey',
+    notes: 'Note 3',
+    img: '/public/pants/comfy.webp'
+  }
+]
 
-// const skirts = [
-//   { id: 6,
-//     name: 'Best Dress', 
-//     brand: 'Awesome Brand', 
-//     type: 'Formal', 
-//     color: 'Emerald Green',
-//     notes: 'Note 1',
-//     img: '/public/skirts/skirt_1.webp'
-//   },
-//   { id: 7,
-//     name: 'Least Favorite Dress', 
-//     brand: 'Fake Brand 170', 
-//     type: 'Formal', 
-//     color: 'Blue',
-//     notes: 'Note 2',
-//     img: '/public/skirts/skirt_2.webp'
-//   },
-//   { id: 8,
-//     name: '2nd Favorite Dress', 
-//     brand: 'Cool Brand', 
-//     type: 'Formal', 
-//     color: 'Pink',
-//     notes: 'Note 3',
-//     img: '/public/skirts/skirt_3.webp'
-//   }
-// ]
+const skirts = [
+  { id: 6,
+    name: 'Best Dress', 
+    brand: 'Awesome Brand', 
+    type: 'Formal', 
+    color: 'Emerald Green',
+    notes: 'Note 1',
+    img: '/public/skirts/skirt_1.webp'
+  },
+  { id: 7,
+    name: 'Least Favorite Dress', 
+    brand: 'Fake Brand 170', 
+    type: 'Formal', 
+    color: 'Blue',
+    notes: 'Note 2',
+    img: '/public/skirts/skirt_2.webp'
+  },
+  { id: 8,
+    name: '2nd Favorite Dress', 
+    brand: 'Cool Brand', 
+    type: 'Formal', 
+    color: 'Pink',
+    notes: 'Note 3',
+    img: '/public/skirts/skirt_3.webp'
+  }
+]
 
-// const jackets = [
-//     { id: 9,
-//       name: 'Ugly Jacket', 
-//       brand: 'Awful Brand', 
-//       type: 'Casual', 
-//       color: 'Green',
-//       notes: 'Note 1',
-//       img: '/public/jackets/jacket_1.jpg'
-//     },
-//     { 
-//       id: 10,
-//       name: 'Coolest Jacket', 
-//       brand: 'Fake Brand 170', 
-//       type: 'Formal', 
-//       color: 'White',
-//       notes: 'Note 2',
-//       img: '/public/jackets/jacket_2.jpg'
-//     },
-//     { id: 11,
-//       name: 'Okay Jacket', 
-//       brand: 'Cool Brand', 
-//       type: 'Casual', 
-//       color: 'Blue',
-//       notes: 'Note 3',
-//       img: '/public/jackets/jacket_3.webp'
-//     }
-// ]
+const jackets = [
+    { id: 9,
+      name: 'Ugly Jacket', 
+      brand: 'Awful Brand', 
+      type: 'Casual', 
+      color: 'Green',
+      notes: 'Note 1',
+      img: '/public/jackets/jacket_1.jpg'
+    },
+    { 
+      id: 10,
+      name: 'Coolest Jacket', 
+      brand: 'Fake Brand 170', 
+      type: 'Formal', 
+      color: 'White',
+      notes: 'Note 2',
+      img: '/public/jackets/jacket_2.jpg'
+    },
+    { id: 11,
+      name: 'Okay Jacket', 
+      brand: 'Cool Brand', 
+      type: 'Casual', 
+      color: 'Blue',
+      notes: 'Note 3',
+      img: '/public/jackets/jacket_3.webp'
+    }
+]
 
-// const shoes = [
-//   { id: 12,
-//     name: 'Nice Shoes', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color: 'Black',
-//       notes: 'Note 1',
-//       img: '/public/shoes/shoes_1.avif'
-//     },
-//     { id: 13,
-//       name: 'Decent Shoes', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color: 'Black',
-//       notes: 'Note 2',
-//       img: '/public/shoes/shoes_2.webp'
-//     },
-//     { id: 14,
-//       name: 'Okay Shoes', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color: 'Grey',
-//       notes: 'Note 3',
-//       img: '/public/shoes/shoes_3.webp'
-//     }
-// ]
+const shoes = [
+  { id: 12,
+    name: 'Nice Shoes', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color: 'Black',
+      notes: 'Note 1',
+      img: '/public/shoes/shoes_1.avif'
+    },
+    { id: 13,
+      name: 'Decent Shoes', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color: 'Black',
+      notes: 'Note 2',
+      img: '/public/shoes/shoes_2.webp'
+    },
+    { id: 14,
+      name: 'Okay Shoes', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color: 'Grey',
+      notes: 'Note 3',
+      img: '/public/shoes/shoes_3.webp'
+    }
+]
 
-// const accessories = [
-//    { id: 15,
-//     name: 'Most Expensive', 
-//       brand: 'Cheap-O', 
-//       type: 'Formal', 
-//       color: 'Gold',
-//       notes: 'Note 1',
-//       img: '/public/accessories/accessory_1.jpg'
-//     },
-//     { id: 16,
-//       name: 'Best Accessory', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color: 'Black',
-//       notes: 'Note 2',
-//       img: '/public/accessories/accessory_2.jpg'
-//     },
-//     { id: 17,
-//       name: 'Pretty Cool', 
-//       brand: 'Definitely Awesome', 
-//       type: 'Casual', 
-//       color: 'Silver',
-//       notes: 'Note 3',
-//       img: '/public/accessories/accessory_3.webp'
-//     }
-// ]
+const accessories = [
+   { id: 15,
+    name: 'Most Expensive', 
+      brand: 'Cheap-O', 
+      type: 'Formal', 
+      color: 'Gold',
+      notes: 'Note 1',
+      img: '/public/accessories/accessory_1.jpg'
+    },
+    { id: 16,
+      name: 'Best Accessory', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color: 'Black',
+      notes: 'Note 2',
+      img: '/public/accessories/accessory_2.jpg'
+    },
+    { id: 17,
+      name: 'Pretty Cool', 
+      brand: 'Definitely Awesome', 
+      type: 'Casual', 
+      color: 'Silver',
+      notes: 'Note 3',
+      img: '/public/accessories/accessory_3.webp'
+    }
+]
 
-// const outfits = [
-//   {
-//     outfitName: 'Business Casual Look',
-//     notes: 'A comfortable yet professional look for everyday business.',
-//     items: [
-//       { id:2,
-//         name: 'Formal Shirt',
-//         brand: 'Formal Brand',
-//         type: 'Formal',
-//         color: 'White',
-//         img: '/public/shirts/formal_shirt.webp',
-//       },
-//       { id:5,
-//         name: 'Favorite Pants',
-//         brand: 'Cool Brand',
-//         type: 'Casual',
-//         color: 'Grey',
-//         img: '/public/pants/comfy.webp',
-//       },
-//       { id: 13,
-//         name: 'Decent Shoes',
-//         brand: 'Definitely Awesome',
-//         type: 'Casual',
-//         color: 'Black',
-//         img: '/public/shoes/shoes_2.webp',
-//       },
-//       { id: 16,
-//         name: 'Best Accessory',
-//         brand: 'Definitely Awesome',
-//         type: 'Casual',
-//         color: 'Black',
-//         img: '/public/accessories/accessory_2.jpg',
-//       }
-//     ],
-//   },
-//   {
-//     outfitName: 'Summer Vibes',
-//     notes: 'Perfect for the beach or a sunny day in the park.',
-//     items: [
-//       { id: 1,
-//         name: 'Casual Shirt',
-//         brand: 'Awesome Brand',
-//         type: 'Casual',
-//         color: 'Blue',
-//         img: '/public/shirts/casual_shirt.webp',
-//       },
-//       { id: 3,
-//         name: 'Casual Pants',
-//         brand: 'Awesome Brand',
-//         type: 'Casual',
-//         color: 'Orange',
-//         img: '/public/pants/brown_pants.webp',
-//       },
-//       { id:12,
-//         name: 'Nice Shoes',
-//         brand: 'Definitely Awesome',
-//         type: 'Casual',
-//         color: 'Black',
-//         img: '/public/shoes/shoes_1.avif',
-//       },
-//       { id: 17,
-//         name: 'Pretty Cool',
-//         brand: 'Definitely Awesome',
-//         type: 'Casual',
-//         color: 'Silver',
-//         img: '/public/accessories/accessory_3.webp',
-//       }
-//     ],
-//   },
-//   {
-//     outfitName: 'Evening Elegance',
-//     notes: 'Elegant attire for dinner parties or a night out.',
-//     items: [
-//       { id: 8,
-//         name: '2nd Favorite Dress',
-//         brand: 'Cool Brand',
-//         type: 'Formal',
-//         color: 'Pink',
-//         img: '/public/skirts/skirt_3.webp',
-//       },
-//       { id:10,
-//         name: 'Coolest Jacket',
-//         brand: 'Fake Brand 170',
-//         type: 'Formal',
-//         color: 'White',
-//         img: '/public/jackets/jacket_2.jpg',
-//       },
-//       { id:14,
-//         name: 'Okay Shoes',
-//         brand: 'Definitely Awesome',
-//         type: 'Casual',
-//         color: 'Grey',
-//         img: '/public/shoes/shoes_3.webp',
-//       },
-//       { id:15,
-//         name: 'Most Expensive',
-//         brand: 'Cheap-O',
-//         type: 'Formal',
-//         color: 'Gold',
-//         img: '/public/accessories/accessory_1.jpg',
-//       }
-//     ],
-//   },
-// ];
+const outfits = [
+  {
+    outfitName: 'Business Casual Look',
+    notes: 'A comfortable yet professional look for everyday business.',
+    items: [
+      { id:2,
+        name: 'Formal Shirt',
+        brand: 'Formal Brand',
+        type: 'Formal',
+        color: 'White',
+        img: '/public/shirts/formal_shirt.webp',
+      },
+      { id:5,
+        name: 'Favorite Pants',
+        brand: 'Cool Brand',
+        type: 'Casual',
+        color: 'Grey',
+        img: '/public/pants/comfy.webp',
+      },
+      { id: 13,
+        name: 'Decent Shoes',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Black',
+        img: '/public/shoes/shoes_2.webp',
+      },
+      { id: 16,
+        name: 'Best Accessory',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Black',
+        img: '/public/accessories/accessory_2.jpg',
+      }
+    ],
+  },
+  {
+    outfitName: 'Summer Vibes',
+    notes: 'Perfect for the beach or a sunny day in the park.',
+    items: [
+      { id: 1,
+        name: 'Casual Shirt',
+        brand: 'Awesome Brand',
+        type: 'Casual',
+        color: 'Blue',
+        img: '/public/shirts/casual_shirt.webp',
+      },
+      { id: 3,
+        name: 'Casual Pants',
+        brand: 'Awesome Brand',
+        type: 'Casual',
+        color: 'Orange',
+        img: '/public/pants/brown_pants.webp',
+      },
+      { id:12,
+        name: 'Nice Shoes',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Black',
+        img: '/public/shoes/shoes_1.avif',
+      },
+      { id: 17,
+        name: 'Pretty Cool',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Silver',
+        img: '/public/accessories/accessory_3.webp',
+      }
+    ],
+  },
+  {
+    outfitName: 'Evening Elegance',
+    notes: 'Elegant attire for dinner parties or a night out.',
+    items: [
+      { id: 8,
+        name: '2nd Favorite Dress',
+        brand: 'Cool Brand',
+        type: 'Formal',
+        color: 'Pink',
+        img: '/public/skirts/skirt_3.webp',
+      },
+      { id:10,
+        name: 'Coolest Jacket',
+        brand: 'Fake Brand 170',
+        type: 'Formal',
+        color: 'White',
+        img: '/public/jackets/jacket_2.jpg',
+      },
+      { id:14,
+        name: 'Okay Shoes',
+        brand: 'Definitely Awesome',
+        type: 'Casual',
+        color: 'Grey',
+        img: '/public/shoes/shoes_3.webp',
+      },
+      { id:15,
+        name: 'Most Expensive',
+        brand: 'Cheap-O',
+        type: 'Formal',
+        color: 'Gold',
+        img: '/public/accessories/accessory_1.jpg',
+      }
+    ],
+  },
+];
 
 
 server.post('/login', async (req,res) => {
