@@ -100,6 +100,35 @@ const clothing_item = new mongoose.Schema({
 }, {collection: 'clothing'});
 
 const Clothes = mongoose.model("Clothing", clothing_item);
-export default {User, Clothes};
+
+const outfitSchema = new mongoose.Schema({
+    outfitName: {
+      type: String,
+      required: true
+    },
+    outfitNotes: {
+      type: String,
+      required: false
+    },
+    items: [{
+      itemName: {
+        type: String,
+        required: true
+      },
+      itemType: {
+        type: String,
+        required: true
+      },
+      _id: false // Prevents Mongoose from creating an _id for each subdocument
+    }],
+    user: {
+      type: String,
+      required: true
+    }
+  }, { collection: 'outfit' });
+  
+  const Outfit = mongoose.model("Outfit", outfitSchema);
+  
+export default {User, Clothes, Outfit};
 
 

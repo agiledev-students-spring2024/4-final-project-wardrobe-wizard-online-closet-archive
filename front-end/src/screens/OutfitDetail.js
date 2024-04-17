@@ -2,36 +2,55 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import OverlayMenu from '../components/OverlayMenu';
 import '../styles/OutfitDetail.css';
+import axios from 'axios';
 
 const OutfitDetail = () => {
   const { outfitName } = useParams();
   const navigate = useNavigate();
-  const [outfit, setOutfit] = useState(null);
+  const [outfitDetails, setOutfitDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const encodedOutfitName = encodeURIComponent(outfitName);
-    fetch(`http://localhost:3001/outfit-detail/${encodedOutfitName}`)
-      .then(response => {
-        if (!response.ok) throw new Error('Network response was not ok');
-        return response.json();
-      })
-      .then(data => {
-        setOutfit(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error.toString());
-        setLoading(false);
-      });
+    const token = localStorage.getItem('token');
+    axios.get(`http://localhost:3001/outfit-detail/${encodedOutfitName}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      setOutfitDetails(response.data);
+      setLoading(false);
+    })
+    .catch(error => {
+      setError(error.toString());
+      setLoading(false);
+    });
   }, [outfitName]);
 
   const handleBackClick = () => navigate(-1);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
-  if (!outfit) return <div>Outfit not found</div>;
+  if (!outfitDetails) return <div>Outfit not found</div>;
+
+  const handleDeleteOutfit = async () => {
+    try {
+      const encodedOutfitName = encodeURIComponent(outfitName);
+      const token = localStorage.getItem('token');
+      await axios.delete(`http://localhost:3001/outfit-detail/${encodedOutfitName}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      alert('Outfit deleted successfully');
+      navigate('/'); // or navigate to the appropriate page after deletion
+    } catch (error) {
+      setError('Error deleting outfit: ' + error.response.data.message);
+    }
+  };
+  
 
   return (
     <div className="OutfitDetail">
@@ -41,22 +60,23 @@ const OutfitDetail = () => {
         <h3>Outfit Details</h3>
       </header>
       <div className="OutfitDetail-container">
-        {outfit.items.map(item => (
-          <Link to={`/item-detail/${encodeURIComponent(item.name)}`} key={item.name} className="OutfitDetail-item-link">
+        {outfitDetails.items.map((item) => (
+          <Link to={`/item-detail/${encodeURIComponent(item.itemName)}`} key={item.itemName} className="OutfitDetail-item-link">
             <div className="OutfitDetail-item">
-              <img src={`http://localhost:3001${item.img}`} alt={item.name} className="OutfitDetail-image" />
+              <img src={`http://localhost:3001${item.imgLink}`} alt={item.itemName} className="OutfitDetail-image" />
               <div className="OutfitDetail-info">
-                <h3>{item.name}</h3>
+                <h3>{item.itemName}</h3>
                 <p>Brand: {item.brand}</p>
                 <p>Type: {item.type}</p>
               </div>
             </div>
           </Link>
         ))}
-        <h2 className="OutfitDetail-name">{outfit.outfitName}</h2>
-        <p className="OutfitDetail-notes">{outfit.notes}</p>
+        <h2 className="OutfitDetail-name">{outfitDetails.outfit.outfitName}</h2>
+        <p className="OutfitDetail-notes">{outfitDetails.outfit.outfitNotes}</p>
       </div>
       <button onClick={handleBackClick} className="OutfitDetail-backButton">BACK</button>
+      <button onClick={handleDeleteOutfit} className="OutfitDetail-deleteButton">DELETE</button>
     </div>
   );
 };
