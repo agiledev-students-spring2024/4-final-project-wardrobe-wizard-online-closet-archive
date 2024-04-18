@@ -96,7 +96,7 @@ const ItemDetail = () => {
         <div className="ItemDetail-info">
           <h3>{item.nameItem}</h3>
           <p>Brand: {item.brand}</p>
-          <p>Type: {item.type}</p>
+          <p>Style: {item.type}</p>
           <p>Color: {item.color}</p>
           <p>Notes: {item.notes}</p>
         </div>
