@@ -3,12 +3,13 @@ import axios from 'axios';
 import {  Link } from 'react-router-dom';
 import '../styles/Generator.css'; // Ensure you have the corresponding CSS file
 import OverlayMenu from '../components/OverlayMenu';
-import Footer from '../components/Footer'; 
+
 
 const Generator = () => {
   const [allItems, setAllItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [outfitName, setOutfitName] = useState('');
+  const [outfitNotes, setOutfitNotes] = useState('');
   const [error, setError] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
@@ -16,14 +17,19 @@ const Generator = () => {
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        // Fetch all items from each category
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+        };
         const responses = await Promise.all([
-          axios.get('http://localhost:3001/shirts'),
-          axios.get('http://localhost:3001/pants'),
-          axios.get('http://localhost:3001/skirts'),
-          axios.get('http://localhost:3001/jackets'),
-          axios.get('http://localhost:3001/shoes'),
-          axios.get('http://localhost:3001/accessories'),
+          axios.get('http://localhost:3001/shirts', config),
+          axios.get('http://localhost:3001/pants', config),
+          axios.get('http://localhost:3001/skirts', config),
+          axios.get('http://localhost:3001/jackets', config),
+          axios.get('http://localhost:3001/shoes', config),
+          axios.get('http://localhost:3001/accessories', config),
         ]);
 
         const combinedItems = responses.flatMap(response => response.data);
@@ -66,19 +72,29 @@ const Generator = () => {
   const handleOutfitNameChange = (e) => {
     setOutfitName(e.target.value);
   };
-
+  const handleOutfitNotesChange = (e) => {
+    setOutfitNotes(e.target.value);
+  };
   // Handler for saving the outfit
   const handleSaveOutfit = async (e) => {
     e.preventDefault();
     try {
-      const itemsToSave = allItems.filter(item => selectedItems.includes(item.id));
+      const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+        };
+      const itemsToSave = allItems.filter(item => selectedItems.includes(item._id));
       await axios.post('http://localhost:3001/generator', {
         outfitName,
+        outfitNotes,
         items: itemsToSave,
-      });
+      },config);
       // Reset the selection and outfit name after saving
       setSelectedItems([]);
       setOutfitName('');
+      setOutfitNotes('');
     } catch (e) {
       console.error('Error saving the outfit:', e);
       setError(e.message);
@@ -98,15 +114,15 @@ const Generator = () => {
       <div className="items-container">
       {allItems.map((item) => (
           <div
-          key={item.id}
-          className={`item ${selectedItems.includes(item.id) ? 'selected' : ''}`}
-          onClick={() => toggleItemSelection(item.id)}
+          key={item._id}
+          className={`item ${selectedItems.includes(item._id) ? 'selected' : ''}`}
+          onClick={() => toggleItemSelection(item._id)}
           > 
             <div className="thumbnail">
-               <img src={`http://localhost:3001${item.img}`} alt={item.name} className="item-image" />   
+               <img src={`http://localhost:3001${item.imgLink}`} alt={item.nameItem} className="item-image" />   
             </div>
             <div className="item-info">
-              <p><u>{item.name}</u></p>
+              <p><u>{item.nameItem}</u></p>
               <p>{item.brand}</p>
               <p>{item.type}</p>
             </div>
@@ -122,6 +138,13 @@ const Generator = () => {
                         onChange={handleOutfitNameChange}
                         placeholder='Enter Outfit Name'
                         required />
+                        <input 
+                        name="outfitnotes" 
+                        type="text"
+                        value={outfitNotes}
+                        onChange={handleOutfitNotesChange}
+                        placeholder='Leave any notes for this outfit :)'
+                        />
                 </form>
         </div>
         <div className="button-container">
@@ -142,7 +165,7 @@ const Generator = () => {
 
             )}  
           
-      <Footer />
+     
     </div>
   );
 };
