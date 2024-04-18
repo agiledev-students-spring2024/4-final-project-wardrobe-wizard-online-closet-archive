@@ -62,3 +62,21 @@
     text-decoration: none; /* Removes underline from links */
     color: inherit; /* Keeps text color consistent with the rest of the item */
 }
+.OutfitDetail-deleteButton {
+    position: fixed; /* Fixed position */
+    bottom: 25px; /* Distance from the bottom */
+    left: 25px; /* Distance from the right */
+    padding: 10px 20px;
+    font-family: 'Cormorant Infant', serif;
+    font-size: 20px;
+    color: #000; /* Black text */
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border */
+    text-decoration: underline; /* Underline text */
+    cursor: pointer;
+  }
+
+  .OutfitDetail-deleteButton:hover {
+    text-decoration: none; /* Remove underline on hover for effect */
+  }
+  

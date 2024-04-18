@@ -9,29 +9,22 @@ const Archive = () => {
   const [loginWarning, setLoginWarning] = useState(false);
 
   useEffect(() => {
-    // Fetch the outfits from your server
-    const token = localStorage.getItem('token');
-      const config = {
+    const fetchOutfits = async () => {
+      const token = localStorage.getItem('token');
+      try {
+        const response = await axios.get('http://localhost:3001/outfits', {
           headers: {
             Authorization: `Bearer ${token}`
           }
-      };
-    // fetch('http://localhost:3001/outfits', config)
-    //   .then(response => response.json())
-    //   .then(data => setOutfits(data))
-    //   .catch(error => {
-    //     console.log(error);
-    //     setLoginWarning(true);
-    //   }        
-    //     );
-    axios.get('http://localhost:3001/outfits', config)
-        .then( res => {
-            setOutfits(res.data)
-        })
-        .catch((e) => {
-            console.log(e)
-            setLoginWarning(true);
-        })
+        });
+        setOutfits(response.data); // Assume response.data is the array of outfits with image links
+      } catch (error) {
+        console.error('Error fetching outfits:', error);
+        setLoginWarning(true);
+      }
+    };
+
+    fetchOutfits();
   }, []);
 
   return (
@@ -45,10 +38,10 @@ const Archive = () => {
         {outfits.map((outfit) => ( // Removed index, using outfitName as key
           <div key={outfit.outfitName} className="Archive-item">
             <div className="Archive-images">
-              {outfit.items.map((item) => ( // Removed itemIndex, key will be provided by the Link component
-                <Link to={`/outfit-detail/${encodeURIComponent(outfit.outfitName)}`} key={item.name} className="Archive-item-link">
+              {outfit.imageLinks.map((imgLink) => ( // Removed itemIndex, key will be provided by the Link component
+                <Link to={`/outfit-detail/${encodeURIComponent(outfit.outfitName)}`} key={imgLink} className="Archive-item-link">
                   <div className="Archive-image-container">
-                    <img src={`http://localhost:3001${item.img}`} alt={item.name} className="Archive-image"/>
+                    <img src={`http://localhost:3001${imgLink}`} alt={outfit.outfitName} className="Archive-image"/>
                   </div>
                 </Link>
               ))}

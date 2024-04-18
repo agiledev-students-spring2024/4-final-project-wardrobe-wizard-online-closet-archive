@@ -450,9 +450,48 @@ server.get('/accessories', auth, async (req, res) => {
   }
 });
 
-server.get('/outfits', auth, (req, res) => {
-  return res.json(outfits);
-})
+// server.get('/outfits', auth, (req, res) => {
+//   return res.json(outfits);
+// })
+
+server.get('/outfits', auth, async (req, res) => {
+  try {
+    const userId = req.user.id.toString(); // Assuming user ID is in the user object
+    const outfits = await Outfit.find({ user: userId }); // Fetch outfits for the user
+
+    if (!outfits.length) {
+      return res.status(404).json({ message: 'No outfits found for this user.' });
+    }
+
+    // Initialize a promise array to handle multiple asynchronous operations
+    const outfitsWithImageLinks = await Promise.all(outfits.map(async (outfit) => {
+      // Map over items in each outfit to fetch corresponding clothes
+      const imageLinks = await Promise.all(outfit.items.map(async (item) => {
+        const clothingItem = await Clothes.findOne({
+          user: userId,
+          nameItem: item.itemName,
+          articleType: item.itemType
+        }).select('imgLink'); // Assuming 'imgLink' is the field name in Clothes schema
+
+        return clothingItem ? clothingItem.imgLink : null;
+      }));
+
+      // Filter out any null values if an item wasn't found
+      const filteredImageLinks = imageLinks.filter(link => link !== null);
+
+      return {
+        outfitName: outfit.outfitName,
+        //outfitNotes: outfit.outfitNotes,
+        imageLinks: filteredImageLinks
+      };
+    }));
+
+    res.json(outfitsWithImageLinks);
+  } catch (error) {
+    console.error('Server error when fetching outfits:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 
 server.get('/verify_login', auth, (req,res) => {
   return res.json({'loggedIn': true})
@@ -462,15 +501,15 @@ const listener = server.listen(port, function () {
   console.log(`Server running on port: ${port}`)
 })
 
-const findItemByName = (itemName) => {
-  // Combine all items into a single array
-  const allItems = [...shirts, ...pants, ...skirts, ...jackets, ...shoes, ...accessories];
+// const findItemByName = (itemName) => {
+//   // Combine all items into a single array
+//   const allItems = [...shirts, ...pants, ...skirts, ...jackets, ...shoes, ...accessories];
 
-  // Find the item by name (case-insensitive comparison)
-  const item = allItems.find(item => item.name.toLowerCase() === itemName.toLowerCase());
+//   // Find the item by name (case-insensitive comparison)
+//   const item = allItems.find(item => item.name.toLowerCase() === itemName.toLowerCase());
 
-  return item; // This will be the item if found, or undefined if not found
-};
+//   return item; // This will be the item if found, or undefined if not found
+// };
 
 // server.get('/item-detail/:itemName', (req, res) => {
 //   try {
@@ -532,25 +571,78 @@ server.delete('/delete-item/:itemName', auth, async (req, res) => {
   }
 });
 
-const findOutfitByName = (outfitName) => {
-  // Assuming you have an array of outfits
-  const outfit = outfits.find(outfit => outfit.outfitName.toLowerCase() === outfitName.toLowerCase());
-  return outfit;
-};
+// const findOutfitByName = (outfitName) => {
+//   // Assuming you have an array of outfits
+//   const outfit = outfits.find(outfit => outfit.outfitName.toLowerCase() === outfitName.toLowerCase());
+//   return outfit;
+// };
 
-server.get('/outfit-detail/:outfitName', (req, res) => {
+// server.get('/outfit-detail/:outfitName', (req, res) => {
+//   try {
+//     const { outfitName } = req.params;
+//     const decodedName = decodeURIComponent(outfitName);
+//     const outfit = findOutfitByName(decodedName);
+
+//     if (outfit) {
+//       res.json(outfit);
+//     } else {
+//       res.status(404).json({ message: 'Outfit not found' });
+//     }
+//   } catch (error) {
+//     console.error('Server error when fetching outfit details:', error);
+//     res.status(500).json({ message: 'Internal Server Error' });
+//   }
+// });
+
+server.get('/outfit-detail/:outfitName', auth, async (req, res) => {
   try {
     const { outfitName } = req.params;
     const decodedName = decodeURIComponent(outfitName);
-    const outfit = findOutfitByName(decodedName);
+    const userId = req.user.id.toString(); // Assuming you're using the user's id stored in req.user by your authentication middleware
+
+    // Find the outfit by name and user
+    const outfit = await Outfit.findOne({
+      outfitName: decodedName,
+      user: userId
+    }).exec();
 
     if (outfit) {
-      res.json(outfit);
+      // Now find all the items that are listed in the outfit's items
+      const itemsPromises = outfit.items.map(item =>
+        Clothes.findOne({
+          nameItem: item.itemName,
+          articleType: item.itemType,
+          user: userId
+        }).exec()
+      );
+
+      // Execute all the promises to get the items' details
+      const itemsDetails = await Promise.all(itemsPromises);
+
+      // Filter out any null results in case some items weren't found
+      const items = itemsDetails.filter(item => item !== null);
+
+      res.json({ outfit, items }); // Send both outfit details and items
     } else {
       res.status(404).json({ message: 'Outfit not found' });
     }
   } catch (error) {
     console.error('Server error when fetching outfit details:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+server.delete('/outfit-detail/:outfitName', auth, async (req, res) => {
+  try {
+    const decodedName = decodeURIComponent(req.params.outfitName);
+    const userId = req.user.id.toString()
+    await Outfit.findOneAndDelete({ 
+      outfitName: decodedName, 
+      user: userId
+    });
+    res.json({ message: 'Outfit deleted successfully' });
+  } catch (error) {
+    console.error('Server error when deleting outfit:', error);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
