@@ -78,14 +78,14 @@ server.get('/shirts', auth, async (req, res) => {
       user: userId, 
       articleType: 'Shirts' 
     });
-
-    // Check if shirts array is not empty
-    if (shirts.length > 0) {
-      res.json(shirts);
-    } else {
-      // If the array is empty, it may mean no shirts were found for the user
-      res.status(404).json({ message: 'No shirts found for this user.' });
-    }
+    res.json(shirts)
+    // // Check if shirts array is not empty
+    // if (shirts.length > 0) {
+    //   res.json(shirts);
+    // } else {
+    //   // If the array is empty, it may mean no shirts were found for the user
+    //   res.status(404).json({ message: 'No shirts found for this user.' });
+    // }
 
   } catch (error) {
     console.error('Server error when fetching shirts:', error);
