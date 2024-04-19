@@ -455,24 +455,26 @@ server.post('/generator', auth, async(req, res) => {
   
 });
 
-server.post('/random', (req, res) => {
-  const { outfitName, items } = req.body;
-  // Validate input
-  if (!outfitName || items.length === 0) {
-    return res.status(400).json({ message: 'Outfit name and items are required.' });
+server.post('/random', auth, async(req, res) => {
+  try {
+    const { outfitName, outfitNotes, items } = req.body;
+    const newOutfit = new Outfit({
+      outfitName:req.body.outfitName,
+      outfitNotes:req.body.outfitNotes,
+      Clothes:req.body.items,
+      user: req.user.id,
+    });
+    
+    if (!outfitName || !items || items.length === 0) {
+      return res.status(400).json({ message: 'Outfit name and items are required.' });
+    }
+    await newOutfit.save();
+    res.status(201).json({ message: 'Outfit saved successfully' });
+    
+  } catch ( error ) {
+    res.status(500).json({ message: 'Failed to add outfit', error: error });
   }
-
-  // Construct the new outfit object
-  const newOutfit = {
-    outfitName,
-    notes:'',
-    items,
-  };
-
-  outfits.push(newOutfit);
-
-  // Send a success response
-  res.status(201).json({ message: 'New outfit generated and saved successfully.' });
+  
 });
 
 
