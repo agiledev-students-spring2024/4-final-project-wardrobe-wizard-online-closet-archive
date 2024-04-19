@@ -29,13 +29,14 @@
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+    position: relative;
 }
 
 /* Style for the image placeholder within the Item Detail */
 .ItemDetail-image {
-    width: 90%;
-    height: 300px; /* Adjust the height as needed */
-    background-color: #ddd; /* Placeholder color */
+    /* width: 90%;
+    height: 300px; 
+    background-color: #ddd;  */
     margin: 1rem 0;
     display: flex;
     flex-direction: column;
