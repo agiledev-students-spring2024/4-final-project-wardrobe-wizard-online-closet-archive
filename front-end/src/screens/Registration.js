@@ -28,6 +28,7 @@ function Registration(){
                 console.log(res.data.created);
                     if(res.data.created){
                         navigate('/home')
+                        localStorage.setItem('token', res.data.token)
                     }
                     else{
                         setTakenUsername(true);

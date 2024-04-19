@@ -59,11 +59,7 @@ const User = mongoose.model("User", username_password);
 
 
 const clothing_item = new mongoose.Schema({
-    // id: {
-    //     type: Number,
-    //     required: true,
-    //     unique: true
-    // },
+    
     articleType: {
         type: String,
         required: true
@@ -110,17 +106,7 @@ const outfitSchema = new mongoose.Schema({
       type: String,
       required: false
     },
-    items: [{
-      itemName: {
-        type: String,
-        required: true
-      },
-      itemType: {
-        type: String,
-        required: true
-      },
-      _id: false // Prevents Mongoose from creating an _id for each subdocument
-    }],
+    Clothes:[clothing_item],
     user: {
       type: String,
       required: true

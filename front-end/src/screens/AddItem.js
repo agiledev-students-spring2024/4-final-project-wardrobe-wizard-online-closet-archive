@@ -139,7 +139,7 @@ const AddItem = () => {
           required
         />
 
-        <label htmlFor="type">Type:</label>
+        <label htmlFor="type">Style:</label>
         <input
           type="text"
           id="type"
@@ -165,6 +165,7 @@ const AddItem = () => {
           id="picture"
           name="picture"
           onChange={handleChange}
+          required
         />
 
         <button type="submit" className="submit-button">Add Item</button>
