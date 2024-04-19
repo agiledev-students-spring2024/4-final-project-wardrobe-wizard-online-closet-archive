@@ -61,11 +61,11 @@ const OutfitDetail = () => {
       </header>
       <div className="OutfitDetail-container">
         {outfitDetails.items.map((item) => (
-          <Link to={`/item-detail/${encodeURIComponent(item.itemName)}`} key={item.itemName} className="OutfitDetail-item-link">
+          <Link to={`/item-detail/${encodeURIComponent(item.nameItem)}`} key={item.nameItem} className="OutfitDetail-item-link">
             <div className="OutfitDetail-item">
-              <img src={`http://localhost:3001${item.imgLink}`} alt={item.itemName} className="OutfitDetail-image" />
+              <img src={`http://localhost:3001${item.imgLink}`} alt={item.nameItem} className="OutfitDetail-image" />
               <div className="OutfitDetail-info">
-                <h3>{item.itemName}</h3>
+                <h3>{item.nameItem}</h3>
                 <p>Brand: {item.brand}</p>
                 <p>Type: {item.type}</p>
               </div>
