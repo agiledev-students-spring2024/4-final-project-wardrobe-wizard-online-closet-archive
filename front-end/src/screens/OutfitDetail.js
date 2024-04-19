@@ -72,9 +72,10 @@ const OutfitDetail = () => {
             </div>
           </Link>
         ))}
-        <h2 className="OutfitDetail-name">{outfitDetails.outfit.outfitName}</h2>
-        <p className="OutfitDetail-notes">{outfitDetails.outfit.outfitNotes}</p>
+        
       </div>
+      <h2 className="OutfitDetail-name">{outfitDetails.outfit.outfitName}</h2>
+      <p className="OutfitDetail-notes">{outfitDetails.outfit.outfitNotes}</p>
       <button onClick={handleBackClick} className="OutfitDetail-backButton">BACK</button>
       <button onClick={handleDeleteOutfit} className="OutfitDetail-deleteButton">DELETE</button>
     </div>
