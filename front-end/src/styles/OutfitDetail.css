@@ -7,26 +7,42 @@
     text-align: center;
 }
 
-.OutfitDetail-banner h1, .OutfitDetail-banner h3 {
-    font-family: 'Cormorant Infant', serif;
+.OutfitDetail-banner h1 {
+    font-family: "IM Fell French Canon SC", serif;
+    font-weight: 400;
+    margin: 0;
+    margin-left: 2em;
+    text-align: left;
+    font-size: 27px;
+    
 }
 
+.OutfitDetail-banner h3 {
+    font-family: 'Cormorant Infant', serif;
+    font-weight: 300;
+
+}
 /* Grid layout for outfit details */
 .OutfitDetail-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: flex; /* Switch to flexbox layout */
+    flex-wrap: wrap; /* Allow items to wrap as needed */
     gap: 1rem;
     padding: 1rem;
-    justify-items: center; /* Center items horizontally */
+    justify-content: center; /* Center items horizontally */
+    align-items: center; /* Align items vertically */
+    height: 450px; /* Set a fixed height */
+    overflow: auto; /* Add scrolling if content overflows */
 }
 
 .OutfitDetail-item {
+    flex: 1 1 200px; /* Allow item to grow and shrink but start at 200px width */
     text-align: center;
 }
 
 .OutfitDetail-image {
-    max-width: 70%;
-    height: auto;
+    width: auto; /* Adjust width to be auto to maintain aspect ratio */
+    max-width: 100%; /* Ensure it doesn't exceed its container */
+    max-height: 150px; /* Set a max height to maintain the container size */
     margin-bottom: 1rem;
 }
 
@@ -39,6 +55,7 @@
     text-align: center;
     padding: 1rem;
 }
+
 
 .OutfitDetail-backButton {
     position: fixed; /* Fixed position */
@@ -79,4 +96,18 @@
   .OutfitDetail-deleteButton:hover {
     text-decoration: none; /* Remove underline on hover for effect */
   }
-  
+
+.OutfitDetail-name {
+    text-align: left;
+    margin-left: 40px;
+    margin-bottom: 0.5rem; /* Reduced bottom margin to bring the next element closer */
+    padding: 0; /* Removed padding, adjust if needed */
+}
+
+.OutfitDetail-notes {
+    text-align: left;
+    margin-left: 40px;
+    margin-top: 0.5rem; /* Reduced top margin to be closer to the element above */
+    padding: 0; /* Removed padding, adjust if needed */
+}
+
