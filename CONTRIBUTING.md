@@ -11,5 +11,3 @@
 * Our team will be using VS Code for our code editor.
 
 * We will be following the Agile workflow.
-
-* At this moment instructions for setting up an environment are not available. Will be updated as work on Sprint 1 begins.

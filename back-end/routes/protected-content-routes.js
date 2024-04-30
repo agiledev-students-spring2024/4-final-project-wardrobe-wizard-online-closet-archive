@@ -4,19 +4,17 @@ import jwt from 'jsonwebtoken';
 
 const auth =  (req, res, next) => {
     const bearerHeader = req.headers.authorization;
-    //console.log(bearerHeader)
     if (!bearerHeader) {
       return res.status(401).json({ message: 'Unauthorized access' });
     }
-
+    /*
+      since the value reads as Bearer and then the token I split them by the space and took the value in index 1 and
+      checked it 
+    */
     try {
-      // Split at the space and get token from array
       const bearer = bearerHeader.split(' ');
       const bearerToken = bearer[1];
-        // console.log(bearerToken)
-      // Verify the token
       const decoded = jwt.verify(bearerToken, process.env.JWT_SECRET);
-      console.log(decoded)
       req.user = decoded;
       next();
     } catch (error) {

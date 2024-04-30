@@ -8,7 +8,9 @@ const OverlayMenu = () => {
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
-
+    /*
+        on logout the token is removed so that when the user visits the link again they will need to login
+    */
     const handleLogout = () => {
         localStorage.removeItem('token');
     }

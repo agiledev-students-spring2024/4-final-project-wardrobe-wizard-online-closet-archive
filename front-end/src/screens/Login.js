@@ -18,7 +18,11 @@ const Login = () => {
             username: username,
             password: password
         }).then( res => {
-            console.log(res.data.loggedIn);
+            // console.log(res.data.loggedIn);
+            /*
+                we are using local storage to save the token. first the request is made to the express app
+                and once the login information is verfied and a token returned it is saved.
+            */
                 if(res.data.loggedIn){
                     navigate('/home')
                     localStorage.setItem('token', res.data.token)

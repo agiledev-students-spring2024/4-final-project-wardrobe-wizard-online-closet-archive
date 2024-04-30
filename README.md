@@ -72,3 +72,6 @@ To close the app, run the following in the two original command line windows:
 Ctrl+C
 ```
 and select 'Y' should it ask you to confirm you want to close the app.
+
+
+For grading purposes a copy of a .env file is located within the "Wardrobe-Wizard-Team" Discord channel
