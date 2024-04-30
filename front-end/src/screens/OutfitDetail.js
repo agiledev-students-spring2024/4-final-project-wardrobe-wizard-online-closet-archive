@@ -45,7 +45,7 @@ const OutfitDetail = () => {
         }
       });
       alert('Outfit deleted successfully');
-      navigate('/'); // or navigate to the appropriate page after deletion
+      navigate(-1); 
     } catch (error) {
       setError('Error deleting outfit: ' + error.response.data.message);
     }
