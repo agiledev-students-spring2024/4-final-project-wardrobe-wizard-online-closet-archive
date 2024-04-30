@@ -14,7 +14,7 @@ const OutfitDetail = () => {
   useEffect(() => {
     const encodedOutfitName = encodeURIComponent(outfitName);
     const token = localStorage.getItem('token');
-    axios.get(`http://localhost:3001/outfit-detail/${encodedOutfitName}`, {
+    axios.get(`http://159.203.82.135:3001/outfit-detail/${encodedOutfitName}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

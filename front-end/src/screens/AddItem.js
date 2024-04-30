@@ -38,7 +38,7 @@ const AddItem = () => {
     data.append('picture', formData.picture);
   
     // Example: POST request to your backend endpoint
-    fetch('http://localhost:3001/additem', {
+    fetch('http://159.203.82.135:3001/additem', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`

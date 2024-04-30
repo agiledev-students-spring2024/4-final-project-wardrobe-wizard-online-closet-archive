@@ -12,7 +12,7 @@ const Archive = () => {
     const fetchOutfits = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('http://localhost:3001/outfits', {
+        const response = await axios.get('http://159.203.82.135:3001/outfits', {
           headers: {
             Authorization: `Bearer ${token}`
           }

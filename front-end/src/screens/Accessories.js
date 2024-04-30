@@ -14,7 +14,7 @@ const Accessories = () => {
               Authorization: `Bearer ${token}`
             }
         };
-        axios.get('http://localhost:3001/accessories', config)
+        axios.get('http://159.203.82.135:3001/accessories', config)
         .then( res => {
             setAccessories(res.data)
             

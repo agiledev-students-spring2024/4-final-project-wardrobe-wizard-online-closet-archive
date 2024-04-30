@@ -14,7 +14,7 @@ const Pants = () => {
               Authorization: `Bearer ${token}`
             }
         };
-        axios.get('http://localhost:3001/pants', config)
+        axios.get('http://159.203.82.135:3001/pants', config)
         .then( res => {
             setPants(res.data)
             

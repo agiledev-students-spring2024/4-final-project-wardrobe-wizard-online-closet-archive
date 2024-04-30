@@ -14,7 +14,7 @@ const CoatsJackets = () => {
               Authorization: `Bearer ${token}`
             }
         };
-        axios.get('http://localhost:3001/jackets', config)
+        axios.get('http://159.203.82.135:3001/jackets', config)
         .then( res => {
             setJackets(res.data)
             

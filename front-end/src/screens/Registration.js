@@ -21,7 +21,7 @@ function Registration(){
         else{  
             setMatchingPasswords(false); 
             console.log(username,password);
-            axios.post('http://localhost:3001/register', {
+            axios.post('http://159.203.82.135:3001/register', {
                 username: username,
                 password: password
             }).then( res => {

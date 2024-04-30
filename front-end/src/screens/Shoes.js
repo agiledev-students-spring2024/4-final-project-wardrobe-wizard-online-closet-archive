@@ -15,7 +15,7 @@ const Shoes = () => {
             }
         };
 
-        axios.get('http://localhost:3001/shoes', config)
+        axios.get('http://159.203.82.135:3001/shoes', config)
         .then( res => {
             setShoes(res.data)
             

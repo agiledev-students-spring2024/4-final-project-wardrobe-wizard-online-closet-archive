@@ -24,12 +24,12 @@ const Generator = () => {
             }
         };
         const responses = await Promise.all([
-          axios.get('http://localhost:3001/shirts', config),
-          axios.get('http://localhost:3001/pants', config),
-          axios.get('http://localhost:3001/skirts', config),
-          axios.get('http://localhost:3001/jackets', config),
-          axios.get('http://localhost:3001/shoes', config),
-          axios.get('http://localhost:3001/accessories', config),
+          axios.get('http://159.203.82.135:3001/shirts', config),
+          axios.get('http://159.203.82.135:3001/pants', config),
+          axios.get('http://159.203.82.135:3001/skirts', config),
+          axios.get('http://159.203.82.135:3001/jackets', config),
+          axios.get('http://159.203.82.135:3001/shoes', config),
+          axios.get('http://159.203.82.135:3001/accessories', config),
         ]);
 
         const combinedItems = responses.flatMap(response => response.data);

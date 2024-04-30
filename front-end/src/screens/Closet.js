@@ -16,7 +16,7 @@ const Closet = () => {
             Authorization: `Bearer ${token}`
           }
       };
-      axios.get('http://localhost:3001/verify_login', config)
+      axios.get('http://159.203.82.135:3001/verify_login', config)
       .then( res => {
          setShowForm(res.data.loggedIn)
       })

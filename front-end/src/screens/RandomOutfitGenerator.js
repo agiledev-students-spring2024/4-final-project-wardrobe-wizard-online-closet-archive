@@ -13,7 +13,7 @@ const RandomOutfitGenerator = () => {
       try {
         const categories = ['shirts', 'pants', 'skirts', 'shoes', 'accessories', 'jackets'];
         const responses = await Promise.all(categories.map(category =>
-          axios.get(`http://localhost:3001/${category}`)
+          axios.get(`http://159.203.82.135:3001/${category}`)
         ));
         const itemsByCategory = {};
         responses.forEach((response, index) => {
