@@ -29,6 +29,10 @@ function Registration(){
                     if(res.data.created){
                         navigate('/home')
                         localStorage.setItem('token', res.data.token)
+                        /*
+                            similar to login, on registration of a new account a token is created and saved
+                            to the local storage
+                        */
                     }
                     else{
                         setTakenUsername(true);

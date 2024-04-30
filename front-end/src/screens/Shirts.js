@@ -14,6 +14,10 @@ const Shirt = () => {
               Authorization: `Bearer ${token}`
             }
         };
+        /*
+            every page needs to pass in the authorization header in order to be able to make the get request which ensures 
+            only logged in users can see content
+        */
         axios.get('http://localhost:3001/shirts', config)
         .then( res => {
             setShirts(res.data)
