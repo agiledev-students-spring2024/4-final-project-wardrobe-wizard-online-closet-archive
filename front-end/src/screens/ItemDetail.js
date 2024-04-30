@@ -72,7 +72,7 @@ const ItemDetail = () => {
       })
       .then(() => {
         alert('Item successfully deleted');
-        navigate('/'); // Redirect to home or any other page
+        navigate(-1);
       })
       .catch(error => {
         console.error('Error deleting item:', error);
