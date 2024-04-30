@@ -75,3 +75,10 @@ and select 'Y' should it ask you to confirm you want to close the app.
 
 
 For grading purposes a copy of a .env file is located within the "Wardrobe-Wizard-Team" Discord channel
+
+Link to Deployed App: http://104.131.160.142:3000/
+The following sample login contains data in each category, however, feel free to make your own accounts and add data as you wish!
+```
+Username: tester
+Password: tester 
+```
